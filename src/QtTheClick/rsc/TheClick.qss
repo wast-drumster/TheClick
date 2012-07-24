@@ -1,0 +1,43 @@
+QWidget { 
+	background: rgb(60,60,60);
+}
+
+QLabel, QSlider { 
+	background-color: rgba(0,0,0,0);
+}
+
+QLabel, QSpinBox, QPushButton, QGroupBox, QComboBox, QLineEdit {
+	color: rgb(200,200,200);
+}
+
+QPushButton {
+	border: 2px solid rgba(0,0,0,0);
+	border-radius: 8px;
+	padding: 2px;
+	background: qradialgradient(cx: 0.3, cy: -0.4,
+	fx: 0.3, fy: -0.4,
+	radius: 1.35, stop: 0 rgb(90,90,90), stop: 1 rgb(65,65,65));
+}
+
+QPushButton:hover {
+	background: qradialgradient(cx: 0.3, cy: -0.4,
+	fx: 0.3, fy: -0.4,
+	radius: 1.35, stop: 0 rgb(100,100,100), stop: 1 rgb(70,70,70));
+}
+
+QPushButton:pressed {
+	background: qradialgradient(cx: 0.4, cy: -0.1,
+	fx: 0.4, fy: -0.1,
+	radius: 1.35, stop: 0 #fff, stop: 1 #ddd);
+}
+
+QPushButton:checked {
+	background: qradialgradient(cx: 0.3, cy: -0.4,
+	fx: 0.3, fy: -0.4,
+	radius: 1.35, stop: 1 rgb(90,90,90), stop: 0 rgb(65,65,65));
+}
+
+QSpinBox, QLineEdit {
+	border-radius: 8px;
+	background: rgba(0,0,0,50);
+}

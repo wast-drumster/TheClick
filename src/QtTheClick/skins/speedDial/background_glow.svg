@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="289.134" height="289.134" viewBox="0, 0, 289.134, 289.134">
+  <g id="Layer 1">
+    <path d="M246.774,42.092 C303.296,98.613 303.296,190.253 246.774,246.774 C190.253,303.296 98.613,303.296 42.092,246.774 C-14.43,190.253 -14.43,98.613 42.092,42.092 C98.613,-14.43 190.253,-14.43 246.774,42.092" fill="#000000"/>
+    <path d="M244.768,44.098 C300.181,99.512 300.181,189.354 244.768,244.768 C189.354,300.181 99.512,300.181 44.098,244.768 C-11.315,189.354 -11.315,99.512 44.098,44.098 C99.512,-11.315 189.354,-11.315 244.768,44.098" fill="url(#Gradient_1)"/>
+  </g>
+  <defs>
+    <radialGradient id="Gradient_1" gradientUnits="userSpaceOnUse" cx="143.104" cy="39.667" r="345.023">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.355" stop-color="#AC7E7F"/>
+      <stop offset="0.52" stop-color="#5C2C2D"/>
+      <stop offset="1" stop-color="#1F1010"/>
+    </radialGradient>
+  </defs>
+</svg>
