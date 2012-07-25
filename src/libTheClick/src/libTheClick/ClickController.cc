@@ -61,7 +61,7 @@ namespace libTheClick
                                    2,          /* stereo output */
                                    paFloat32,  /* 32 bit floating point output */
                                    SAMPLE_RATE,
-                                   SAMPLE_RATE/2 /*paFramesPerBufferUnspecified*/,        /* frames per buffer, i.e. the number
+                                   SAMPLE_RATE/8 /*paFramesPerBufferUnspecified*/,        /* frames per buffer, i.e. the number
                                                 of sample frames that PortAudio will
                                                 request from the callback. Many apps
                                                 may want to use
