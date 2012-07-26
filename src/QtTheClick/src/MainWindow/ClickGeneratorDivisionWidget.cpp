@@ -123,6 +123,7 @@ ClickGeneratorDivisionWidget::ClickGeneratorDivisionWidget(libTheClick::ClickCon
 
     this->muteToggleSwitch = new QtSvgToggleSwitch( this );
     this->muteToggleSwitch->setSkin( QString::fromUtf8("muteToggleSwitch") );
+    connect(this->muteToggleSwitch, SIGNAL(clicked()), this, SLOT(muteSwitch()));
 
     //initialize and configure stuff for libTheClick
     this->clickGenerator = new libTheClick::ClickGenerator_DivisionSubdivision();
@@ -142,10 +143,12 @@ ClickGeneratorDivisionWidget::ClickGeneratorDivisionWidget(libTheClick::ClickCon
     this->clickGenerator->setAmountSubdivisions( this->amountSubdivisions->value() );
     this->levelChanged(0); //load SoundElements into clickgenerator
     this->clickGenerator->setDivisionCallbackFunction( boost::bind( &ClickGeneratorDivisionWidget::theClickDivisionCallBack, &(*this) , _1, _2) );
-    this->clickgenID = this->clickController->addClickGenerator( this->clickGenerator, 1.0 );
 
     //update valume
+    this->clickgenID = CLICKGEN_DISABLED_VALUE;
     this->volumeChanged( this->volumeSlider->value() );
+    this->muteToggleSwitch->setChecked(false);
+    this->muteSwitch();
 }
 
 ClickGeneratorDivisionWidget::~ClickGeneratorDivisionWidget()
@@ -349,5 +352,21 @@ int ClickGeneratorDivisionWidget::getMinimimWidthForMainWindowHeight(int h) cons
 
 void ClickGeneratorDivisionWidget::volumeChanged(int)
 {
-    this->clickController->setVolumeforClickGenerator(this->clickgenID, (float)this->volumeSlider->value() / (float)this->volumeSlider->maximum());
+    if(this->clickgenID != CLICKGEN_DISABLED_VALUE)
+        this->clickController->setVolumeforClickGenerator(this->clickgenID, (float)this->volumeSlider->value() / (float)this->volumeSlider->maximum());
+}
+
+void ClickGeneratorDivisionWidget::muteSwitch()
+{
+    if(!this->muteToggleSwitch->isChecked())
+    {
+        this->clickgenID = this->clickController->addClickGenerator( this->clickGenerator, (float)this->volumeSlider->value() / (float)this->volumeSlider->maximum() );
+    }
+    else
+    {
+        if(this->clickgenID != CLICKGEN_DISABLED_VALUE)
+            this->clickController->removeClickGenerator( this->clickgenID );
+
+        this->clickgenID = CLICKGEN_DISABLED_VALUE;
+    }
 }

@@ -159,8 +159,12 @@ ClickGeneratorPASWidget::ClickGeneratorPASWidget(libTheClick::ClickController* c
     this->volumeSlider->setSkin( QString::fromUtf8("volumeSlider") );
     this->volumeSlider->setMinimum( 0 );
     this->volumeSlider->setMaximum( 100 );
-    this->volumeSlider->setValue( 0 );
+    this->volumeSlider->setValue( 80 );
     connect(this->volumeSlider, SIGNAL(valueChanged(int)), this, SLOT(volumeChanged(int)));
+
+    this->muteToggleSwitch = new QtSvgToggleSwitch( this );
+    this->muteToggleSwitch->setSkin( QString::fromUtf8("muteToggleSwitch") );
+    connect(this->muteToggleSwitch, SIGNAL(clicked()), this, SLOT(muteSwitch()));
 
     //initialize and configure stuff for libTheClick
     this->clickGenerator = new libTheClick::ClickGenerator_Rudiments();
@@ -179,10 +183,12 @@ ClickGeneratorPASWidget::ClickGeneratorPASWidget(libTheClick::ClickController* c
 
     this->clickGenerator->setRudimentsID( this->rudimentsComboBox->currentIndex() + 1 );
     this->levelChanged(0); //load SoundElements into clickgenerator
-    this->clickgenID = this->clickController->addClickGenerator( this->clickGenerator, 0.7 );
 
     //update valume
+    this->clickgenID = CLICKGEN_DISABLED_VALUE;
     this->volumeChanged( this->volumeSlider->value() );
+    this->muteToggleSwitch->setChecked(true);
+    this->muteSwitch();
 }
 
 ClickGeneratorPASWidget::~ClickGeneratorPASWidget()
@@ -244,7 +250,8 @@ void ClickGeneratorPASWidget::resizeEvent ( QResizeEvent * event )
     this->levelRightGhost->setGeometry( QRect(DISTANCE_X_LEFT + (dialWithButtonsWidth + SPACE_X)*3, curHeight, dialWithButtonsWidth, dialWithButtonsHeight) );
     curHeight += dialWithButtonsHeight + SPACE_Y;
 
-    this->volumeSlider->setGeometry( QRect(DISTANCE_X_LEFT + SPACE_X + muteWidth, curHeight, this->size().width() - DISTANCE_X_LEFT - DISTANCE_X_RIGHT - SPACE_X - muteWidth, dialWithButtonsHeight) );
+    this->muteToggleSwitch->setGeometry( QRect(DISTANCE_X_LEFT, curHeight, muteWidth, muteHeight) );
+    this->volumeSlider->setGeometry( QRect(DISTANCE_X_LEFT + SPACE_X + muteWidth, curHeight + (muteHeight - dialWithButtonsHeight) / 2, this->size().width() - DISTANCE_X_LEFT - DISTANCE_X_RIGHT - SPACE_X - muteWidth, dialWithButtonsHeight) );
 
     update();
 }
@@ -299,13 +306,14 @@ int ClickGeneratorPASWidget::heightForWidth(int w) const
 {
     int dialWithButtonsHeight = ScaleInformation::getInstance()->getHeightDialWithButtons();
 //    int dialWithButtonsWidth = ScaleInformation::getInstance()->getWidthDialWithButtons();
+    int muteHeight = ScaleInformation::getInstance()->getHeightMuteToggleSwitch();
 
     int curHeight = DISTANCE_Y_TOP;
     curHeight += dialWithButtonsHeight + SPACE_Y;
     curHeight += dialWithButtonsHeight + SPACE_Y;
     curHeight += dialWithButtonsHeight + SPACE_Y;
     curHeight += dialWithButtonsHeight + SPACE_Y;
-    curHeight += dialWithButtonsHeight + SPACE_Y;
+    curHeight += muteHeight + SPACE_Y;
 
     curHeight += -SPACE_Y + DISTANCE_Y_BOTTOM;
 
@@ -324,5 +332,21 @@ int ClickGeneratorPASWidget::getMinimimWidthForMainWindowHeight(int h) const
 
 void ClickGeneratorPASWidget::volumeChanged(int)
 {
-    this->clickController->setVolumeforClickGenerator(this->clickgenID, (float)this->volumeSlider->value() / (float)this->volumeSlider->maximum());
+    if(this->clickgenID != CLICKGEN_DISABLED_VALUE)
+        this->clickController->setVolumeforClickGenerator(this->clickgenID, (float)this->volumeSlider->value() / (float)this->volumeSlider->maximum());
+}
+
+void ClickGeneratorPASWidget::muteSwitch()
+{
+    if(!this->muteToggleSwitch->isChecked())
+    {
+        this->clickgenID = this->clickController->addClickGenerator( this->clickGenerator, (float)this->volumeSlider->value() / (float)this->volumeSlider->maximum() );
+    }
+    else
+    {
+        if(this->clickgenID != CLICKGEN_DISABLED_VALUE)
+            this->clickController->removeClickGenerator( this->clickgenID );
+
+        this->clickgenID = CLICKGEN_DISABLED_VALUE;
+    }
 }

@@ -35,6 +35,8 @@
 #define SPACE_X                (5)
 #define SPACE_Y                (5)
 
+#define CLICKGEN_DISABLED_VALUE  (-1)
+
 class ClickGeneratorDivisionWidget : public ClickGeneratorAbstractWidget
 {
     Q_OBJECT
@@ -103,6 +105,7 @@ class ClickGeneratorDivisionWidget : public ClickGeneratorAbstractWidget
         void amountSubdivisionsChanged(int value);
         void levelChanged(int);
         void volumeChanged(int);
+        void muteSwitch();
 
 };
 

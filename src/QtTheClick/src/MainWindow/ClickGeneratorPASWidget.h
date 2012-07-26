@@ -22,6 +22,7 @@
 
 #include "MainWindow/ClickGeneratorAbstractWidget.h"
 #include "widgets/svgdialwithbuttons/qtsvgdialwithbuttons.h"
+#include "widgets/svgtoggleswitch/qtsvgtoggleswitch.h"
 #include "widgets/svgslider/qtsvgSlider.h"
 #include "libTheClick/libTheClick.h"
 #include <QLabel>
@@ -33,6 +34,8 @@
 #define DISTANCE_Y_BOTTOM      (10)
 #define SPACE_X                (5)
 #define SPACE_Y                (5)
+
+#define CLICKGEN_DISABLED_VALUE  (-1)
 
 class ClickGeneratorPASWidget : public ClickGeneratorAbstractWidget
 {
@@ -55,6 +58,7 @@ class ClickGeneratorPASWidget : public ClickGeneratorAbstractWidget
         QtSvgDialWithButtons* levelRightAccent;
         QtSvgDialWithButtons* levelRightNormal;
         QtSvgDialWithButtons* levelRightGhost;
+        QtSvgToggleSwitch*    muteToggleSwitch;
         QtSvgSlider*          volumeSlider;
         QLabel*               accentTextLabel;
         QLabel*               normalTextLabel;
@@ -114,6 +118,7 @@ class ClickGeneratorPASWidget : public ClickGeneratorAbstractWidget
         void rudimentChanged(int value);
         void levelChanged(int value);
         void volumeChanged(int);
+        void muteSwitch();
 
 };
 
