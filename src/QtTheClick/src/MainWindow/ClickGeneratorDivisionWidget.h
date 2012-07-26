@@ -22,6 +22,7 @@
 
 #include "MainWindow/ClickGeneratorAbstractWidget.h"
 #include "widgets/svgdialwithbuttons/qtsvgdialwithbuttons.h"
+#include "widgets/svgtoggleswitch/qtsvgtoggleswitch.h"
 #include "widgets/svgslider/qtsvgSlider.h"
 #include "libTheClick/libTheClick.h"
 #include <QWidget>
@@ -52,6 +53,7 @@ class ClickGeneratorDivisionWidget : public ClickGeneratorAbstractWidget
         QtSvgDialWithButtons* subdivisionLevelControl[DIVSUBDIV__MAX_SUBDIVISIONS];
         QtSvgDialWithButtons* amountDivisions;
         QtSvgDialWithButtons* amountSubdivisions;
+        QtSvgToggleSwitch*    muteToggleSwitch;
         QtSvgSlider*          volumeSlider;
         QLabel*               divisionTextLabel;
         QLabel*               subdivisionTextLabel;

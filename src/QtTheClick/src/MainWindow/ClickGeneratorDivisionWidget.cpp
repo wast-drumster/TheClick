@@ -121,6 +121,9 @@ ClickGeneratorDivisionWidget::ClickGeneratorDivisionWidget(libTheClick::ClickCon
     this->volumeSlider->setValue( 100 );
     connect(this->volumeSlider, SIGNAL(valueChanged(int)), this, SLOT(volumeChanged(int)));
 
+    this->muteToggleSwitch = new QtSvgToggleSwitch( this );
+    this->muteToggleSwitch->setSkin( QString::fromUtf8("muteToggleSwitch") );
+
     //initialize and configure stuff for libTheClick
     this->clickGenerator = new libTheClick::ClickGenerator_DivisionSubdivision();
     for(int i = 0; i < DIVSUBDIV__MAX_DIVISIONS; i++)
@@ -186,6 +189,8 @@ void ClickGeneratorDivisionWidget::resizeEvent ( QResizeEvent * event )
     int curHeight = DISTANCE_Y_TOP;
     int dialWithButtonsHeight = ScaleInformation::getInstance()->getHeightDialWithButtons();
     int dialWithButtonsWidth = ScaleInformation::getInstance()->getWidthDialWithButtons();
+    int muteHeight = ScaleInformation::getInstance()->getHeightMuteToggleSwitch();
+    int muteWidth = ScaleInformation::getInstance()->getWidthMuteToggleSwitch();
     int textPixelSize = ScaleInformation::getInstance()->getPixelSizeNormalText();
     QFont fontNextElement;
 
@@ -269,7 +274,8 @@ void ClickGeneratorDivisionWidget::resizeEvent ( QResizeEvent * event )
         curHeight += (dialWithButtonsHeight + SPACE_Y) * ((this->amountSubdivisions->value()-1) / maxPerLine + 1);
     }
 
-    this->volumeSlider->setGeometry( QRect(DISTANCE_X_LEFT, curHeight, this->size().width() - DISTANCE_X_LEFT - DISTANCE_X_RIGHT, dialWithButtonsHeight) );
+    this->muteToggleSwitch->setGeometry( QRect(DISTANCE_X_LEFT, curHeight, muteWidth, muteHeight) );
+    this->volumeSlider->setGeometry( QRect(DISTANCE_X_LEFT + SPACE_X + muteWidth, curHeight + (muteHeight - dialWithButtonsHeight) / 2, this->size().width() - DISTANCE_X_LEFT - DISTANCE_X_RIGHT - SPACE_X - muteWidth, dialWithButtonsHeight) );
 
     update();
 }
@@ -315,6 +321,7 @@ int ClickGeneratorDivisionWidget::heightForWidth(int w) const
 {
     int dialWithButtonsHeight = ScaleInformation::getInstance()->getHeightDialWithButtons();
     int dialWithButtonsWidth = ScaleInformation::getInstance()->getWidthDialWithButtons();
+    int muteHeight = ScaleInformation::getInstance()->getHeightMuteToggleSwitch();
 
     int maxPerLine = (w - DISTANCE_X_LEFT - DISTANCE_X_RIGHT) / (dialWithButtonsWidth - 1/*avoid to early break over*/ + SPACE_X);
     if(maxPerLine == 0) maxPerLine = 1;
@@ -324,7 +331,7 @@ int ClickGeneratorDivisionWidget::heightForWidth(int w) const
     curHeight += (dialWithButtonsHeight + SPACE_Y) * ((this->amountDivisions->value()-1) / maxPerLine + 1);
     curHeight += dialWithButtonsHeight + SPACE_Y;
     curHeight += (dialWithButtonsHeight + SPACE_Y) * ((this->amountSubdivisions->value()-1) / maxPerLine + 1);
-    curHeight += dialWithButtonsHeight + SPACE_Y;
+    curHeight += muteHeight + SPACE_Y;
     curHeight += -SPACE_Y + DISTANCE_Y_BOTTOM;
 
     return curHeight;

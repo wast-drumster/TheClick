@@ -208,6 +208,8 @@ void ClickGeneratorPASWidget::resizeEvent ( QResizeEvent * event )
     int curHeight = DISTANCE_Y_TOP;
     int dialWithButtonsHeight = ScaleInformation::getInstance()->getHeightDialWithButtons();
     int dialWithButtonsWidth = ScaleInformation::getInstance()->getWidthDialWithButtons();
+    int muteHeight = ScaleInformation::getInstance()->getHeightMuteToggleSwitch();
+    int muteWidth = ScaleInformation::getInstance()->getWidthMuteToggleSwitch();
     int textPixelSize = ScaleInformation::getInstance()->getPixelSizeNormalText();
     QFont fontNextElement;
 
@@ -242,7 +244,7 @@ void ClickGeneratorPASWidget::resizeEvent ( QResizeEvent * event )
     this->levelRightGhost->setGeometry( QRect(DISTANCE_X_LEFT + (dialWithButtonsWidth + SPACE_X)*3, curHeight, dialWithButtonsWidth, dialWithButtonsHeight) );
     curHeight += dialWithButtonsHeight + SPACE_Y;
 
-    this->volumeSlider->setGeometry( QRect(DISTANCE_X_LEFT, curHeight, event->size().width() - DISTANCE_X_LEFT - DISTANCE_X_RIGHT, dialWithButtonsHeight) );
+    this->volumeSlider->setGeometry( QRect(DISTANCE_X_LEFT + SPACE_X + muteWidth, curHeight, this->size().width() - DISTANCE_X_LEFT - DISTANCE_X_RIGHT - SPACE_X - muteWidth, dialWithButtonsHeight) );
 
     update();
 }
