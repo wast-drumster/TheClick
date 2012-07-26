@@ -101,6 +101,13 @@ ClickGeneratorXoYWidget::ClickGeneratorXoYWidget(libTheClick::ClickController* c
     this->levelY->setValue(20);
     connect(this->levelY, SIGNAL(valueChanged(int)), this, SLOT(levelChanged(int)));
 
+    this->volumeSlider = new QtSvgSlider( this );
+    this->volumeSlider->setSkin( QString::fromUtf8("volumeSlider") );
+    this->volumeSlider->setMinimum( 0 );
+    this->volumeSlider->setMaximum( 100 );
+    this->volumeSlider->setValue( 80 );
+    connect(this->volumeSlider, SIGNAL(valueChanged(int)), this, SLOT(volumeChanged(int)));
+
     //initialize and configure stuff for libTheClick
     this->clickGenerator = new libTheClick::ClickGenerator_XoverY();
     this->xyXDrumKitID = 0;
@@ -113,12 +120,7 @@ ClickGeneratorXoYWidget::ClickGeneratorXoYWidget(libTheClick::ClickController* c
     this->levelChanged(0); //load SoundElements into clickgenerator
     this->clickgenID = this->clickController->addClickGenerator( this->clickGenerator, 0.7 );
 
-    this->volumeSlider = new QtSvgSlider( this );
-    this->volumeSlider->setSkin( QString::fromUtf8("volumeSlider") );
-    this->volumeSlider->setMinimum( 0 );
-    this->volumeSlider->setMaximum( 100 );
-    this->volumeSlider->setValue( 80 );
-    connect(this->volumeSlider, SIGNAL(valueChanged(int)), this, SLOT(volumeChanged(int)));
+    //update valume
     this->volumeChanged( this->volumeSlider->value() );
 }
 

@@ -114,6 +114,13 @@ ClickGeneratorDivisionWidget::ClickGeneratorDivisionWidget(libTheClick::ClickCon
         connect(dwb, SIGNAL(valueChanged(int)), this, SLOT(levelChanged(int)));
     }
 
+    this->volumeSlider = new QtSvgSlider( this );
+    this->volumeSlider->setSkin( QString::fromUtf8("volumeSlider") );
+    this->volumeSlider->setMinimum( 0 );
+    this->volumeSlider->setMaximum( 100 );
+    this->volumeSlider->setValue( 100 );
+    connect(this->volumeSlider, SIGNAL(valueChanged(int)), this, SLOT(volumeChanged(int)));
+
     //initialize and configure stuff for libTheClick
     this->clickGenerator = new libTheClick::ClickGenerator_DivisionSubdivision();
     for(int i = 0; i < DIVSUBDIV__MAX_DIVISIONS; i++)
@@ -134,12 +141,7 @@ ClickGeneratorDivisionWidget::ClickGeneratorDivisionWidget(libTheClick::ClickCon
     this->clickGenerator->setDivisionCallbackFunction( boost::bind( &ClickGeneratorDivisionWidget::theClickDivisionCallBack, &(*this) , _1, _2) );
     this->clickgenID = this->clickController->addClickGenerator( this->clickGenerator, 1.0 );
 
-    this->volumeSlider = new QtSvgSlider( this );
-    this->volumeSlider->setSkin( QString::fromUtf8("volumeSlider") );
-    this->volumeSlider->setMinimum( 0 );
-    this->volumeSlider->setMaximum( 100 );
-    this->volumeSlider->setValue( 100 );
-    connect(this->volumeSlider, SIGNAL(valueChanged(int)), this, SLOT(volumeChanged(int)));
+    //update valume
     this->volumeChanged( this->volumeSlider->value() );
 }
 
