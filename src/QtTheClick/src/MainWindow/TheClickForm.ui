@@ -60,7 +60,7 @@
      <string>Speed</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="testGroupBox">
+   <widget class="QGroupBox" name="clickGeneratorGroupBox">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -70,7 +70,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Test</string>
+     <string>Click Generators</string>
     </property>
    </widget>
   </widget>

@@ -46,8 +46,8 @@ MainWindow::MainWindow(QWidget *parent)
 //    this->speedWidget->setGeometry( QRect(10,10,this->theClickForm->speedGroupBox->width()-20,this->theClickForm->speedGroupBox->height()-20) );
     this->speedWidget->show();
 
-    this->clickGeneratorScrollListOfWidgets = new ScrollListOfWidgets( this->theClickForm->testGroupBox );
-    this->clickGeneratorScrollListOfWidgets->setGeometry( QRect(0,20,this->theClickForm->testGroupBox->width(),this->theClickForm->testGroupBox->height()) );
+    this->clickGeneratorScrollListOfWidgets = new ScrollListOfWidgets( this->theClickForm->clickGeneratorGroupBox );
+    this->clickGeneratorScrollListOfWidgets->setGeometry( QRect(0,20,this->theClickForm->clickGeneratorGroupBox->width(),this->theClickForm->clickGeneratorGroupBox->height()) );
 
     this->clickGeneratorDivisionWidget = new ClickGeneratorDivisionWidget(this->clickController);
     this->clickGeneratorScrollListOfWidgets->addWidget( this->clickGeneratorDivisionWidget);
@@ -275,7 +275,7 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 
     //resize ClickGenerators
     this->clickGeneratorScrollListOfWidgets->setGeometry( QRect(10, 20, newWidthClickGeneratorWidgets, newHeight-20) );
-    this->theClickForm->testGroupBox->setGeometry(10, 0, newWidthClickGeneratorWidgets+20, newHeight-10);
+    this->theClickForm->clickGeneratorGroupBox->setGeometry(10, 0, newWidthClickGeneratorWidgets+20, newHeight-10);
 }
 
 void MainWindow::shouldResize()
