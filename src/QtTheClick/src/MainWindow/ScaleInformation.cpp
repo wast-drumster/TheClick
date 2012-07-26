@@ -45,6 +45,8 @@ ScaleInformation* ScaleInformation::getInstance()
     return &theInstance;
 }
 
+
+
 int ScaleInformation::getHeightDialWithButtons() const
 {
     return this->mainWindowHeight / SCALEINFORMATION_HEIGHT_RATIO_DIALWITHBUTTONS;
@@ -59,6 +61,25 @@ int ScaleInformation::getWidthDialWithButtonsForMainWindowHeight(int h) const
 {
     return h / (double)SCALEINFORMATION_HEIGHT_RATIO_DIALWITHBUTTONS * (double)SCALEINFORMATION_WIDTH_HEIGHT_RATIO_DIALWITHBUTTONS;
 }
+
+
+
+int ScaleInformation::getHeightMuteToggleSwitch() const
+{
+    return this->mainWindowHeight / SCALEINFORMATION_HEIGHT_RATIO_MUTESWITCH;
+}
+
+int ScaleInformation::getWidthMuteToggleSwitch() const
+{
+    return this->mainWindowHeight / (double)SCALEINFORMATION_HEIGHT_RATIO_MUTESWITCH * (double)SCALEINFORMATION_WIDTH_HEIGHT_RATIO_MUTESWITCH;
+}
+
+int ScaleInformation::getWidthMuteToggleSwitchForMainWindowHeight(int h) const
+{
+    return h / (double)SCALEINFORMATION_HEIGHT_RATIO_MUTESWITCH * (double)SCALEINFORMATION_WIDTH_HEIGHT_RATIO_MUTESWITCH;
+}
+
+
 
 int ScaleInformation::getPixelSizeNormalText() const
 {

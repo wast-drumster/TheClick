@@ -24,7 +24,11 @@
 
 #define SCALEINFORMATION_HEIGHT_RATIO_DIALWITHBUTTONS         (500.0/22.0)
 #define SCALEINFORMATION_WIDTH_HEIGHT_RATIO_DIALWITHBUTTONS   (90.0/22.0)
+
 #define SCALEINFORMATION_HEIGHT_RATIO_PIXELSIZENORMALTEXT     (500.0/10.0)
+
+#define SCALEINFORMATION_HEIGHT_RATIO_MUTESWITCH              (500.0/40.0)
+#define SCALEINFORMATION_WIDTH_HEIGHT_RATIO_MUTESWITCH        (40.0/40.0)
 
 class ScaleInformation
 {
@@ -55,6 +59,10 @@ class ScaleInformation
         int getHeightDialWithButtons() const;
         int getWidthDialWithButtons() const;
         int getWidthDialWithButtonsForMainWindowHeight(int h) const;
+
+        int getHeightMuteToggleSwitch() const;
+        int getWidthMuteToggleSwitch() const;
+        int getWidthMuteToggleSwitchForMainWindowHeight(int h) const;
 
         int getPixelSizeNormalText() const;
 

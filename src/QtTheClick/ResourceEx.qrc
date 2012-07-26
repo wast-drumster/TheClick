@@ -7,6 +7,12 @@
         <file>skins/playToggleSwitch/off_hovered.svg</file>
         <file>skins/playToggleSwitch/on_pressed.svg</file>
         <file>skins/playToggleSwitch/off_pressed.svg</file>
+        <file>skins/muteToggleSwitch/on_normal.svg</file>
+        <file>skins/muteToggleSwitch/off_normal.svg</file>
+        <file>skins/muteToggleSwitch/on_hovered.svg</file>
+        <file>skins/muteToggleSwitch/off_hovered.svg</file>
+        <file>skins/muteToggleSwitch/on_pressed.svg</file>
+        <file>skins/muteToggleSwitch/off_pressed.svg</file>
         <file>skins/stopButton/normal.svg</file>
         <file>skins/stopButton/pressed.svg</file>
         <file>skins/stopButton/hovered.svg</file>
