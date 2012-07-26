@@ -1,5 +1,5 @@
 /*
-** Copyright (C) 2012 Sebastian Roeglinger <wast-drumster@gmail.com>
+** Copyright (C) 2012 Sebastian Roeglinger <wast.drumster@gmail.com>
 ** 
 ** This file is part of TheClick.
 ** 
