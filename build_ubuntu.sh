@@ -42,19 +42,20 @@ cd "$LIB_BUILD_PATH"
 cmake "$LIB_SRC_PATH" && make
 
 #link all libraries to one library
-echo
-echo "link all libraries to one library"
-libtool \
- --mode=link \
- g++ -O2 \
- -all-static \
- "$LIB_BUILD_PATH/libTheClick.a" \
- "$LIB_PATH/portaudio/lib/.libs/libportaudio.a" \
- "$LIB_PATH/libsamplerate-0.1.8/src/.libs/libsamplerate.a" \
- "$LIB_PATH/boost_1_50_0/stage/lib/libboost_thread.a" \
- "$LIB_PATH/xerces-c-3.1.1/src/.libs/libxerces-c.a" \
- "$LIB_PATH/libsndfile-1.0.25/src/.libs/libsndfile.a" \
- -o libTheClick_BIG.a 
+#echo
+#echo "link all libraries to one library"
+#libtool \
+# --mode=link \
+# g++ -O2 \
+# -all-static \
+# "$LIB_BUILD_PATH/libTheClick.a" \
+# "$LIB_PATH/portaudio/lib/.libs/libportaudio.a" \
+# "$LIB_PATH/libsamplerate-0.1.8/src/.libs/libsamplerate.a" \
+# "$LIB_PATH/boost_1_50_0/stage/lib/libboost_thread.a" \
+# "$LIB_PATH/boost_1_50_0/stage/lib/libboost_system.a" \
+# "$LIB_PATH/xerces-c-3.1.1/src/.libs/libxerces-c.a" \
+# "$LIB_PATH/libsndfile-1.0.25/src/.libs/libsndfile.a" \
+# -o libTheClick_BIG.a 
 
 
 #build gui

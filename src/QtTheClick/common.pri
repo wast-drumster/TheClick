@@ -3,19 +3,20 @@ INCLUDEPATH += "$${PWD}/../libTheClick/include/"
 INCLUDEPATH += "$${PWD}/../libraries/portaudio/include/"
 INCLUDEPATH += "$${PWD}/../libraries/xerces-c-3.1.1/src/"
 INCLUDEPATH += "$${PWD}/../libraries/boost_1_50_0/"
-INCLUDEPATH += "$${PWD}/../libraries/libsndfile/src/"
+INCLUDEPATH += "$${PWD}/../libraries/libsndfile-1.0.25/src/"
 INCLUDEPATH += "$${PWD}/../libraries/libsamplerate-0.1.8/src/"
 
-LIBS += -L"$${PWD}/../build/libTheClick/" -lTheClick_BIG
+LIBS += -L"$${PWD}/../build/libTheClick/" -lTheClick
+#LIBS += -L"$${PWD}/../build/libTheClick/" -lTheClick_BIG
 
-#LIBS += -L"$${PWD}/../libraries/libsamplerate-0.1.8/src/.libs" -lsamplerate
-#LIBS += -L"$${PWD}/../libraries/boost_1_50_0/stage/lib" -lboost_thread
-#LIBS += -L"$${PWD}/../libraries/xerces-c-3.1.1/src/.libs" -lxerces-c
-#LIBS += -L"$${PWD}/../libraries/portaudio/lib/.libs" -lportaudio
-#LIBS += -L"$${PWD}/../libraries/libsndfile/src/.libs" -lsndfile
+LIBS += -L"$${PWD}/../libraries/libsamplerate-0.1.8/src/.libs" -lsamplerate
+LIBS += -L"$${PWD}/../libraries/boost_1_50_0/stage/lib" -lboost_thread -lboost_system
+LIBS += -L"$${PWD}/../libraries/xerces-c-3.1.1/src/.libs" -lxerces-c
+LIBS += -L"$${PWD}/../libraries/portaudio/lib/.libs" -lportaudio
+LIBS += -L"$${PWD}/../libraries/libsndfile-1.0.25/src/.libs" -lsndfile
 
 #Links Frameworks/Libraries for PortAudio
-macx {
+macx-g++ {
     #QMAKE_LFLAGS += -F/path/to/framework/directory
     LIBS += -framework CoreServices
     LIBS += -framework CoreAudio
@@ -23,7 +24,7 @@ macx {
     LIBS += -framework AudioUnit
 }
 
-linux {
+linux-g++ {
     LIBS += -lrt
     LIBS += -lasound
     LIBS += -ljack
