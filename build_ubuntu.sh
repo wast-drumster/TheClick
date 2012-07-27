@@ -21,7 +21,6 @@ LIB_PATH="$MY_DIR/src/libraries"
 #cmake
 #gcc
 #libraires
-#MacOS 10.6 SDK --> show how to install it if it is not available
 
 #setup Qt environment if the appropriate file exists
 if test -x "$SETUP_QT_SCRIPT"; then
@@ -46,7 +45,8 @@ cmake "$LIB_SRC_PATH" && make
 echo
 echo "link all libraries to one library"
 libtool \
- gcc -O2
+ --mode=link \
+ gcc -O2 \
  -all-static \
  "$LIB_BUILD_PATH/libTheClick.a" \
  "$LIB_PATH/portaudio/lib/.libs/libportaudio.a" \
@@ -61,8 +61,8 @@ libtool \
 echo
 echo "build GUI"
 cd "$GUI_BUILD_PATH"
-qmake "$QT_PRO_PATH" -r -spec linux-g++ CONFIG+=release
-make -w
+#qmake "$QT_PRO_PATH" -r -spec linux-g++ CONFIG+=release
+#make -w
 
 #end script
 echo "build process finalized"
