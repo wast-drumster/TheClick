@@ -17,7 +17,7 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "qtsvgSlider.h"
+#include "qtsvgslider.h"
 
 
 #include <QtGui/QPainter>

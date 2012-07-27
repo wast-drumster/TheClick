@@ -23,7 +23,7 @@
 #include "MainWindow/ClickGeneratorAbstractWidget.h"
 #include "widgets/svgdialwithbuttons/qtsvgdialwithbuttons.h"
 #include "widgets/svgtoggleswitch/qtsvgtoggleswitch.h"
-#include "widgets/svgslider/qtsvgSlider.h"
+#include "widgets/svgslider/qtsvgslider.h"
 #include "libTheClick/libTheClick.h"
 #include <QLabel>
 

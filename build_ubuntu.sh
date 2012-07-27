@@ -46,7 +46,7 @@ echo
 echo "link all libraries to one library"
 libtool \
  --mode=link \
- gcc -O2 \
+ g++ -O2 \
  -all-static \
  "$LIB_BUILD_PATH/libTheClick.a" \
  "$LIB_PATH/portaudio/lib/.libs/libportaudio.a" \
@@ -61,8 +61,8 @@ libtool \
 echo
 echo "build GUI"
 cd "$GUI_BUILD_PATH"
-#qmake "$QT_PRO_PATH" -r -spec linux-g++ CONFIG+=release
-#make -w
+qmake "$QT_PRO_PATH" -r -spec linux-g++ CONFIG+=release
+make -w
 
 #end script
 echo "build process finalized"

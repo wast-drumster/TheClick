@@ -14,13 +14,21 @@ LIBS += -L"$${PWD}/../build/libTheClick/" -lTheClick_BIG
 #LIBS += -L"$${PWD}/../libraries/portaudio/lib/.libs" -lportaudio
 #LIBS += -L"$${PWD}/../libraries/libsndfile/src/.libs" -lsndfile
 
-#MACOSX Frameworks for PortAudio
-#QMAKE_LFLAGS += -F/path/to/framework/directory
-#QMAKE_LFLAGS += -syslibroot "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk"
-LIBS += -framework CoreServices
-LIBS += -framework CoreAudio
-LIBS += -framework AudioToolbox
-LIBS += -framework AudioUnit
+#Links Frameworks/Libraries for PortAudio
+macx {
+    #QMAKE_LFLAGS += -F/path/to/framework/directory
+    LIBS += -framework CoreServices
+    LIBS += -framework CoreAudio
+    LIBS += -framework AudioToolbox
+    LIBS += -framework AudioUnit
+}
+
+linux {
+    LIBS += -lrt
+    LIBS += -lasound
+    LIBS += -ljack
+    LIBS += -lpthread
+}
 
 #include project stuff
 include(./src/widgets/svgtoggleswitch/svgtoggleswitch.pri)
