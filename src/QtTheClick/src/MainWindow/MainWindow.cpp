@@ -22,6 +22,7 @@
 #include "MainWindow/ScaleInformation.h"
 
 #include "boost/bind.hpp"
+
 #include <limits>
 
 //debug

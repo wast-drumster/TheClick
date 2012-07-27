@@ -52,9 +52,9 @@ libtool \
  -L"$LIB_BUILD_PATH" -lTheClick \
  -L"$LIB_PATH/portaudio/lib/.libs" -lportaudio \
  -L"$LIB_PATH/libsamplerate-0.1.8/src/.libs" -lsamplerate \
- -L"$LIB_PATH/boost_1_49_0/bin.v2/libs/thread/build/darwin-4.2.1/release/address-model-64/architecture-x86/link-static/threading-multi" -lboost_thread \
+ -L"$LIB_PATH/boost_1_50_0/stage/lib" -lboost_thread \
  -L"$LIB_PATH/xerces-c-3.1.1/src/.libs" -lxerces-c \
- -L"$LIB_PATH/libsndfile/src/.libs" -lsndfile \
+ -L"$LIB_PATH/libsndfile-1.0.25/src/.libs" -lsndfile \
  -framework CoreServices -framework AudioToolbox -framework AudioUnit -framework CoreAudio \
  -o libTheClick_BIG.a 
 

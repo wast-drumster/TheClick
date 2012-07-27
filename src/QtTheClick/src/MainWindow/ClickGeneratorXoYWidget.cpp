@@ -20,7 +20,7 @@
 #include "MainWindow/ClickGeneratorXoYWidget.h"
 #include "MainWindow/ScaleInformation.h"
 
-#include "boost/bind.hpp"
+//#include "boost/bind.hpp"
 
 //debug
 // #include <iostream>

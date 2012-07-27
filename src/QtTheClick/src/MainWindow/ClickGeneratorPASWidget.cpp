@@ -20,7 +20,7 @@
 #include "MainWindow/ClickGeneratorPASWidget.h"
 #include "MainWindow/ScaleInformation.h"
 
-#include "boost/bind.hpp"
+//#include "boost/bind.hpp"
 
 #include "libTheClick/types.h"
 
