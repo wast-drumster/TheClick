@@ -42,8 +42,6 @@ int main(int argc, char *argv[])
 
     a.setStyleSheet(StyleSheet);
 
-    std::cout << "applicationDirPath: " << a.applicationDirPath().toUtf8().constData() << std::endl;
-
     //show MainWindows, and thus, start application
     sleep(3);
     w.show();

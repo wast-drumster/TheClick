@@ -1,2 +1,3 @@
 *.pro.user
 /build/
+/QtTheClick_debug/

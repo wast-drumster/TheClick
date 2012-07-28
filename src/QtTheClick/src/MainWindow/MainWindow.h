@@ -61,7 +61,7 @@ class MainWindow : public QMainWindow
 
         libTheClick::ClickController*                    clickController;
 
-        std::list<QString*>                              drumkitPathStaticList;
+        std::list<QString>                               drumkitPathStaticList;
 
     //********** METHODS **********
     public:

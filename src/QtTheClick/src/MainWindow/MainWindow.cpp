@@ -25,6 +25,8 @@
 
 #include <QCoreApplication> //for path of application
 #include <QDir> //for path of home directory
+#include <QString>
+#include <QStringList>
 
 #include <limits>
 
@@ -37,13 +39,33 @@ MainWindow::MainWindow(QWidget *parent)
     //initialize attributes
     this->clickController = new libTheClick::ClickController();
 
-    //create initial elements
+    //create elements for drumkitPathStaticList
     //Q_OS_??? for operating system (e.g. DARWIN == MAC, WIN32, LINUX); Q_WS_??? for window system (e.g. X11, WIN32, MACX)
     #ifdef Q_OS_MAC
-        this->drumkitPathStaticList.push_back( QCoreApplication::applicationDirPath() + "/Contents/Resources/drumkits" );
+        this->drumkitPathStaticList.push_back( QCoreApplication::applicationDirPath() + "/../Resources/drumkits" );
         this->drumkitPathStaticList.push_back( QDir::homePath() + "/Library/Application Support/Hydrogen/drumkits" );
-#else
+    #elif Q_OS_LINUX
+        this->drumkitPathStaticList.push_back( QCoreApplication::applicationDirPath() + "/drumkits" );
+        this->drumkitPathStaticList.push_back( "/usr/share/hydrogen/data/drumkits" );
+    #elif Q_OS_WIN32
+        this->drumkitPathStaticList.push_back( QCoreApplication::applicationDirPath() + "/drumkits" );
     #endif
+
+    //load all drumkits
+    for(std::list<QString>::iterator it1 = this->drumkitPathStaticList.begin(); it1 != this->drumkitPathStaticList.end(); it1++)
+    {
+        QDir pathDir = QDir(*it1);
+        QStringList dirsOfPath = pathDir.entryList(QDir::AllDirs);
+
+        for (QStringList::const_iterator it2 = dirsOfPath.constBegin(); it2 != dirsOfPath.constEnd(); it2++)
+        {
+            if(*it2 != "." && *it2 != "..")
+            {
+                std::cout << "load: " << QDir::fromNativeSeparators(*it1 + "/" + *it2).toUtf8().constData() << std::endl;
+                this->clickController->getSoundBase()->loadDrumKit( QDir::fromNativeSeparators(*it1 + "/" + *it2).toUtf8().constData() );
+            }
+        }
+    }
 
     //create form
     this->theClickForm = new Ui::TheClickForm();
