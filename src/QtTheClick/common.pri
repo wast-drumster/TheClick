@@ -22,17 +22,12 @@ macx {
     LIBS += -framework CoreAudio
     LIBS += -framework AudioToolbox
     LIBS += -framework AudioUnit
-	
-	#QMAKE_CC = /sw/bin/gcc-fsf-4.7
-	#QMAKE_CXX = /sw/bin/g++-fsf-4.7
-    #QMAKE_CC = clang
-    #QMAKE_CXX = clang++
 }
 
 #do not use 'unix' because it is 'macx' is also a unix ;)
 linux-g++ {
     LIBS += -lrt
-    LIBS += -lasound
+    #LIBS += -lasound   #time of stream is not working --> use jack
     LIBS += -ljack
     LIBS += -lpthread
 }

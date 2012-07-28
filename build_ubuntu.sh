@@ -11,9 +11,10 @@ LIB_SRC_PATH="$MY_DIR/src/libTheClick"
 GUI_SRC_PATH="$MY_DIR/src/QtTheClick"
 
 QT_PRO_PATH="$GUI_SRC_PATH/TheClick.pro"
-
 LIB_PATH="$MY_DIR/src/libraries"
-
+DRUMKIT_PATH="$MY_DIR/drumkits"
+FINAL_APP_PATH="$GUI_BUILD_PATH/build/app"
+FINAL_APP_RESOURCES_PATH="$FINAL_APP_PATH"
 
 
 #check dependencies
@@ -65,6 +66,16 @@ cd "$GUI_BUILD_PATH"
 qmake "$QT_PRO_PATH" -r -spec linux-g++ CONFIG+=release
 make -w
 
+#create app folder
+echo
+echo "copy drumkits into app"
+mkdir -p "$FINAL_APP_PATH"
+mv "$GUI_BUILD_PATH/build/TheClick" "$FINAL_APP_PATH/"
+cp -R "$DRUMKIT_PATH" "$FINAL_APP_RESOURCES_PATH"
+
 #end script
+echo
 echo "build process finalized"
+echo
+echo "You can find the app at: $FINAL_APP_PATH"
 cd "$MY_DIR"

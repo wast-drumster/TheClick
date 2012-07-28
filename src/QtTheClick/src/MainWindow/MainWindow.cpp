@@ -44,10 +44,12 @@ MainWindow::MainWindow(QWidget *parent)
     #ifdef Q_OS_MAC
         this->drumkitPathStaticList.push_back( QCoreApplication::applicationDirPath() + "/../Resources/drumkits" );
         this->drumkitPathStaticList.push_back( QDir::homePath() + "/Library/Application Support/Hydrogen/drumkits" );
-    #elif Q_OS_LINUX
+    #endif
+    #ifdef Q_OS_LINUX
         this->drumkitPathStaticList.push_back( QCoreApplication::applicationDirPath() + "/drumkits" );
         this->drumkitPathStaticList.push_back( "/usr/share/hydrogen/data/drumkits" );
-    #elif Q_OS_WIN32
+    #endif
+    #ifdef Q_OS_WIN32
         this->drumkitPathStaticList.push_back( QCoreApplication::applicationDirPath() + "/drumkits" );
     #endif
 

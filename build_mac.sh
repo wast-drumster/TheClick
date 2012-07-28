@@ -53,7 +53,6 @@ cmake "$LIB_SRC_PATH" && make
 #export MACOSX_DEPLOYMENT_TARGET="10.6"
 #libtool \
 # -static -arch_only x86_64 \
-# -syslibroot "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk" \
 # -L"$LIB_BUILD_PATH" -lTheClick \
 # -L"$LIB_PATH/portaudio/lib/.libs" -lportaudio \
 # -L"$LIB_PATH/libsamplerate-0.1.8/src/.libs" -lsamplerate \
