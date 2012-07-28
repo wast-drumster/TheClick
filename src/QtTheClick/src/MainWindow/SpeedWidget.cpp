@@ -25,8 +25,9 @@
 //***************************************
 //********** (DE/CON)STRUCTORS **********
 //***************************************
-SpeedWidget::SpeedWidget(QWidget *parent)
-    : QWidget(parent)
+SpeedWidget::SpeedWidget(libTheClick::ClickController* clickController, QWidget *parent)
+    : QWidget(parent),
+      clickController(clickController)
 {
     //create and initialize widgets
     this->bpmTextLabel = new QLabel( this );
@@ -126,6 +127,35 @@ SpeedWidget::SpeedWidget(QWidget *parent)
     this->stopButton = new QtSvgButton( this );
     this->stopButton->setObjectName( QString::fromUtf8("stopButton") );
     this->stopButton->setSkin( QString::fromUtf8("stopButton") );
+
+    //connect signals to private slots
+    connect(this->p10Button, SIGNAL(clicked()), this, SLOT(speedPlus10()));
+    connect(this->p5Button, SIGNAL(clicked()), this, SLOT(speedPlus05()));
+    connect(this->p2Button, SIGNAL(clicked()), this, SLOT(speedPlus02()));
+    connect(this->p1Button, SIGNAL(clicked()), this, SLOT(speedPlus01()));
+    connect(this->m10Button, SIGNAL(clicked()), this, SLOT(speedMinus10()));
+    connect(this->m5Button, SIGNAL(clicked()), this, SLOT(speedMinus05()));
+    connect(this->m2Button, SIGNAL(clicked()), this, SLOT(speedMinus02()));
+    connect(this->m1Button, SIGNAL(clicked()), this, SLOT(speedMinus01()));
+    connect(this->speedDial, SIGNAL(valueChanged(int)), this, SLOT(speedDialValueChanged(int)));
+
+    connect(this->playToggleSwitch, SIGNAL(clicked()), this, SLOT(startButtonSlot()) );
+    connect(this->stopButton,  SIGNAL(clicked()), this, SLOT(stopButtonSlot()) );
+    connect(this->tapButton,  SIGNAL(clicked()), this, SLOT(tapButtonSlot()) );
+
+    //set initialization values
+    this->speedDial->setValue(100); //also sends signal
+
+    //set speed in ClickController
+    this->speedDialValueChanged( this->speedDial->value() );
+
+    //create dummy ClickGenerator to get the beat count
+    this->cgDummyBeatCount = new libTheClick::ClickGenerator_DummyBeatCount();
+
+    //set call back function
+    this->cgDummyBeatCount->setBeatCountCallbackFunction( boost::bind( &SpeedWidget::theClickBeatsCallBack, &(*this) , _1) );
+    this->clickController->addClickGenerator(this->cgDummyBeatCount, 0.0f);
+
 }
 
 SpeedWidget::~SpeedWidget()
@@ -218,4 +248,105 @@ void SpeedWidget::resizeEvent(QResizeEvent* event)
 //*****************************
 //*********** SLOTS ***********
 //*****************************
+void SpeedWidget::speedPlus10()
+{
+    this->speedDial->setValue( this->speedDial->value() + 10 );
+}
 
+void SpeedWidget::speedPlus05()
+{
+    this->speedDial->setValue( this->speedDial->value() + 5 );
+}
+
+void SpeedWidget::speedPlus02()
+{
+    this->speedDial->setValue( this->speedDial->value() + 2 );
+}
+
+void SpeedWidget::speedPlus01()
+{
+    this->speedDial->setValue( this->speedDial->value() + 1 );
+}
+
+void SpeedWidget::speedMinus10()
+{
+    this->speedDial->setValue( this->speedDial->value() - 10 );
+}
+
+void SpeedWidget::speedMinus05()
+{
+    this->speedDial->setValue( this->speedDial->value() - 5 );
+}
+
+void SpeedWidget::speedMinus02()
+{
+    this->speedDial->setValue( this->speedDial->value() - 2 );
+}
+
+void SpeedWidget::speedMinus01()
+{
+    this->speedDial->setValue( this->speedDial->value() - 1 );
+}
+
+void SpeedWidget::speedDialValueChanged(int value)
+{
+    this->bpmSpeedLabel->setText( QString::number(value) );
+    this->clickController->setBeatsPerMinute( value );
+}
+
+void SpeedWidget::startButtonSlot()
+{
+    //control libTheClick
+    if( this->playToggleSwitch->isChecked() )
+        this->clickController->start();
+    else
+        this->clickController->stop();
+}
+
+void SpeedWidget::stopButtonSlot()
+{
+    //control libTheClick
+    this->playToggleSwitch->setChecked(false);
+    this->beatCountLabel->setText( QString::number(0) );
+    this->startButtonSlot();
+    this->clickController->reset();
+}
+
+void SpeedWidget::tapButtonSlot()
+{
+    //add new element to list
+    this->tapList.push_back( QDateTime::currentDateTime() );
+
+    //delete elements which are to old
+    for(std::list<QDateTime>::iterator it = this->tapList.begin(); it != this->tapList.end(); /*nothing*/)
+    {
+        if(it->msecsTo(QDateTime::currentDateTime()) > 5000 )
+            it = this->tapList.erase(it);
+        else
+            it++;
+
+        //end condition
+        if(it == this->tapList.end())
+            break;
+    }
+
+    //determine new speed
+    if(this->tapList.size() > 5)
+    {
+        //erase first element
+        this->tapList.erase( this->tapList.begin() );
+
+        //determine new speed
+        this->speedDial->setValue( 4 * 60 * 1000 / this->tapList.front().msecsTo( this->tapList.back() ) );
+    }
+}
+
+void SpeedWidget::theClickBeatsCallBack(int beats)
+{
+    //only update gui in play mode
+    if(this->playToggleSwitch->isChecked())
+    {
+        //update beatCountLabel
+        this->beatCountLabel->setText( QString::number(beats) );
+    }
+}

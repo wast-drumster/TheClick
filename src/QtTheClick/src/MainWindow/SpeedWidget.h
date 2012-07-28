@@ -22,10 +22,14 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QDateTime>
 
 #include "widgets/svgtoggleswitch/qtsvgtoggleswitch.h"
 #include "widgets/svgdial/qtsvgdial.h"
 #include "widgets/svgbutton/qtsvgbutton.h"
+#include "libTheClick/libTheClick.h"
+
+#include <list>
 
 #define SPEEDWIDGET_HEIGHT_WIDTH_RATIO          (560.0/140.0)
 #define SPEEDWIDGET_HEIGHT_RATIO_SPACE          (0.01)
@@ -43,7 +47,7 @@ class SpeedWidget : public QWidget
     
     //********** (DE/CON)STRUCTORS **********
     public:
-        SpeedWidget(QWidget *parent = 0);
+        SpeedWidget(libTheClick::ClickController* clickController, QWidget *parent = 0);
         ~SpeedWidget();
 
     private:
@@ -72,6 +76,13 @@ class SpeedWidget : public QWidget
         QtSvgToggleSwitch* playToggleSwitch;
         QtSvgButton*       stopButton;
 
+        //libTheClick stuff
+        libTheClick::ClickController*                    clickController;
+        libTheClick::ClickGenerator_DummyBeatCount*      cgDummyBeatCount;
+
+        //own attributes
+        std::list<QDateTime>tapList;
+
     protected: 
         
     private:
@@ -81,6 +92,9 @@ class SpeedWidget : public QWidget
         //overload QWidget
         virtual int heightForWidth (int w) const {return SPEEDWIDGET_HEIGHT_WIDTH_RATIO * w;}
         void resizeEvent(QResizeEvent* event);
+
+        //own stuff
+        void theClickBeatsCallBack(int beats);
         
     protected: 
         
@@ -92,7 +106,19 @@ class SpeedWidget : public QWidget
 
     //********** SLOTS **********
     private slots:
+        void speedPlus10();
+        void speedPlus05();
+        void speedPlus02();
+        void speedPlus01();
+        void speedMinus10();
+        void speedMinus05();
+        void speedMinus02();
+        void speedMinus01();
+        void speedDialValueChanged(int value);
 
+        void startButtonSlot();
+        void stopButtonSlot();
+        void tapButtonSlot();
 
 
 };

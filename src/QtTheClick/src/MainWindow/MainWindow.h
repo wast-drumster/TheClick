@@ -21,8 +21,6 @@
 #define MAINWINDOW_H
 
 #include <QtGui/QMainWindow>
-#include <QDateTime>
-#include <list>
 #include "ui_TheClickForm.h"
 #include "libTheClick/libTheClick.h"
 
@@ -57,10 +55,7 @@ class MainWindow : public QMainWindow
         ClickGeneratorPASWidget*       clickGeneratorPASWidget;
         ScrollListOfWidgets*           clickGeneratorScrollListOfWidgets;
 
-        libTheClick::ClickGenerator_DummyBeatCount*      cgDummyBeatCount;
         libTheClick::ClickController*                    clickController;
-
-        std::list<QDateTime>tapList;
 
 
     //********** METHODS **********
@@ -69,7 +64,6 @@ class MainWindow : public QMainWindow
         void resizeEvent(QResizeEvent* event);
 
         //own stuff
-        void theClickBeatsCallBack(int beats);
 
     protected:
 
@@ -80,21 +74,6 @@ class MainWindow : public QMainWindow
 
     //********** SLOTS **********
     private slots:
-        void speedPlus10();
-        void speedPlus05();
-        void speedPlus02();
-        void speedPlus01();
-        void speedMinus10();
-        void speedMinus05();
-        void speedMinus02();
-        void speedMinus01();
-        void speedDialValueChanged(int value);
-
-
-        void startButton();
-        void stopButton();
-        void tapButton();
-
         void shouldResize();
 
 };
