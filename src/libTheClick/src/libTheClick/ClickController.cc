@@ -39,14 +39,6 @@ namespace libTheClick
     {
         //initialize attributes
         SoundBase* sb = new SoundBase();
-        //sb->loadDrumKit( "/Users/wast/Library/Application Support/Hydrogen/drumkits/UltraAcousticKit" );
-        //sb->loadDrumKit( "/Users/wast/Library/Application Support/Hydrogen/drumkits/The Black Pearl 1.0" );
-        //sb->loadDrumKit( "/Users/wast/Library/Application Support/Hydrogen/drumkits/RedRokkit" );
-        //sb->loadDrumKit( "/Users/wast/Library/Application Support/Hydrogen/drumkits/GSCW-1" );
-        //sb->loadDrumKit( "/Users/wast/Library/Application Support/Hydrogen/drumkits/GSCW-2" );
-        sb->loadDrumKit( "/Users/wast/Library/Application Support/Hydrogen/drumkits/BigMono" );
-        //sb->loadDrumKit( "/Users/wast/Library/Application Support/Hydrogen/drumkits/Millo_MultiLayered3" );
-        //sb->loadAllSoundFiles();
         this->clickConfiguration = new ClickConfiguration( sb );
         this->clickGenAddCounter = 0;
         

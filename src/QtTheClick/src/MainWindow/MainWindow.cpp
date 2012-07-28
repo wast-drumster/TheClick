@@ -23,6 +23,9 @@
 
 #include "boost/bind.hpp"
 
+#include <QCoreApplication> //for path of application
+#include <QDir> //for path of home directory
+
 #include <limits>
 
 //debug
@@ -33,6 +36,14 @@ MainWindow::MainWindow(QWidget *parent)
 {
     //initialize attributes
     this->clickController = new libTheClick::ClickController();
+
+    //create initial elements
+    //Q_OS_??? for operating system (e.g. DARWIN == MAC, WIN32, LINUX); Q_WS_??? for window system (e.g. X11, WIN32, MACX)
+    #ifdef Q_OS_MAC
+        this->drumkitPathStaticList.push_back( QCoreApplication::applicationDirPath() + "/Contents/Resources/drumkits" );
+        this->drumkitPathStaticList.push_back( QDir::homePath() + "/Library/Application Support/Hydrogen/drumkits" );
+#else
+    #endif
 
     //create form
     this->theClickForm = new Ui::TheClickForm();

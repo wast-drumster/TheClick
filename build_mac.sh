@@ -12,7 +12,7 @@ GUI_SRC_PATH="$MY_DIR/src/QtTheClick"
 
 QT_PRO_PATH="$GUI_SRC_PATH/TheClick.pro"
 LIB_PATH="$MY_DIR/src/libraries"
-DRUMKIT_PATH="$MY_DIR/drumkit"
+DRUMKIT_PATH="$MY_DIR/drumkits"
 FINAL_APP_PATH="$GUI_BUILD_PATH/build/TheClick.app"
 FINAL_APP_RESOURCES_PATH="$FINAL_APP_PATH/Contents/Resources"
 
