@@ -37,6 +37,12 @@ linux-g++ {
     LIBS += -lpthread
 }
 
+#set compiler lags
+unix {
+    QMAKE_CXXFLAGS += -O3
+    CMAKE_C_FLAGS += -O3
+}
+
 #include project stuff
 include(./src/widgets/svgtoggleswitch/svgtoggleswitch.pri)
 include(./src/widgets/svgbutton/svgbutton.pri)

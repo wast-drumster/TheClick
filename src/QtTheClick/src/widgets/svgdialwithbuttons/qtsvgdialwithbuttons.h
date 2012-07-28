@@ -55,22 +55,22 @@ class QtSvgDialWithButtons : public QAbstractSlider
         virtual QSize sizeHint () const {return defaultSize;}
 
         //own stuff
-        void setDialSkin(const QString& skin) {this->dial->setSkin(skin);}
-        void setButtonUpSkin(const QString& skin) {this->buttonUp->setSkin(skin);}
-        void setButtonDownSkin(const QString& skin) {this->buttonDown->setSkin(skin);}
+        inline void setDialSkin(const QString& skin) {this->dial->setSkin(skin);}
+        inline void setButtonUpSkin(const QString& skin) {this->buttonUp->setSkin(skin);}
+        inline void setButtonDownSkin(const QString& skin) {this->buttonDown->setSkin(skin);}
 
-        void setMaximum(int v) {QAbstractSlider::setMaximum(v); this->dial->setMaximum(v);}
-        void setMinimum(int v) {QAbstractSlider::setMinimum(v); this->dial->setMinimum(v);}
-        int  value() const {return this->dial->value();}
-        void setValue(int v) const {this->dial->setValue(v);}
+        inline void setMaximum(int v) {QAbstractSlider::setMaximum(v); this->dial->setMaximum(v);}
+        inline void setMinimum(int v) {QAbstractSlider::setMinimum(v); this->dial->setMinimum(v);}
+        inline int  value() const {return this->dial->value();}
+        inline void setValue(int v) const {this->dial->setValue(v);}
 
-        void setShouldGlow(bool v) {this->dial->setShouldGlow(v);}
-        bool getShouldGlow() const {return this->dial->getShouldGlow();}
+        inline void setShouldGlow(bool v) {this->dial->setShouldGlow(v);}
+        inline bool getShouldGlow() const {return this->dial->getShouldGlow();}
 
-        void setIsInactive(bool v) {this->dial->setIsInactive(v);}
-        bool getIsInactive() const {return this->dial->getIsInactive();}
+        inline void setIsInactive(bool v) {this->dial->setIsInactive(v);}
+        inline bool getIsInactive() const {return this->dial->getIsInactive();}
 
-        void setDefaultSize(QSize s) {this->defaultSize = s;}
+        inline void setDefaultSize(QSize s) {this->defaultSize = s;}
 
     protected:
 

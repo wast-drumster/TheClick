@@ -272,8 +272,11 @@ double QtSvgDial::angleVectorsWithOrientation(const QPointF* vector1, const QPoi
 
 void QtSvgDial::setShouldGlow(bool v)
 {
-    this->shouldGlow = v;
-    update();
+    if(this->shouldGlow != v)
+    {
+        this->shouldGlow = v;
+        update();
+    }
 }
 
 void QtSvgDial::setIsInactive(bool v)

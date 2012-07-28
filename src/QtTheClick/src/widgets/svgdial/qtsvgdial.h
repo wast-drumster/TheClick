@@ -72,13 +72,13 @@ class QtSvgDial : public QAbstractSlider
         inline QString skin() const {return this->m_skin;}
 
         void setShouldGlow(bool v);
-        bool getShouldGlow() const {return this->shouldGlow;}
+        inline bool getShouldGlow() const {return this->shouldGlow;}
 
         void setIsInactive(bool v);
-        bool getIsInactive() const {return this->isInactive;}
+        inline bool getIsInactive() const {return this->isInactive;}
 
-        void setNubSizeToRadiusRatio(double r) {this->picNubSizeToRadiusRatio = r;}
-        void setNubRadius(double r) {this->picNubRadius = r;}
+        inline void setNubSizeToRadiusRatio(double r) {this->picNubSizeToRadiusRatio = r;}
+        inline void setNubRadius(double r) {this->picNubRadius = r;}
 
     protected:
         virtual void mousePressEvent(QMouseEvent* event);
