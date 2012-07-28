@@ -294,7 +294,7 @@ namespace libTheClick
     
     void ClickGenerator_DivisionSubdivision::divisionCallbackWorkerFunction()
     {
-        //run unteil object should be deleted
+        //run until object should be deleted
         while( !this->divisionCallbackThreadShouldStop )
         {
             //sleep

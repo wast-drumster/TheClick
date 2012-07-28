@@ -23,9 +23,13 @@
 #include "libTheClick/Sound/Sound_Interface.h"
 #include "libTheClick/ClickGenerator/ClickGenerator_Interface.h"
 #include "libTheClick/definitions.h"
-
 #include "libTheClick/types.h"
-//#include <list>
+
+#include <list>
+
+#include "boost/function.hpp"
+#include "boost/thread.hpp"
+
 
 namespace libTheClick
 {

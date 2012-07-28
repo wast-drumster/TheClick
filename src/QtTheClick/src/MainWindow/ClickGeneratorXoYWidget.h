@@ -58,6 +58,7 @@ class ClickGeneratorXoYWidget : public ClickGeneratorAbstractWidget
         QtSvgSlider*          volumeSlider;
         QLabel*               xTextLabel;
         QLabel*               yTextLabel;
+        QLabel*               xCountLabel;
         
         //libTheClick stuff
         libTheClick::ClickController*                    clickController;
@@ -72,7 +73,7 @@ class ClickGeneratorXoYWidget : public ClickGeneratorAbstractWidget
     protected: 
         
     private:
-        
+
     //********** METHODS **********
     public:
         //overload QWidget
@@ -88,6 +89,7 @@ class ClickGeneratorXoYWidget : public ClickGeneratorAbstractWidget
     protected: 
         
     private:
+        void theClickXCallBack(int x);
         
     //********** SIGNALS **********
     signals:

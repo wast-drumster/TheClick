@@ -240,6 +240,16 @@ void SpeedWidget::resizeEvent(QResizeEvent* event)
     this->stopButton->setGeometry( QRect(widthNextElement, curHeight, widthNextElement, heigtNextElement) );
 }
 
+void SpeedWidget::theClickBeatsCallBack(int beats)
+{
+    //only update gui in play mode
+    if(this->playToggleSwitch->isChecked())
+    {
+        //update beatCountLabel
+        this->beatCountLabel->setText( QString::number(beats) );
+    }
+}
+
 //*****************************
 //********** SIGNALS **********
 //*****************************
@@ -341,12 +351,4 @@ void SpeedWidget::tapButtonSlot()
     }
 }
 
-void SpeedWidget::theClickBeatsCallBack(int beats)
-{
-    //only update gui in play mode
-    if(this->playToggleSwitch->isChecked())
-    {
-        //update beatCountLabel
-        this->beatCountLabel->setText( QString::number(beats) );
-    }
-}
+

@@ -20,7 +20,7 @@
 #include "MainWindow/ClickGeneratorXoYWidget.h"
 #include "MainWindow/ScaleInformation.h"
 
-//#include "boost/bind.hpp"
+#include "boost/bind.hpp"
 
 //debug
 // #include <iostream>
@@ -101,6 +101,18 @@ ClickGeneratorXoYWidget::ClickGeneratorXoYWidget(libTheClick::ClickController* c
     this->levelY->setValue(20);
     connect(this->levelY, SIGNAL(valueChanged(int)), this, SLOT(levelChanged(int)));
 
+    this->xCountLabel = new QLabel( this );
+    this->xCountLabel->setObjectName( QString::fromUtf8("xCountLabel") );
+    QFont fontXCountLabel;
+    fontXCountLabel.setPointSize(10);
+    fontXCountLabel.setBold(true);
+    fontXCountLabel.setWeight(75);
+    fontXCountLabel.setKerning(true);
+    this->xCountLabel->setFont(fontXCountLabel);
+    this->xCountLabel->setScaledContents(false);
+    this->xCountLabel->setAlignment(Qt::AlignLeading|Qt::AlignHCenter|Qt::AlignVCenter);
+    this->xCountLabel->setText( QString::fromUtf8("") );
+
     this->volumeSlider = new QtSvgSlider( this );
     this->volumeSlider->setSkin( QString::fromUtf8("volumeSlider") );
     this->volumeSlider->setMinimum( 0 );
@@ -122,6 +134,7 @@ ClickGeneratorXoYWidget::ClickGeneratorXoYWidget(libTheClick::ClickController* c
     this->clickGenerator->setX( this->amountX->value() );
     this->clickGenerator->setY( this->amountY->value() );
     this->levelChanged(0); //load SoundElements into clickgenerator
+    this->clickGenerator->setXCountCallbackFunction( boost::bind( &ClickGeneratorXoYWidget::theClickXCallBack, &(*this) , _1) );
 
     //update valume
     this->clickgenID = CLICKGEN_DISABLED_VALUE;
@@ -138,7 +151,10 @@ ClickGeneratorXoYWidget::~ClickGeneratorXoYWidget()
 //*****************************
 //********** METHODS **********
 //*****************************
-
+void ClickGeneratorXoYWidget::theClickXCallBack(int x)
+{
+    this->xCountLabel->setText( QString::number(x) );
+}
 
 //*****************************
 //********** SIGNALS **********
@@ -164,6 +180,9 @@ void ClickGeneratorXoYWidget::resizeEvent ( QResizeEvent * event )
     this->xTextLabel->setFont( fontNextElement );
     this->amountX->setGeometry( QRect(DISTANCE_X_LEFT + dialWithButtonsWidth + SPACE_X, curHeight, dialWithButtonsWidth, dialWithButtonsHeight) );
     this->levelX->setGeometry( QRect(DISTANCE_X_LEFT + (dialWithButtonsWidth + SPACE_X) * 2, curHeight, dialWithButtonsWidth, dialWithButtonsHeight) );
+    this->xCountLabel->setGeometry( QRect(DISTANCE_X_LEFT + (dialWithButtonsWidth + SPACE_X) * 3, curHeight, dialWithButtonsWidth, dialWithButtonsHeight*2 + SPACE_Y) );
+    fontNextElement.setPixelSize( dialWithButtonsHeight*2 );
+    this->xCountLabel->setFont( fontNextElement );
     curHeight += dialWithButtonsHeight + SPACE_Y;
 
     this->yTextLabel->setGeometry( QRect(DISTANCE_X_LEFT, curHeight, this->size().width(), dialWithButtonsHeight) );
@@ -225,7 +244,7 @@ QSize ClickGeneratorXoYWidget::sizeHint() const
 
 int ClickGeneratorXoYWidget::getMinimimWidthForMainWindowHeight(int h) const
 {
-    return 3 * (ScaleInformation::getInstance()->getWidthDialWithButtonsForMainWindowHeight(h) + SPACE_X) + DISTANCE_X_LEFT + DISTANCE_X_RIGHT;
+    return 4 * (ScaleInformation::getInstance()->getWidthDialWithButtonsForMainWindowHeight(h) + SPACE_X) + DISTANCE_X_LEFT + DISTANCE_X_RIGHT;
 }
 
 void ClickGeneratorXoYWidget::volumeChanged(int)

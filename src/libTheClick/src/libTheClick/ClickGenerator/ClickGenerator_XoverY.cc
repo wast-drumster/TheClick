@@ -21,6 +21,8 @@
 #include "libTheClick/definitions.h"
 #include "libTheClick/SoundBase.h"
 
+#include "boost/bind.hpp"
+
 #include <stdexcept>
 
 //DEBUG
@@ -41,6 +43,10 @@ namespace libTheClick
         
         this->xSoundElement = NULL;
         this->ySoundElement = NULL;
+        
+        //create beatCallBackThread
+        this->xCountCallbackThreadShouldStop = false;
+        this->xCountCallbackThread = new boost::thread( boost::bind( &ClickGenerator_XoverY::xCountCallbackWorkerFunction, &(*this) ) );
 
         //reset
         this->reset();
@@ -48,6 +54,11 @@ namespace libTheClick
     
     ClickGenerator_XoverY::~ClickGenerator_XoverY()
     {
+        //stop xCountCallbackThread
+        this->xCountCallbackThreadShouldStop = true;
+        this->xCountCallbackThread->join();
+        delete this->xCountCallbackThread;
+        
         //delete attributes
         if(this->xSoundElement != NULL)
             delete this->xSoundElement;
@@ -157,6 +168,7 @@ namespace libTheClick
                     if(this->xSoundElement != NULL)
                     {
                         SoundElement* se = this->xSoundElement->cloneAndSetTime(nextTime);
+                        se->setPlaybackCallback( boost::bind( &ClickGenerator_XoverY::playbackCallbackX, &(*this), x+1, _1, _2) );
                         this->soundElementList.push_back(se);
                     }
                 }
@@ -165,6 +177,7 @@ namespace libTheClick
                     if(this->ySoundElement != NULL)
                     {
                         SoundElement* se = this->ySoundElement->cloneAndSetTime(nextTime);
+                        se->setPlaybackCallback( boost::bind( &ClickGenerator_XoverY::playbackCallbackX, &(*this), x+1, _1, _2) );
                         this->soundElementList.push_back(se);
                     }
                 }
@@ -225,6 +238,49 @@ namespace libTheClick
         if(this->soundElementGenerationHasStarted)
             this->lastBeatTime = this->clickConfiguration->getReferenceTime() - this->clickConfiguration->getFramesPerBeat();
     }
-
+    
+    void ClickGenerator_XoverY::playbackCallbackX(int32_t xCount, double timeStamp, boost::function<double(void)> timeFuncPointer )
+    {
+        xCountCallbackStruct* s = new xCountCallbackStruct;
+        s->xCount = xCount;
+        s->timeStamp = timeStamp;
+        s->timeFuncPointer = timeFuncPointer;
+        this->xCountCallbackStructList.push_back(s);
+    }
+    
+    void ClickGenerator_XoverY::xCountCallbackWorkerFunction()
+    {
+        //run until object should be deleted
+        while( !this->xCountCallbackThreadShouldStop )
+        {
+            //sleep
+            boost::this_thread::sleep( boost::posix_time::milliseconds(20) );
+            
+            if(!this->xCountCallbackStructList.empty() &&
+               this->xCountCallbackFunction != NULL)
+            {
+                //delete elements in beatCountCallbackStructList
+                for(std::list<xCountCallbackStruct*>::iterator it = this->xCountCallbackStructList.begin(); it!=this->xCountCallbackStructList.end(); /*nothing*/)
+                {
+                    if( (*it)->timeStamp <= (*it)->timeFuncPointer() )
+                    {
+                        //remove element from list
+                        xCountCallbackStruct* s = *it;
+                        it = this->xCountCallbackStructList.erase(it);
+                        
+                        //call callback function
+                        this->xCountCallbackFunction(s->xCount);
+                        
+                        //delete element
+                        delete s;
+                    }
+                    else
+                    {
+                        it++;
+                    }
+                }
+            }
+        }
+    }
     
 } //namespace libTheClick

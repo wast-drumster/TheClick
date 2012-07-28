@@ -23,12 +23,21 @@
 #include "libTheClick/Sound/Sound_Interface.h"
 #include "libTheClick/ClickGenerator/ClickGenerator_Interface.h"
 #include "libTheClick/definitions.h"
-
 #include "libTheClick/types.h"
-//#include <list>
+
+#include <list>
+
+#include "boost/function.hpp"
+#include "boost/thread.hpp"
 
 namespace libTheClick
 {
+    struct xCountCallbackStruct
+    {
+        int32_t xCount;
+        double timeStamp;
+        boost::function<double(void)> timeFuncPointer;
+    };
         
     class ClickGenerator_XoverY : public ClickGenerator_Interface
     {
@@ -56,6 +65,11 @@ namespace libTheClick
             std::list<SoundElement*> soundElementList;
             bool                     soundElementGenerationHasStarted;
         
+            boost::function<void (int)> xCountCallbackFunction;
+            boost::thread* xCountCallbackThread;
+            bool xCountCallbackThreadShouldStop;
+            std::list<xCountCallbackStruct*> xCountCallbackStructList;
+        
         //********** METHODS **********
         public: 
             //implement ClickGenerator_Interface
@@ -76,11 +90,15 @@ namespace libTheClick
             void          setXSoundElement(SoundElement* se);
             void          setYSoundElement(SoundElement* se);
         
+            //own methods
+            void setXCountCallbackFunction( boost::function<void (int)> funcPointer ) {this->xCountCallbackFunction = funcPointer;}
+            void playbackCallbackX(int32_t xCount, double timeStamp, boost::function<double(void)> timeFuncPointer );
+        
         protected: 
             
         private:
-            void    generateSoundElements(int64_t endTime);
-            
+            void generateSoundElements(int64_t endTime);
+            void xCountCallbackWorkerFunction();
             
     }; //class ClickGenerator_DivisionSubdivision
         

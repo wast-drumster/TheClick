@@ -237,7 +237,7 @@ namespace libTheClick
         //debug
 //        std::cout << "Thread: " << *this->name << std::endl;
         
-        //run unteil object should be deleted
+        //run until object should be deleted
         while( !this->garbageCollectorThreadShouldStop )
         {
             //sleep

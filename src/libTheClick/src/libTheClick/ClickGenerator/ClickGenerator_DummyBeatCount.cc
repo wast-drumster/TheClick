@@ -184,7 +184,7 @@ namespace libTheClick
     
     void ClickGenerator_DummyBeatCount::beatCountCallbackWorkerFunction()
     {
-        //run unteil object should be deleted
+        //run until object should be deleted
         while( !this->beatCountCallbackThreadShouldStop )
         {
             //sleep
