@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<drumkit_info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.hydrogen-music.org/drumkit">
+ <name>TheClick Beep Sounds</name>
+ <author>Sebastian Roeglinger</author>
+ <info>various beep sound</info>
+ <license>GPL</license>
+ <instrumentList>
+  <instrument>
+   <id>0</id>
+   <name>Beep 1</name>
+   <layer>
+    <filename>beep-01.wav</filename>
+    <min>0</min>
+    <max>1.0</max>
+   </layer>
+  </instrument>
+  <instrument>
+   <id>1</id>
+   <name>Beep 2</name>
+   <layer>
+    <filename>beep-02.wav</filename>
+    <min>0</min>
+    <max>1.0</max>
+   </layer>
+  </instrument>
+  <instrument>
+   <id>2</id>
+   <name>Beep 3</name>
+   <layer>
+    <filename>beep-03.wav</filename>
+    <min>0</min>
+    <max>1.0</max>
+   </layer>
+  </instrument>
+  <instrument>
+   <id>3</id>
+   <name>Beep 4</name>
+   <layer>
+    <filename>beep-04.wav</filename>
+    <min>0</min>
+    <max>1.0</max>
+   </layer>
+  </instrument>
+  <instrument>
+   <id>4</id>
+   <name>Click 1</name>
+   <layer>
+    <filename>click-01-med.wav</filename>
+    <min>0</min>
+    <max>0.5</max>
+   </layer>
+   <layer>
+    <filename>click-01-hardest.wav</filename>
+    <min>0.5</min>
+    <max>1.0</max>
+   </layer>
+  </instrument>
+  <instrument>
+   <id>5</id>
+   <name>Click 2</name>
+   <layer>
+    <filename>click-02-med.wav</filename>
+    <min>0</min>
+    <max>0.5</max>
+   </layer>
+   <layer>
+    <filename>click-02-hardest.wav</filename>
+    <min>0.5</min>
+    <max>1.0</max>
+   </layer>
+  </instrument>
+  <instrument>
+   <id>6</id>
+   <name>Click 3</name>
+   <layer>
+    <filename>click-03.wav</filename>
+    <min>0</min>
+    <max>1.0</max>
+   </layer>
+  </instrument>
+ </instrumentList>
+</drumkit_info>
