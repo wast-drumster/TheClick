@@ -84,5 +84,9 @@ cp -R "$DRUMKIT_PATH" "$FINAL_APP_RESOURCES_PATH"
 
 
 #end script
+echo
 echo "build process finalized"
+echo
+echo "You can find the app at: $FINAL_APP_PATH"
 cd "$MY_DIR"
+
