@@ -11,10 +11,10 @@ LIB_SRC_PATH="$MY_DIR/src/libTheClick"
 GUI_SRC_PATH="$MY_DIR/src/QtTheClick"
 
 QT_PRO_PATH="$GUI_SRC_PATH/TheClick.pro"
-
 LIB_PATH="$MY_DIR/src/libraries"
-
-
+DRUMKIT_PATH="$MY_DIR/drumkit"
+FINAL_APP_PATH="$GUI_BUILD_PATH/build/TheClick.app"
+FINAL_APP_RESOURCES_PATH="$FINAL_APP_PATH/Contents/Resources"
 
 #check dependencies
 #qt
@@ -71,6 +71,17 @@ cd "$GUI_BUILD_PATH"
 #qmake "$QT_PRO_PATH" -r -spec macx-g++ CONFIG+=release
 qmake "$QT_PRO_PATH" -r -spec unsupported/macx-clang CONFIG+=release
 make -w
+
+#applay macdeployqt on the app
+echo
+echo "applay macdeployqt on the app"
+macdeployqt "$FINAL_APP_PATH"
+
+#copy drumkits into app
+echo
+echo "copy drumkits into app"
+cp -R "$DRUMKIT_PATH" "$FINAL_APP_RESOURCES_PATH"
+
 
 #end script
 echo "build process finalized"
