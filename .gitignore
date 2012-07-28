@@ -10,3 +10,6 @@
 *.lai
 *.la
 *.a
+
+# other stuff
+/setup_qt_environment.sh

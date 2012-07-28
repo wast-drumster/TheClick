@@ -29,6 +29,11 @@ if test -x "$SETUP_QT_SCRIPT"; then
   #exec "$SETUP_QT_SCRIPT"
 fi
 
+#set compiler for CMake (the compiler for qmake is specified with the '-spec' switch)
+export CC=clang
+export CXX=clang++
+
+
 #create build directories
 echo
 echo "create build directories"
@@ -43,27 +48,28 @@ cd "$LIB_BUILD_PATH"
 cmake "$LIB_SRC_PATH" && make
 
 #link all libraries to one library
-echo
-echo "link all libraries to one library"
-export MACOSX_DEPLOYMENT_TARGET="10.6"
-libtool \
- -static -arch_only x86_64 \
- -syslibroot "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk" \
- -L"$LIB_BUILD_PATH" -lTheClick \
- -L"$LIB_PATH/portaudio/lib/.libs" -lportaudio \
- -L"$LIB_PATH/libsamplerate-0.1.8/src/.libs" -lsamplerate \
- -L"$LIB_PATH/boost_1_50_0/stage/lib" -lboost_thread \
- -L"$LIB_PATH/xerces-c-3.1.1/src/.libs" -lxerces-c \
- -L"$LIB_PATH/libsndfile-1.0.25/src/.libs" -lsndfile \
- -framework CoreServices -framework AudioToolbox -framework AudioUnit -framework CoreAudio \
- -o libTheClick_BIG.a 
+#echo
+#echo "link all libraries to one library"
+#export MACOSX_DEPLOYMENT_TARGET="10.6"
+#libtool \
+# -static -arch_only x86_64 \
+# -syslibroot "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk" \
+# -L"$LIB_BUILD_PATH" -lTheClick \
+# -L"$LIB_PATH/portaudio/lib/.libs" -lportaudio \
+# -L"$LIB_PATH/libsamplerate-0.1.8/src/.libs" -lsamplerate \
+# -L"$LIB_PATH/boost_1_50_0/stage/lib" -lboost_thread \
+# -L"$LIB_PATH/xerces-c-3.1.1/src/.libs" -lxerces-c \
+# -L"$LIB_PATH/libsndfile-1.0.25/src/.libs" -lsndfile \
+# -framework CoreServices -framework AudioToolbox -framework AudioUnit -framework CoreAudio \
+# -o libTheClick_BIG.a 
 
 
 #build gui
 echo
 echo "build GUI"
 cd "$GUI_BUILD_PATH"
-qmake "$QT_PRO_PATH" -r -spec macx-g++ CONFIG+=release
+#qmake "$QT_PRO_PATH" -r -spec macx-g++ CONFIG+=release
+qmake "$QT_PRO_PATH" -r -spec unsupported/macx-clang CONFIG+=release
 make -w
 
 #end script

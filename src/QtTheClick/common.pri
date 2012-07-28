@@ -16,14 +16,20 @@ LIBS += -L"$${PWD}/../libraries/portaudio/lib/.libs" -lportaudio
 LIBS += -L"$${PWD}/../libraries/libsndfile-1.0.25/src/.libs" -lsndfile
 
 #Links Frameworks/Libraries for PortAudio
-macx-g++ {
+macx {
     #QMAKE_LFLAGS += -F/path/to/framework/directory
     LIBS += -framework CoreServices
     LIBS += -framework CoreAudio
     LIBS += -framework AudioToolbox
     LIBS += -framework AudioUnit
+	
+	#QMAKE_CC = /sw/bin/gcc-fsf-4.7
+	#QMAKE_CXX = /sw/bin/g++-fsf-4.7
+    #QMAKE_CC = clang
+    #QMAKE_CXX = clang++
 }
 
+#do not use 'unix' because it is 'macx' is also a unix ;)
 linux-g++ {
     LIBS += -lrt
     LIBS += -lasound

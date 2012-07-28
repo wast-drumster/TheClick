@@ -11,5 +11,6 @@ Dependencies
 - libsndfile 1.0.25
 - portaudio v19 20111121
 - xerces-c 3.1.1
+- Qt 4.81
 
 
