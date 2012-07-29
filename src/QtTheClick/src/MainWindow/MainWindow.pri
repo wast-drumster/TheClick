@@ -10,7 +10,8 @@ SOURCES += \
     ClickGeneratorDivisionWidget.cpp \
     ScaleInformation.cpp \
     ClickGeneratorXoYWidget.cpp \
-    ClickGeneratorPASWidget.cpp
+    ClickGeneratorPASWidget.cpp \
+    SoundElementWidget.cpp
 	
 HEADERS += \
     MainWindow.h \
@@ -19,6 +20,7 @@ HEADERS += \
     ScaleInformation.h \
     ClickGeneratorXoYWidget.h \
     ClickGeneratorAbstractWidget.h \
-    ClickGeneratorPASWidget.h
+    ClickGeneratorPASWidget.h \
+    SoundElementWidget.h
 
 
