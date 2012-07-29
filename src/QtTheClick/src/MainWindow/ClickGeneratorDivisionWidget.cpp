@@ -161,20 +161,23 @@ ClickGeneratorDivisionWidget::~ClickGeneratorDivisionWidget()
 //*****************************
 void ClickGeneratorDivisionWidget::theClickDivisionCallBack(int division, int subdivision)
 {
-    for(int i = 0; i<DIVSUBDIV__MAX_DIVISIONS; i++)
+    if(!this->muteToggleSwitch->isChecked())
     {
-        if(i == division)
-            this->divisionLevelControl[i]->setShouldGlow(true);
-        else
-            this->divisionLevelControl[i]->setShouldGlow(false);
-    }
+        for(int i = 0; i<DIVSUBDIV__MAX_DIVISIONS; i++)
+        {
+            if(i == division)
+                this->divisionLevelControl[i]->setShouldGlow(true);
+            else
+                this->divisionLevelControl[i]->setShouldGlow(false);
+        }
 
-    for(int i = 0; i<DIVSUBDIV__MAX_SUBDIVISIONS; i++)
-    {
-        if(i == subdivision)
-            this->subdivisionLevelControl[i]->setShouldGlow(true);
-        else
-            this->subdivisionLevelControl[i]->setShouldGlow(false);
+        for(int i = 0; i<DIVSUBDIV__MAX_SUBDIVISIONS; i++)
+        {
+            if(i == subdivision)
+                this->subdivisionLevelControl[i]->setShouldGlow(true);
+            else
+                this->subdivisionLevelControl[i]->setShouldGlow(false);
+        }
     }
 }
 
@@ -360,13 +363,22 @@ void ClickGeneratorDivisionWidget::muteSwitch()
 {
     if(!this->muteToggleSwitch->isChecked())
     {
+        //add click generator to click controller
         this->clickgenID = this->clickController->addClickGenerator( this->clickGenerator, (float)this->volumeSlider->value() / (float)this->volumeSlider->maximum() );
     }
     else
     {
+        //remove click generator from click controller
         if(this->clickgenID != CLICKGEN_DISABLED_VALUE)
             this->clickController->removeClickGenerator( this->clickgenID );
 
         this->clickgenID = CLICKGEN_DISABLED_VALUE;
+
+        //set all level dials to not-glow
+        for(int i = 0; i<DIVSUBDIV__MAX_DIVISIONS; i++)
+            this->divisionLevelControl[i]->setShouldGlow(false);
+
+        for(int i = 0; i<DIVSUBDIV__MAX_SUBDIVISIONS; i++)
+            this->subdivisionLevelControl[i]->setShouldGlow(false);
     }
 }

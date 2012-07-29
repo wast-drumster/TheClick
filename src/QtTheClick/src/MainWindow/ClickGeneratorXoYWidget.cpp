@@ -153,7 +153,10 @@ ClickGeneratorXoYWidget::~ClickGeneratorXoYWidget()
 //*****************************
 void ClickGeneratorXoYWidget::theClickXCallBack(int x)
 {
-    this->xCountLabel->setText( QString::number(x) );
+    if(!this->muteToggleSwitch->isChecked())
+    {
+        this->xCountLabel->setText( QString::number(x) );
+    }
 }
 
 //*****************************
@@ -257,14 +260,19 @@ void ClickGeneratorXoYWidget::muteSwitch()
 {
     if(!this->muteToggleSwitch->isChecked())
     {
+        //add click generator to click controller
         this->clickgenID = this->clickController->addClickGenerator( this->clickGenerator, (float)this->volumeSlider->value() / (float)this->volumeSlider->maximum() );
     }
     else
     {
+        //remove click generator from click controller
         if(this->clickgenID != CLICKGEN_DISABLED_VALUE)
             this->clickController->removeClickGenerator( this->clickgenID );
 
         this->clickgenID = CLICKGEN_DISABLED_VALUE;
+
+        //remove value from x-count label
+        this->xCountLabel->setText("");
     }
 }
 
