@@ -17,47 +17,37 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef ONETOONEASSICIATIONWIDGET_H
-#define ONETOONEASSICIATIONWIDGET_H
+#include "widgets/XToXAssociationWidget/XToXAssociationWidget.h"
 
-#include <QWidget>
-
-class OneToOneAssociationWidget : public QWidget
+//***************************************
+//********** (DE/CON)STRUCTORS **********
+//***************************************
+XToXAssociationWidget::XToXAssociationWidget(QWidget *parent)
+    : QWidget(parent)
 {
-    Q_OBJECT
+    //create and initialize widgets
     
-    //********** (DE/CON)STRUCTORS **********
-    public:
-        OneToOneAssociationWidget(QWidget *parent = 0);
-        ~OneToOneAssociationWidget();
+}
 
-    private:
+XToXAssociationWidget::~XToXAssociationWidget()
+{
+}
 
-    //********** ATTRIBUTES **********
-    public: 
-        //GUI elements
-        
-    protected: 
-        
-    private:
-        
-    //********** METHODS **********
-    public: 
-        void setGeometry ( const QRect & g );
-        
-    protected: 
-        
-    private:
+//*****************************
+//********** METHODS **********
+//*****************************
+void XToXAssociationWidget::setGeometry ( const QRect & g )
+{
+    QWidget::setGeometry(g);
 
-    //********** SIGNALS **********
-    signals:
+}
+
+//*****************************
+//********** SIGNALS **********
+//*****************************
 
 
-    //********** SLOTS **********
-    private slots:
+//*****************************
+//*********** SLOTS ***********
+//*****************************
 
-
-
-};
-
-#endif // ONETOONEASSICIATIONWIDGET_H

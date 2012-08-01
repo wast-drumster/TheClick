@@ -45,6 +45,7 @@ include(./src/widgets/svgdial/svgdial.pri)
 include(./src/widgets/svgdialwithbuttons/svgdialwithbuttons.pri)
 include(./src/widgets/ScrollListOfWidgets/ScrollListOfWidgets.pri)
 include(./src/widgets/svgslider/svgslider.pri)
+include(./src/widgets/XToXAssociationWidget/XToXAssociationWidget.pri)
 
 INCLUDEPATH += $$quote($${PWD}/src/)
 DEPENDPATH += $$quote($${PWD}/src/)
