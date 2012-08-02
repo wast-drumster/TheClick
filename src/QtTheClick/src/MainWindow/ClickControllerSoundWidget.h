@@ -17,59 +17,40 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef WIDGETPLATE_H
-#define WIDGETPLATE_H
+#ifndef CLICKCONTROLLERSOUNDWIDGET_H
+#define CLICKCONTROLLERSOUNDWIDGET_H
 
-#include <QWidget>
-#include <QList>
-#include <QtCore> //for QtConcurrent
+#include "MainWindow/LabelEnhancedAbstractWidget.h"
 
-class WidgetPlateException_WidgetAlreadAvailable : public QtConcurrent::Exception
-{
-public:
-    void raise() const { throw *this; }
-    Exception *clone() const { return new WidgetPlateException_WidgetAlreadAvailable(*this); }
-};
-
-
-class WidgetPlate : public QWidget
+class ClickControllerSoundWidget : public LabelEnhancedAbstractWidget
 {
     Q_OBJECT
     
     //********** (DE/CON)STRUCTORS **********
     public:
-        WidgetPlate(QWidget *parent = 0);
-        ~WidgetPlate();
+        ClickControllerSoundWidget(QWidget *parent = 0);
+        virtual ~ClickControllerSoundWidget();
 
     private:
 
     //********** ATTRIBUTES **********
     public: 
-        
+        //GUI elements
 
     protected: 
         
     private:
-        QList<QWidget*>       widgetList;
-        
+
     //********** METHODS **********
-    public: 
+    public:
         //overload QWidget
-        virtual QSize sizeHint () const;
-//        void update();
-        virtual int heightForWidth (int w) const;
-        void setGeometry( const QRect& g );
-        void resize( const QSize& s );
 
         //own stuff
-        int size() const {return this->widgetList.size();}
-        void addWidget(QWidget* w);
-
-
+        
     protected: 
         
     private:
-
+        
     //********** SIGNALS **********
     signals:
 
@@ -77,10 +58,8 @@ class WidgetPlate : public QWidget
     //********** SLOTS **********
     private slots:
         //overload QWidget
-        virtual void resizeEvent ( QResizeEvent * event );
-
 
 
 };
 
-#endif // WIDGETPLATE_H
+#endif // CLICKCONTROLLERSOUNDWIDGET_H

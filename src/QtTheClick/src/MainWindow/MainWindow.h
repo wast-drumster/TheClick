@@ -29,6 +29,9 @@
 #include "MainWindow/ClickGeneratorXoYWidget.h"
 #include "MainWindow/ClickGeneratorPASWidget.h"
 #include "widgets/ScrollListOfWidgets/ScrollListOfWidgets.h"
+#include "widgets/XToXAssociationWidget/XToXAssociationWidget.h"
+
+#include "MainWindow/ClickControllerSoundWidget.h"
 
 
 #include <QString>
@@ -57,6 +60,7 @@ class MainWindow : public QMainWindow
         ClickGeneratorXoYWidget*       clickGeneratorXoYWidget;
         ClickGeneratorPASWidget*       clickGeneratorPASWidget;
         ScrollListOfWidgets*           clickGeneratorScrollListOfWidgets;
+        XToXAssociationWidget*         m_XToXAssociationWidget;
 
         libTheClick::ClickController*                    clickController;
 

@@ -22,21 +22,30 @@
 
 #include <QWidget>
 #include "widgets/ScrollListOfWidgets/ScrollListOfWidgets.h"
-#include <list>
+#include <QList>
 
 class XToXAssociationWidget : public QWidget
 {
     Q_OBJECT
 
-    struct Association
-    {
-        QWidget* left;
-        QWidget* right;
-    };
-    
+    //********** PRELIMINARY **********
+    public:
+        struct Association
+        {
+            QWidget* left;
+            QWidget* right;
+        };
+
+        enum AssiciationType
+        {
+            ONE_TO_ONE,
+            ONE_TO_N,
+            N_TO_ONE
+        };
+
     //********** (DE/CON)STRUCTORS **********
     public:
-        XToXAssociationWidget(QWidget *parent = 0);
+        XToXAssociationWidget(AssiciationType type, QWidget *parent = 0);
         ~XToXAssociationWidget();
 
     private:
@@ -50,9 +59,9 @@ class XToXAssociationWidget : public QWidget
     protected: 
         
     private:
-        std::list<QWidget>          leftScrollListList;
-        std::list<QWidget>          rightScrollListList;
-        std::list<Association>      associationList;
+        const AssiciationType       type;
+
+        QList<Association>      associationList;
         
     //********** METHODS **********
     public: 
@@ -60,9 +69,11 @@ class XToXAssociationWidget : public QWidget
         void setGeometry ( const QRect & g );
 
         //own stuff
-        void pushBackLeftWidget(QWidget* w) {this->leftScrollListElements.push_back(w);}
-        void pushBackRightWidget(QWidget* w) {this->rightScrollListElements.push_back(w);}
+        void pushBackLeftWidget(QWidget* w);
+        void pushBackRightWidget(QWidget* w);
 
+        inline QList<Association>::const_iterator begin_Association() const {return this->associationList.begin();}
+        inline QList<Association>::const_iterator end_Association() const {return this->associationList.end();}
         
     protected: 
         
@@ -70,7 +81,7 @@ class XToXAssociationWidget : public QWidget
 
     //********** SIGNALS **********
     signals:
-
+        void associationChanged();
 
     //********** SLOTS **********
     private slots:

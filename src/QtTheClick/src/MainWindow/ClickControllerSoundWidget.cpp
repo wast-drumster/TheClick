@@ -17,7 +17,7 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "MainWindow/SoundElementWidget.h"
+#include "MainWindow/ClickControllerSoundWidget.h"
 
 //debug
 // #include <iostream>
@@ -25,14 +25,14 @@
 //***************************************
 //********** (DE/CON)STRUCTORS **********
 //***************************************
-SoundElementWidget::SoundElementWidget(QWidget *parent)
+ClickControllerSoundWidget::ClickControllerSoundWidget(QWidget *parent)
     : LabelEnhancedAbstractWidget(parent)
 {
     //create and initialize widgets
 
 }
 
-SoundElementWidget::~SoundElementWidget()
+ClickControllerSoundWidget::~ClickControllerSoundWidget()
 {
 
 }
@@ -40,6 +40,7 @@ SoundElementWidget::~SoundElementWidget()
 //*****************************
 //********** METHODS **********
 //*****************************
+
 
 //*****************************
 //********** SIGNALS **********
@@ -49,4 +50,3 @@ SoundElementWidget::~SoundElementWidget()
 //*****************************
 //*********** SLOTS ***********
 //*****************************
-

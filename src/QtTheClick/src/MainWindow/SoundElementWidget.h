@@ -20,24 +20,15 @@
 #ifndef SOUNDELEMENTWIDGET_H
 #define SOUNDELEMENTWIDGET_H
 
-#include "libTheClick/libTheClick.h"
-#include <QLabel>
-#include <QWidget>
+#include "MainWindow/LabelEnhancedAbstractWidget.h"
 
-// #define DISTANCE_X_LEFT        (10)
-// #define DISTANCE_X_RIGHT       (10)
-// #define DISTANCE_Y_TOP         (10)
-// #define DISTANCE_Y_BOTTOM      (10)
-// #define SPACE_X                (5)
-// #define SPACE_Y                (5)
-
-class SoundElementWidget : public QWidget
+class SoundElementWidget : public LabelEnhancedAbstractWidget
 {
     Q_OBJECT
     
     //********** (DE/CON)STRUCTORS **********
     public:
-        SoundElementWidget(libTheClick::ClickController* clickController, QWidget *parent = 0);
+        SoundElementWidget(QWidget *parent = 0);
         virtual ~SoundElementWidget();
 
     private:
@@ -45,9 +36,6 @@ class SoundElementWidget : public QWidget
     //********** ATTRIBUTES **********
     public: 
         //GUI elements
-        
-        //libTheClick stuff
-        libTheClick::ClickController*                    clickController;
 
     protected: 
         
@@ -70,7 +58,6 @@ class SoundElementWidget : public QWidget
     //********** SLOTS **********
     private slots:
         //overload QWidget
-        virtual void resizeEvent ( QResizeEvent * event );
 
 
 };

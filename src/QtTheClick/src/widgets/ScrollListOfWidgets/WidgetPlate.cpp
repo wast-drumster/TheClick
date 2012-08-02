@@ -79,15 +79,15 @@ QSize WidgetPlate::sizeHint() const
 
 void WidgetPlate::addWidget(QWidget* w)
 {
+    //check if widget is already in list
+    if(this->widgetList.contains(w))
+        throw WidgetPlateException_WidgetAlreadAvailable();
+
     //set this as parent and store widget
     w->setParent(this);
     this->widgetList.push_back(w);
-    //QWidget::setMinimumSize( this->sizeHint() );
-//    this->resize( this->sizeHint() );
     QWidget::setMinimumSize( this->sizeHint() );
     this->update();
-	
-
 }
 
 void WidgetPlate::setGeometry ( const QRect & g )

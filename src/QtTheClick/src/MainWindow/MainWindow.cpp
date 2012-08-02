@@ -98,6 +98,15 @@ MainWindow::MainWindow(QWidget *parent)
     this->clickGeneratorScrollListOfWidgets->addWidget( this->clickGeneratorPASWidget );
     connect(this->clickGeneratorPASWidget, SIGNAL(shouldResize()), this, SLOT(shouldResize()) );
 
+    this->m_XToXAssociationWidget = new XToXAssociationWidget( XToXAssociationWidget::ONE_TO_ONE, this->theClickForm->tabWidget );
+    this->theClickForm->tabWidget->addTab(this->m_XToXAssociationWidget, QString::fromUtf8("Sound Configuration"));
+    ClickControllerSoundWidget* tmp = new ClickControllerSoundWidget(NULL);
+    tmp->setText( QString::fromUtf8("Test for Left") );
+    this->m_XToXAssociationWidget->pushBackLeftWidget( tmp );
+    tmp = new ClickControllerSoundWidget(NULL);
+    tmp->setText( QString::fromUtf8("Test for Right") );
+    this->m_XToXAssociationWidget->pushBackRightWidget( tmp );
+
     //bring MainWindow to appropriate size
     QResizeEvent re(this->size(), this->size());
     this->resizeEvent(&re);
@@ -141,7 +150,7 @@ void MainWindow::resizeEvent(QResizeEvent* event)
     double ratioSpeedWidget = this->speedWidget->heightForWidth(1); //just to get ratio
     int newWidthSpeedWidget = (newHeight-20) / ratioSpeedWidget;
 
-    int newWidthClickGeneratorWidgets = newWidth - newWidthSpeedWidget - 70;
+    int newWidthTabWidgets = newWidth - newWidthSpeedWidget - 70;
 
     //update ScaleInformation signleton
     ScaleInformation::getInstance()->setMainWindowSize( event->size() );
@@ -159,10 +168,10 @@ void MainWindow::resizeEvent(QResizeEvent* event)
         minimumWidthClickGeneratorWidgets = this->clickGeneratorPASWidget->getMinimimWidthForMainWindowHeight( event->size().height() );
 
     //determine minimumWidthForMainWindow
-    if(minimumWidthClickGeneratorWidgets > newWidthClickGeneratorWidgets)
+    if(minimumWidthClickGeneratorWidgets > newWidthTabWidgets)
     {
-        newWidth += minimumWidthClickGeneratorWidgets - newWidthClickGeneratorWidgets;
-        newWidthClickGeneratorWidgets = minimumWidthClickGeneratorWidgets;
+        newWidth += minimumWidthClickGeneratorWidgets - newWidthTabWidgets;
+        newWidthTabWidgets = minimumWidthClickGeneratorWidgets;
         this->resize(newWidth, newHeight);
     }
 
@@ -172,16 +181,18 @@ void MainWindow::resizeEvent(QResizeEvent* event)
     this->theClickForm->speedGroupBox->setGeometry(newWidth-newWidthSpeedWidget-30, 0, newWidthSpeedWidget+20, newHeight-10);
 
     //debug
-//    QPalette pal =  this->speedWidget->palette();
-//    pal.setColor(QPalette::Background, Qt::blue);
-//    this->speedWidget->setPalette(pal);
-//    this->speedWidget->setBackgroundRole( QPalette::Background );
-//    this->speedWidget->setAutoFillBackground(true);
-//    this->speedWidget->repaint();
+    QWidget* debugWidget = this->m_XToXAssociationWidget->leftScrollList;
+    QPalette pal =  debugWidget->palette();
+    pal.setColor(QPalette::Background, Qt::blue);
+    debugWidget->setPalette(pal);
+    debugWidget->setBackgroundRole( QPalette::Background );
+    debugWidget->setAutoFillBackground(true);
+    debugWidget->repaint();
 
     //resize ClickGenerators
-    this->clickGeneratorScrollListOfWidgets->setGeometry( QRect(10, 20, newWidthClickGeneratorWidgets, newHeight-20) );
-    this->theClickForm->tabWidget->setGeometry(10, 0, newWidthClickGeneratorWidgets+20, newHeight-10);
+    this->clickGeneratorScrollListOfWidgets->setGeometry( QRect(10, 20, newWidthTabWidgets, newHeight-20) );
+    this->m_XToXAssociationWidget->setGeometry( QRect(10, 20, newWidthTabWidgets, newHeight-20) );
+    this->theClickForm->tabWidget->setGeometry(10, 0, newWidthTabWidgets+20, newHeight-10);
 }
 
 void MainWindow::shouldResize()

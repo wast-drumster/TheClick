@@ -17,59 +17,50 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef WIDGETPLATE_H
-#define WIDGETPLATE_H
+#ifndef LABELENHANCEDABSTRACTWIDGET_H
+#define LABELENHANCEDABSTRACTWIDGET_H
 
-#include <QWidget>
-#include <QList>
-#include <QtCore> //for QtConcurrent
+#include <QLabel>
 
-class WidgetPlateException_WidgetAlreadAvailable : public QtConcurrent::Exception
-{
-public:
-    void raise() const { throw *this; }
-    Exception *clone() const { return new WidgetPlateException_WidgetAlreadAvailable(*this); }
-};
+#define DISTANCE_X_LEFT        (10)
+#define DISTANCE_X_RIGHT       (10)
+#define DISTANCE_Y_TOP         (10)
+#define DISTANCE_Y_BOTTOM      (10)
 
-
-class WidgetPlate : public QWidget
+class LabelEnhancedAbstractWidget : public QWidget
 {
     Q_OBJECT
     
     //********** (DE/CON)STRUCTORS **********
     public:
-        WidgetPlate(QWidget *parent = 0);
-        ~WidgetPlate();
+        LabelEnhancedAbstractWidget(QWidget *parent = 0);
+        virtual ~LabelEnhancedAbstractWidget();
 
     private:
 
     //********** ATTRIBUTES **********
     public: 
+        //GUI elements
+        QLabel*    textLabel;
         
-
     protected: 
         
     private:
-        QList<QWidget*>       widgetList;
-        
+
     //********** METHODS **********
-    public: 
+    public:
         //overload QWidget
         virtual QSize sizeHint () const;
-//        void update();
         virtual int heightForWidth (int w) const;
-        void setGeometry( const QRect& g );
-        void resize( const QSize& s );
 
         //own stuff
-        int size() const {return this->widgetList.size();}
-        void addWidget(QWidget* w);
-
-
+        virtual void setText(const QString & t) {this->textLabel->setText(t);}
+        virtual QString text() {return this->textLabel->text();}
+        
     protected: 
         
     private:
-
+        
     //********** SIGNALS **********
     signals:
 
@@ -80,7 +71,6 @@ class WidgetPlate : public QWidget
         virtual void resizeEvent ( QResizeEvent * event );
 
 
-
 };
 
-#endif // WIDGETPLATE_H
+#endif // LABELENHANCEDABSTRACTWIDGET_H

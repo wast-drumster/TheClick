@@ -11,7 +11,9 @@ SOURCES += \
     ScaleInformation.cpp \
     ClickGeneratorXoYWidget.cpp \
     ClickGeneratorPASWidget.cpp \
-    SoundElementWidget.cpp
+    SoundElementWidget.cpp \
+    ClickControllerSoundWidget.cpp \
+    LabelEnhancedAbstractWidget.cpp
 	
 HEADERS += \
     MainWindow.h \
@@ -21,6 +23,8 @@ HEADERS += \
     ClickGeneratorXoYWidget.h \
     ClickGeneratorAbstractWidget.h \
     ClickGeneratorPASWidget.h \
-    SoundElementWidget.h
+    SoundElementWidget.h \
+    ClickControllerSoundWidget.h \
+    LabelEnhancedAbstractWidget.h
 
 

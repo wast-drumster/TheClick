@@ -22,11 +22,13 @@
 //***************************************
 //********** (DE/CON)STRUCTORS **********
 //***************************************
-XToXAssociationWidget::XToXAssociationWidget(QWidget *parent)
-    : QWidget(parent)
+XToXAssociationWidget::XToXAssociationWidget(AssiciationType type, QWidget *parent)
+  : QWidget(parent),
+    type(type)
 {
     //create and initialize widgets
-    
+    this->leftScrollList = new ScrollListOfWidgets( this );
+    this->rightScrollList = new ScrollListOfWidgets( this );
 }
 
 XToXAssociationWidget::~XToXAssociationWidget()
@@ -40,6 +42,18 @@ void XToXAssociationWidget::setGeometry ( const QRect & g )
 {
     QWidget::setGeometry(g);
 
+    this->leftScrollList->setGeometry( QRect(0, 0, g.width()*1/3, g.height()) );
+    this->rightScrollList->setGeometry( QRect(g.width()*2/3, 0, g.width()*1/3, g.height()) );
+}
+
+void XToXAssociationWidget::pushBackLeftWidget(QWidget* w)
+{
+    this->leftScrollList->addWidget(w);
+}
+
+void XToXAssociationWidget::pushBackRightWidget(QWidget* w)
+{
+    this->rightScrollList->addWidget(w);
 }
 
 //*****************************
