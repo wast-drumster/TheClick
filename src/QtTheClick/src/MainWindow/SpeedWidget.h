@@ -29,7 +29,7 @@
 #include "widgets/svgbutton/qtsvgbutton.h"
 #include "libTheClick/libTheClick.h"
 
-#include <list>
+#include <QList>
 
 #define SPEEDWIDGET_HEIGHT_WIDTH_RATIO          (560.0/140.0)
 #define SPEEDWIDGET_HEIGHT_RATIO_SPACE          (0.01)
@@ -81,7 +81,7 @@ class SpeedWidget : public QWidget
         libTheClick::ClickGenerator_DummyBeatCount*      cgDummyBeatCount;
 
         //own attributes
-        std::list<QDateTime>tapList;
+        QList<QDateTime> tapList;
 
     protected: 
         

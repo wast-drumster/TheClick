@@ -21,7 +21,7 @@
 #define WIDGETPLATE_H
 
 #include <QWidget>
-#include <list>
+#include <QList>
 
 class WidgetPlate : public QWidget
 {
@@ -41,7 +41,7 @@ class WidgetPlate : public QWidget
     protected: 
         
     private:
-        std::list<QWidget*>       widgetList;
+        QList<QWidget*>       widgetList;
         
     //********** METHODS **********
     public: 

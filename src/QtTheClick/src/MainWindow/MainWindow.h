@@ -32,8 +32,7 @@
 
 
 #include <QString>
-#include <list>
-
+#include <QList>
 
 #define MAX_DIAL_VALUE          ((double)100.0)
 #define MAX_VOLUMESLIDER_VALUE  ((double)100.0)
@@ -61,7 +60,7 @@ class MainWindow : public QMainWindow
 
         libTheClick::ClickController*                    clickController;
 
-        std::list<QString>                               drumkitPathStaticList;
+        QList<QString>                                   drumkitPathStaticList;
 
     //********** METHODS **********
     public:

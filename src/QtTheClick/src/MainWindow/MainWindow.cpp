@@ -54,7 +54,7 @@ MainWindow::MainWindow(QWidget *parent)
     #endif
 
     //load all drumkits
-    for(std::list<QString>::iterator it1 = this->drumkitPathStaticList.begin(); it1 != this->drumkitPathStaticList.end(); it1++)
+    for(QList<QString>::iterator it1 = this->drumkitPathStaticList.begin(); it1 != this->drumkitPathStaticList.end(); it1++)
     {
         QDir pathDir = QDir(*it1);
         QStringList dirsOfPath = pathDir.entryList(QDir::AllDirs);

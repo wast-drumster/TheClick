@@ -328,7 +328,7 @@ void SpeedWidget::tapButtonSlot()
     this->tapList.push_back( QDateTime::currentDateTime() );
 
     //delete elements which are to old
-    for(std::list<QDateTime>::iterator it = this->tapList.begin(); it != this->tapList.end(); /*nothing*/)
+    for(QList<QDateTime>::iterator it = this->tapList.begin(); it != this->tapList.end(); /*nothing*/)
     {
         if(it->msecsTo(QDateTime::currentDateTime()) > 5000 )
             it = this->tapList.erase(it);

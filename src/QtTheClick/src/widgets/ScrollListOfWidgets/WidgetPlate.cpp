@@ -34,7 +34,7 @@ WidgetPlate::WidgetPlate(QWidget *parent)
 
 WidgetPlate::~WidgetPlate()
 {
-    for(std::list<QWidget*>::iterator it = this->widgetList.begin(); it != this->widgetList.end(); /*nothing*/)
+    for(QList<QWidget*>::iterator it = this->widgetList.begin(); it != this->widgetList.end(); /*nothing*/)
 	{
         delete *it;
         it = this->widgetList.erase(it);
@@ -51,7 +51,7 @@ int WidgetPlate::heightForWidth (int w) const
 {
 	int h = 0;
 
-    for(std::list<QWidget*>::const_iterator it = this->widgetList.begin(); it != this->widgetList.end(); it++)
+    for(QList<QWidget*>::const_iterator it = this->widgetList.begin(); it != this->widgetList.end(); it++)
         h += (*it)->heightForWidth(w);
 
     return h;
@@ -114,7 +114,7 @@ void WidgetPlate::resizeEvent ( QResizeEvent * event )
 {
     //place all widget on correct place
     int h = 0;
-    for(std::list<QWidget*>::iterator it = this->widgetList.begin(); it != this->widgetList.end(); it++)
+    for(QList<QWidget*>::iterator it = this->widgetList.begin(); it != this->widgetList.end(); it++)
     {
         int height = (*it)->heightForWidth( this->parentWidget()->width() );
         (*it)->setGeometry( QRect(0, h, this->parentWidget()->width(), height) );
