@@ -17,7 +17,7 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "MainWindow/LabelEnhancedAbstractWidget.h"
+#include "MainWindow/SoundElementTab/LabelEnhancedAbstractWidget.h"
 #include "MainWindow/ScaleInformation.h"
 
 //debug

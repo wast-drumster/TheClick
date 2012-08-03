@@ -17,7 +17,7 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "MainWindow/ClickControllerSoundWidget.h"
+#include "MainWindow/SoundElementTab/ClickControllerSoundWidget.h"
 
 //debug
 // #include <iostream>

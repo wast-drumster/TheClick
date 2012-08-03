@@ -17,14 +17,15 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef ClICKGENERATORXOYWIDGET_H
-#define ClICKGENERATORXOYWIDGET_H
+#ifndef ClICKGENERATORDIVISIONWIDGET_H
+#define ClICKGENERATORDIVISIONWIDGET_H
 
-#include "MainWindow/ClickGeneratorAbstractWidget.h"
+#include "MainWindow/ClickGeneratorTab/ClickGeneratorAbstractWidget.h"
 #include "widgets/svgdialwithbuttons/qtsvgdialwithbuttons.h"
 #include "widgets/svgtoggleswitch/qtsvgtoggleswitch.h"
 #include "widgets/svgslider/qtsvgslider.h"
 #include "libTheClick/libTheClick.h"
+#include <QWidget>
 #include <QLabel>
 
 #define DISTANCE_X_LEFT        (10)
@@ -36,44 +37,43 @@
 
 #define CLICKGEN_DISABLED_VALUE  (-1)
 
-class ClickGeneratorXoYWidget : public ClickGeneratorAbstractWidget
+class ClickGeneratorDivisionWidget : public ClickGeneratorAbstractWidget
 {
     Q_OBJECT
     
     //********** (DE/CON)STRUCTORS **********
     public:
-        ClickGeneratorXoYWidget(libTheClick::ClickController* clickController, QWidget *parent = 0);
-        virtual ~ClickGeneratorXoYWidget();
+        ClickGeneratorDivisionWidget(libTheClick::ClickController* clickController, QWidget *parent = 0);
+        virtual ~ClickGeneratorDivisionWidget();
 
     private:
 
     //********** ATTRIBUTES **********
     public: 
         //GUI elements
-        QtSvgDialWithButtons* levelX;
-        QtSvgDialWithButtons* levelY;
-        QtSvgDialWithButtons* amountX;
-        QtSvgDialWithButtons* amountY;
+        QtSvgDialWithButtons* divisionLevelControl[DIVSUBDIV__MAX_DIVISIONS];
+        QtSvgDialWithButtons* subdivisionLevelControl[DIVSUBDIV__MAX_SUBDIVISIONS];
+        QtSvgDialWithButtons* amountDivisions;
+        QtSvgDialWithButtons* amountSubdivisions;
         QtSvgToggleSwitch*    muteToggleSwitch;
         QtSvgSlider*          volumeSlider;
-        QLabel*               xTextLabel;
-        QLabel*               yTextLabel;
-        QLabel*               xCountLabel;
-        
+        QLabel*               divisionTextLabel;
+        QLabel*               subdivisionTextLabel;
+
         //libTheClick stuff
         libTheClick::ClickController*                    clickController;
-        libTheClick::ClickGenerator_XoverY*              clickGenerator;
+        libTheClick::ClickGenerator_DivisionSubdivision* clickGenerator;
         clickgen_id                                      clickgenID;
 
-        drumkit_id  xyXDrumKitID;
-        int32_t     xyXInstrumentID;
-        drumkit_id  xyYDrumKitID;
-        int32_t     xyYInstrumentID;
+        drumkit_id  divDivDrumKitIDArray[DIVSUBDIV__MAX_DIVISIONS];
+        int32_t     divDivInstrumentIDArray[DIVSUBDIV__MAX_DIVISIONS];
+        drumkit_id  divSubdivDrumKitIDArray[DIVSUBDIV__MAX_SUBDIVISIONS];
+        int32_t     divSubdivInstrumentIDArray[DIVSUBDIV__MAX_SUBDIVISIONS];
         
     protected: 
         
     private:
-
+        
     //********** METHODS **********
     public:
         //overload QWidget
@@ -84,13 +84,13 @@ class ClickGeneratorXoYWidget : public ClickGeneratorAbstractWidget
         virtual int getMinimimWidthForMainWindowHeight(int h) const;
 
         //own stuff
-        libTheClick::ClickGenerator_XoverY* getClickGenerator() {return this->clickGenerator;}
+        libTheClick::ClickGenerator_DivisionSubdivision* getClickGenerator() {return this->clickGenerator;}
         
     protected: 
         
     private:
-        void theClickXCallBack(int x);
-        
+        void theClickDivisionCallBack(int division, int subdivision);
+
     //********** SIGNALS **********
     signals:
 
@@ -101,12 +101,12 @@ class ClickGeneratorXoYWidget : public ClickGeneratorAbstractWidget
         virtual void resizeEvent ( QResizeEvent * event );
 
         //own stuff
-        void amountXoYChanged(int value);
+        void amountDivisionsChanged(int value);
+        void amountSubdivisionsChanged(int value);
         void levelChanged(int);
         void volumeChanged(int);
         void muteSwitch();
 
-
 };
 
-#endif // ClICKGENERATORXOYWIDGET_H
+#endif // ClICKGENERATORDIVISIONWIDGET_H

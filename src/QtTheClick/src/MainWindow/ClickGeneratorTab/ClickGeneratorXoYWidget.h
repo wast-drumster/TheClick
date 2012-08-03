@@ -17,16 +17,15 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef ClICKGENERATORPASWIDGET_H
-#define ClICKGENERATORPASWIDGET_H
+#ifndef ClICKGENERATORXOYWIDGET_H
+#define ClICKGENERATORXOYWIDGET_H
 
-#include "MainWindow/ClickGeneratorAbstractWidget.h"
+#include "MainWindow/ClickGeneratorTab/ClickGeneratorAbstractWidget.h"
 #include "widgets/svgdialwithbuttons/qtsvgdialwithbuttons.h"
 #include "widgets/svgtoggleswitch/qtsvgtoggleswitch.h"
 #include "widgets/svgslider/qtsvgslider.h"
 #include "libTheClick/libTheClick.h"
 #include <QLabel>
-#include <QComboBox>
 
 #define DISTANCE_X_LEFT        (10)
 #define DISTANCE_X_RIGHT       (10)
@@ -37,58 +36,44 @@
 
 #define CLICKGEN_DISABLED_VALUE  (-1)
 
-class ClickGeneratorPASWidget : public ClickGeneratorAbstractWidget
+class ClickGeneratorXoYWidget : public ClickGeneratorAbstractWidget
 {
     Q_OBJECT
     
     //********** (DE/CON)STRUCTORS **********
     public:
-        ClickGeneratorPASWidget(libTheClick::ClickController* clickController, QWidget *parent = 0);
-        virtual ~ClickGeneratorPASWidget();
+        ClickGeneratorXoYWidget(libTheClick::ClickController* clickController, QWidget *parent = 0);
+        virtual ~ClickGeneratorXoYWidget();
 
     private:
 
     //********** ATTRIBUTES **********
     public: 
         //GUI elements
-        QComboBox*            rudimentsComboBox;
-        QtSvgDialWithButtons* levelLeftAccent;
-        QtSvgDialWithButtons* levelLeftNormal;
-        QtSvgDialWithButtons* levelLeftGhost;
-        QtSvgDialWithButtons* levelRightAccent;
-        QtSvgDialWithButtons* levelRightNormal;
-        QtSvgDialWithButtons* levelRightGhost;
+        QtSvgDialWithButtons* levelX;
+        QtSvgDialWithButtons* levelY;
+        QtSvgDialWithButtons* amountX;
+        QtSvgDialWithButtons* amountY;
         QtSvgToggleSwitch*    muteToggleSwitch;
         QtSvgSlider*          volumeSlider;
-        QLabel*               accentTextLabel;
-        QLabel*               normalTextLabel;
-        QLabel*               ghostTextLabel;
-        QLabel*               leftTextLabel;
-        QLabel*               rightTextLabel;
-        QLabel*               rudimentTextLabel;
+        QLabel*               xTextLabel;
+        QLabel*               yTextLabel;
+        QLabel*               xCountLabel;
         
         //libTheClick stuff
         libTheClick::ClickController*                    clickController;
-        libTheClick::ClickGenerator_Rudiments*           clickGenerator;
+        libTheClick::ClickGenerator_XoverY*              clickGenerator;
         clickgen_id                                      clickgenID;
 
-        drumkit_id  pasLeftAccentDrumKitID;
-        int32_t     pasLeftAccentInstrumentID;
-        drumkit_id  pasLeftNormalDrumKitID;
-        int32_t     pasLeftNormalInstrumentID;
-        drumkit_id  pasLeftGhostDrumKitID;
-        int32_t     pasLeftGhostInstrumentID;
-        drumkit_id  pasRightAccentDrumKitID;
-        int32_t     pasRightAccentInstrumentID;
-        drumkit_id  pasRightNormalDrumKitID;
-        int32_t     pasRightNormalInstrumentID;
-        drumkit_id  pasRightGhostDrumKitID;
-        int32_t     pasRightGhostInstrumentID;
+        drumkit_id  xyXDrumKitID;
+        int32_t     xyXInstrumentID;
+        drumkit_id  xyYDrumKitID;
+        int32_t     xyYInstrumentID;
         
     protected: 
         
     private:
-        
+
     //********** METHODS **********
     public:
         //overload QWidget
@@ -99,11 +84,12 @@ class ClickGeneratorPASWidget : public ClickGeneratorAbstractWidget
         virtual int getMinimimWidthForMainWindowHeight(int h) const;
 
         //own stuff
-        libTheClick::ClickGenerator_Rudiments* getClickGenerator() {return this->clickGenerator;}
+        libTheClick::ClickGenerator_XoverY* getClickGenerator() {return this->clickGenerator;}
         
     protected: 
         
     private:
+        void theClickXCallBack(int x);
         
     //********** SIGNALS **********
     signals:
@@ -115,11 +101,12 @@ class ClickGeneratorPASWidget : public ClickGeneratorAbstractWidget
         virtual void resizeEvent ( QResizeEvent * event );
 
         //own stuff
-        void rudimentChanged(int value);
-        void levelChanged(int value);
+        void amountXoYChanged(int value);
+        void levelChanged(int);
         void volumeChanged(int);
         void muteSwitch();
 
+
 };
 
-#endif // ClICKGENERATORPASWIDGET_H
+#endif // ClICKGENERATORXOYWIDGET_H

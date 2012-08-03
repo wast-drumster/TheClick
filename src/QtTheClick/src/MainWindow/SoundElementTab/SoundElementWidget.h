@@ -20,7 +20,7 @@
 #ifndef SOUNDELEMENTWIDGET_H
 #define SOUNDELEMENTWIDGET_H
 
-#include "MainWindow/LabelEnhancedAbstractWidget.h"
+#include "MainWindow/SoundElementTab/LabelEnhancedAbstractWidget.h"
 
 class SoundElementWidget : public LabelEnhancedAbstractWidget
 {

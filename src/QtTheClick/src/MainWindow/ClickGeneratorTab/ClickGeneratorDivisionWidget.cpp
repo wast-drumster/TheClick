@@ -17,7 +17,7 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "MainWindow/ClickGeneratorDivisionWidget.h"
+#include "MainWindow/ClickGeneratorTab/ClickGeneratorDivisionWidget.h"
 #include "MainWindow/ScaleInformation.h"
 
 #include "boost/bind.hpp"

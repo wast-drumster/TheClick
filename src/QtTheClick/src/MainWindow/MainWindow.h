@@ -25,13 +25,13 @@
 #include "libTheClick/libTheClick.h"
 
 #include "MainWindow/SpeedWidget.h"
-#include "MainWindow/ClickGeneratorDivisionWidget.h"
-#include "MainWindow/ClickGeneratorXoYWidget.h"
-#include "MainWindow/ClickGeneratorPASWidget.h"
+#include "MainWindow/ClickGeneratorTab/ClickGeneratorDivisionWidget.h"
+#include "MainWindow/ClickGeneratorTab/ClickGeneratorXoYWidget.h"
+#include "MainWindow/ClickGeneratorTab/ClickGeneratorPASWidget.h"
 #include "widgets/ScrollListOfWidgets/ScrollListOfWidgets.h"
 #include "widgets/XToXAssociationWidget/XToXAssociationWidget.h"
 
-#include "MainWindow/ClickControllerSoundWidget.h"
+#include "MainWindow/SoundElementTab/ClickControllerSoundWidget.h"
 
 
 #include <QString>

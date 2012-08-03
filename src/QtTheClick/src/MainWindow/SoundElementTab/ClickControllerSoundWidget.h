@@ -20,7 +20,7 @@
 #ifndef CLICKCONTROLLERSOUNDWIDGET_H
 #define CLICKCONTROLLERSOUNDWIDGET_H
 
-#include "MainWindow/LabelEnhancedAbstractWidget.h"
+#include "MainWindow/SoundElementTab/LabelEnhancedAbstractWidget.h"
 
 class ClickControllerSoundWidget : public LabelEnhancedAbstractWidget
 {

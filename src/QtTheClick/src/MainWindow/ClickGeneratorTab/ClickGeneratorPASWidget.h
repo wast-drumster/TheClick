@@ -17,16 +17,16 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef ClICKGENERATORDIVISIONWIDGET_H
-#define ClICKGENERATORDIVISIONWIDGET_H
+#ifndef ClICKGENERATORPASWIDGET_H
+#define ClICKGENERATORPASWIDGET_H
 
-#include "MainWindow/ClickGeneratorAbstractWidget.h"
+#include "MainWindow/ClickGeneratorTab/ClickGeneratorAbstractWidget.h"
 #include "widgets/svgdialwithbuttons/qtsvgdialwithbuttons.h"
 #include "widgets/svgtoggleswitch/qtsvgtoggleswitch.h"
 #include "widgets/svgslider/qtsvgslider.h"
 #include "libTheClick/libTheClick.h"
-#include <QWidget>
 #include <QLabel>
+#include <QComboBox>
 
 #define DISTANCE_X_LEFT        (10)
 #define DISTANCE_X_RIGHT       (10)
@@ -37,38 +37,53 @@
 
 #define CLICKGEN_DISABLED_VALUE  (-1)
 
-class ClickGeneratorDivisionWidget : public ClickGeneratorAbstractWidget
+class ClickGeneratorPASWidget : public ClickGeneratorAbstractWidget
 {
     Q_OBJECT
     
     //********** (DE/CON)STRUCTORS **********
     public:
-        ClickGeneratorDivisionWidget(libTheClick::ClickController* clickController, QWidget *parent = 0);
-        virtual ~ClickGeneratorDivisionWidget();
+        ClickGeneratorPASWidget(libTheClick::ClickController* clickController, QWidget *parent = 0);
+        virtual ~ClickGeneratorPASWidget();
 
     private:
 
     //********** ATTRIBUTES **********
     public: 
         //GUI elements
-        QtSvgDialWithButtons* divisionLevelControl[DIVSUBDIV__MAX_DIVISIONS];
-        QtSvgDialWithButtons* subdivisionLevelControl[DIVSUBDIV__MAX_SUBDIVISIONS];
-        QtSvgDialWithButtons* amountDivisions;
-        QtSvgDialWithButtons* amountSubdivisions;
+        QComboBox*            rudimentsComboBox;
+        QtSvgDialWithButtons* levelLeftAccent;
+        QtSvgDialWithButtons* levelLeftNormal;
+        QtSvgDialWithButtons* levelLeftGhost;
+        QtSvgDialWithButtons* levelRightAccent;
+        QtSvgDialWithButtons* levelRightNormal;
+        QtSvgDialWithButtons* levelRightGhost;
         QtSvgToggleSwitch*    muteToggleSwitch;
         QtSvgSlider*          volumeSlider;
-        QLabel*               divisionTextLabel;
-        QLabel*               subdivisionTextLabel;
-
+        QLabel*               accentTextLabel;
+        QLabel*               normalTextLabel;
+        QLabel*               ghostTextLabel;
+        QLabel*               leftTextLabel;
+        QLabel*               rightTextLabel;
+        QLabel*               rudimentTextLabel;
+        
         //libTheClick stuff
         libTheClick::ClickController*                    clickController;
-        libTheClick::ClickGenerator_DivisionSubdivision* clickGenerator;
+        libTheClick::ClickGenerator_Rudiments*           clickGenerator;
         clickgen_id                                      clickgenID;
 
-        drumkit_id  divDivDrumKitIDArray[DIVSUBDIV__MAX_DIVISIONS];
-        int32_t     divDivInstrumentIDArray[DIVSUBDIV__MAX_DIVISIONS];
-        drumkit_id  divSubdivDrumKitIDArray[DIVSUBDIV__MAX_SUBDIVISIONS];
-        int32_t     divSubdivInstrumentIDArray[DIVSUBDIV__MAX_SUBDIVISIONS];
+        drumkit_id  pasLeftAccentDrumKitID;
+        int32_t     pasLeftAccentInstrumentID;
+        drumkit_id  pasLeftNormalDrumKitID;
+        int32_t     pasLeftNormalInstrumentID;
+        drumkit_id  pasLeftGhostDrumKitID;
+        int32_t     pasLeftGhostInstrumentID;
+        drumkit_id  pasRightAccentDrumKitID;
+        int32_t     pasRightAccentInstrumentID;
+        drumkit_id  pasRightNormalDrumKitID;
+        int32_t     pasRightNormalInstrumentID;
+        drumkit_id  pasRightGhostDrumKitID;
+        int32_t     pasRightGhostInstrumentID;
         
     protected: 
         
@@ -84,13 +99,12 @@ class ClickGeneratorDivisionWidget : public ClickGeneratorAbstractWidget
         virtual int getMinimimWidthForMainWindowHeight(int h) const;
 
         //own stuff
-        libTheClick::ClickGenerator_DivisionSubdivision* getClickGenerator() {return this->clickGenerator;}
+        libTheClick::ClickGenerator_Rudiments* getClickGenerator() {return this->clickGenerator;}
         
     protected: 
         
     private:
-        void theClickDivisionCallBack(int division, int subdivision);
-
+        
     //********** SIGNALS **********
     signals:
 
@@ -101,12 +115,11 @@ class ClickGeneratorDivisionWidget : public ClickGeneratorAbstractWidget
         virtual void resizeEvent ( QResizeEvent * event );
 
         //own stuff
-        void amountDivisionsChanged(int value);
-        void amountSubdivisionsChanged(int value);
-        void levelChanged(int);
+        void rudimentChanged(int value);
+        void levelChanged(int value);
         void volumeChanged(int);
         void muteSwitch();
 
 };
 
-#endif // ClICKGENERATORDIVISIONWIDGET_H
+#endif // ClICKGENERATORPASWIDGET_H
