@@ -33,6 +33,7 @@ ScrollListOfWidgets::ScrollListOfWidgets(QWidget *parent)
 //    this->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     this->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     //this->scrollArea->setGeometry( QRect(0,0,1000,1000) );
+    this->scrollArea->setFrameShape( QFrame::NoFrame );
 
     this->widgetPlate = new WidgetPlate( this->scrollArea );
 	this->widgetPlate->setObjectName( QString::fromUtf8("ClickGeneratorWidget_WidgetPlate") );
