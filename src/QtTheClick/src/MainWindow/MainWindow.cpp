@@ -102,12 +102,30 @@ MainWindow::MainWindow(QWidget *parent)
     this->theClickForm->tabWidget->addTab(this->m_XToXAssociationWidget, QString::fromUtf8("Sound Configuration"));
 
     //generate widgets for XToXAssociationWidge
-    QList<XToXAssociationAbstractWidget*>* widgetList = this->clickGeneratorDivisionWidget->XToXAssociationWidgetFactory();
+    {
+        QList<XToXAssociationAbstractWidget*>* widgetList = this->clickGeneratorDivisionWidget->XToXAssociationWidgetFactory();
 
-    for(QList<XToXAssociationAbstractWidget*>::iterator it = widgetList->begin(); it != widgetList->end(); it++)
-        this->m_XToXAssociationWidget->pushBackLeftWidget( *it );
+        for(QList<XToXAssociationAbstractWidget*>::iterator it = widgetList->begin(); it != widgetList->end(); it++)
+            this->m_XToXAssociationWidget->pushBackLeftWidget( *it );
 
-    delete widgetList;
+        delete widgetList;
+    }
+    {
+        QList<XToXAssociationAbstractWidget*>* widgetList = this->clickGeneratorXoYWidget->XToXAssociationWidgetFactory();
+
+        for(QList<XToXAssociationAbstractWidget*>::iterator it = widgetList->begin(); it != widgetList->end(); it++)
+            this->m_XToXAssociationWidget->pushBackLeftWidget( *it );
+
+        delete widgetList;
+    }
+    {
+        QList<XToXAssociationAbstractWidget*>* widgetList = this->clickGeneratorPASWidget->XToXAssociationWidgetFactory();
+
+        for(QList<XToXAssociationAbstractWidget*>::iterator it = widgetList->begin(); it != widgetList->end(); it++)
+            this->m_XToXAssociationWidget->pushBackLeftWidget( *it );
+
+        delete widgetList;
+    }
 
     //bring MainWindow to appropriate size
     QResizeEvent re(this->size(), this->size());
@@ -192,8 +210,8 @@ void MainWindow::resizeEvent(QResizeEvent* event)
     debugWidget->repaint();
 
     //resize ClickGenerators
-    this->clickGeneratorScrollListOfWidgets->setGeometry( QRect(10, 20, newWidthTabWidgets, newHeight-20) );
-    this->m_XToXAssociationWidget->setGeometry( QRect(10, 20, newWidthTabWidgets, newHeight-20) );
+    this->clickGeneratorScrollListOfWidgets->setGeometry( QRect(10, 20, newWidthTabWidgets, newHeight-40) );
+    this->m_XToXAssociationWidget->setGeometry( QRect(10, 20, newWidthTabWidgets, newHeight-40) );
     this->theClickForm->tabWidget->setGeometry(10, 0, newWidthTabWidgets+20, newHeight-10);
 }
 

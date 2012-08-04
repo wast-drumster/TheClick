@@ -37,6 +37,14 @@
 
 #define CLICKGEN_DISABLED_VALUE  (-1)
 
+#define PAS_SOUNDID_LEFT_ACCENT   (0)
+#define PAS_SOUNDID_LEFT_NORMAL   (1)
+#define PAS_SOUNDID_LEFT_GHOST    (2)
+#define PAS_SOUNDID_RIGHT_ACCENT  (3)
+#define PAS_SOUNDID_RIGHT_NORMAL  (4)
+#define PAS_SOUNDID_RIGHT_GHOST   (5)
+
+
 class ClickGeneratorPASWidget : public ClickGeneratorAbstractWidget
 {
     Q_OBJECT

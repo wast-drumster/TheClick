@@ -36,6 +36,9 @@
 
 #define CLICKGEN_DISABLED_VALUE  (-1)
 
+#define XOY_SOUNDID_X          (0)
+#define XOY_SOUNDID_Y          (1)
+
 class ClickGeneratorXoYWidget : public ClickGeneratorAbstractWidget
 {
     Q_OBJECT

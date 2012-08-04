@@ -18,6 +18,7 @@
 */
 
 #include "MainWindow/ClickGeneratorTab/ClickGeneratorPASWidget.h"
+#include "MainWindow/SoundElementTab/ClickGeneratorSoundWidget.h"
 #include "MainWindow/ScaleInformation.h"
 
 //#include "boost/bind.hpp"
@@ -229,7 +230,32 @@ int ClickGeneratorPASWidget::getMinimimWidthForMainWindowHeight(int h) const
 
 QList<XToXAssociationAbstractWidget*>* ClickGeneratorPASWidget::XToXAssociationWidgetFactory()
 {
-    QList<XToXAssociationAbstractWidget*>* ret;
+    QList<XToXAssociationAbstractWidget*>* ret = new QList<XToXAssociationAbstractWidget*>;
+    ClickGeneratorSoundWidget* nextWidget;
+
+    nextWidget = new ClickGeneratorSoundWidget(this, PAS_SOUNDID_LEFT_ACCENT);
+    nextWidget->setText( QString::fromUtf8("Left Accent") );
+    ret->push_back( nextWidget );
+
+    nextWidget = new ClickGeneratorSoundWidget(this, PAS_SOUNDID_LEFT_NORMAL);
+    nextWidget->setText( QString::fromUtf8("Left Normal") );
+    ret->push_back( nextWidget );
+
+    nextWidget = new ClickGeneratorSoundWidget(this, PAS_SOUNDID_LEFT_GHOST);
+    nextWidget->setText( QString::fromUtf8("Left Ghost") );
+    ret->push_back( nextWidget );
+
+    nextWidget = new ClickGeneratorSoundWidget(this, PAS_SOUNDID_RIGHT_ACCENT);
+    nextWidget->setText( QString::fromUtf8("Right Accent") );
+    ret->push_back( nextWidget );
+
+    nextWidget = new ClickGeneratorSoundWidget(this, PAS_SOUNDID_RIGHT_NORMAL);
+    nextWidget->setText( QString::fromUtf8("Right Normal") );
+    ret->push_back( nextWidget );
+
+    nextWidget = new ClickGeneratorSoundWidget(this, PAS_SOUNDID_RIGHT_GHOST);
+    nextWidget->setText( QString::fromUtf8("Right Ghost") );
+    ret->push_back( nextWidget );
 
     //return list
     return ret;

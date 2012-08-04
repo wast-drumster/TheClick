@@ -18,6 +18,7 @@
 */
 
 #include "MainWindow/ClickGeneratorTab/ClickGeneratorXoYWidget.h"
+#include "MainWindow/SoundElementTab/ClickGeneratorSoundWidget.h"
 #include "MainWindow/ScaleInformation.h"
 
 #include "boost/bind.hpp"
@@ -186,11 +187,19 @@ void ClickGeneratorXoYWidget::theClickXCallBack(int x)
 
 QList<XToXAssociationAbstractWidget*>* ClickGeneratorXoYWidget::XToXAssociationWidgetFactory()
 {
-    QList<XToXAssociationAbstractWidget*>* ret;
+    QList<XToXAssociationAbstractWidget*>* ret = new QList<XToXAssociationAbstractWidget*>;
+    ClickGeneratorSoundWidget* nextWidget;
+
+    nextWidget = new ClickGeneratorSoundWidget(this, XOY_SOUNDID_X);
+    nextWidget->setText( QString::fromUtf8("X") );
+    ret->push_back( nextWidget );
+
+    nextWidget = new ClickGeneratorSoundWidget(this, XOY_SOUNDID_Y);
+    nextWidget->setText( QString::fromUtf8("Y") );
+    ret->push_back( nextWidget );
 
     //return list
-    return ret;
-}
+    return ret;}
 
 //*****************************
 //********** SIGNALS **********
