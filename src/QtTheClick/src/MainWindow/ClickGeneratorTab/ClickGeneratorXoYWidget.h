@@ -65,10 +65,10 @@ class ClickGeneratorXoYWidget : public ClickGeneratorAbstractWidget
         libTheClick::ClickGenerator_XoverY*              clickGenerator;
         clickgen_id                                      clickgenID;
 
-        drumkit_id  xyXDrumKitID;
-        int32_t     xyXInstrumentID;
-        drumkit_id  xyYDrumKitID;
-        int32_t     xyYInstrumentID;
+        drumkit_id    xyXDrumKitID;
+        instrument_id xyXInstrumentID;
+        drumkit_id    xyYDrumKitID;
+        instrument_id xyYInstrumentID;
         
     protected: 
         

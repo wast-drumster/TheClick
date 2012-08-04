@@ -66,10 +66,10 @@ class ClickGeneratorDivisionWidget : public ClickGeneratorAbstractWidget
         libTheClick::ClickGenerator_DivisionSubdivision* clickGenerator;
         clickgen_id                                      clickgenID;
 
-        drumkit_id  divDivDrumKitIDArray[DIVSUBDIV__MAX_DIVISIONS];
-        int32_t     divDivInstrumentIDArray[DIVSUBDIV__MAX_DIVISIONS];
-        drumkit_id  divSubdivDrumKitIDArray[DIVSUBDIV__MAX_SUBDIVISIONS];
-        int32_t     divSubdivInstrumentIDArray[DIVSUBDIV__MAX_SUBDIVISIONS];
+        drumkit_id    divDivDrumKitIDArray[DIVSUBDIV__MAX_DIVISIONS];
+        instrument_id divDivInstrumentIDArray[DIVSUBDIV__MAX_DIVISIONS];
+        drumkit_id    divSubdivDrumKitIDArray[DIVSUBDIV__MAX_SUBDIVISIONS];
+        instrument_id divSubdivInstrumentIDArray[DIVSUBDIV__MAX_SUBDIVISIONS];
         
     protected: 
         

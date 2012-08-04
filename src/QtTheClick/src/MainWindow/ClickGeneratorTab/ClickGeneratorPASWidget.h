@@ -72,18 +72,18 @@ class ClickGeneratorPASWidget : public ClickGeneratorAbstractWidget
         libTheClick::ClickGenerator_Rudiments*           clickGenerator;
         clickgen_id                                      clickgenID;
 
-        drumkit_id  pasLeftAccentDrumKitID;
-        int32_t     pasLeftAccentInstrumentID;
-        drumkit_id  pasLeftNormalDrumKitID;
-        int32_t     pasLeftNormalInstrumentID;
-        drumkit_id  pasLeftGhostDrumKitID;
-        int32_t     pasLeftGhostInstrumentID;
-        drumkit_id  pasRightAccentDrumKitID;
-        int32_t     pasRightAccentInstrumentID;
-        drumkit_id  pasRightNormalDrumKitID;
-        int32_t     pasRightNormalInstrumentID;
-        drumkit_id  pasRightGhostDrumKitID;
-        int32_t     pasRightGhostInstrumentID;
+        drumkit_id    pasLeftAccentDrumKitID;
+        instrument_id pasLeftAccentInstrumentID;
+        drumkit_id    pasLeftNormalDrumKitID;
+        instrument_id pasLeftNormalInstrumentID;
+        drumkit_id    pasLeftGhostDrumKitID;
+        instrument_id pasLeftGhostInstrumentID;
+        drumkit_id    pasRightAccentDrumKitID;
+        instrument_id pasRightAccentInstrumentID;
+        drumkit_id    pasRightNormalDrumKitID;
+        instrument_id pasRightNormalInstrumentID;
+        drumkit_id    pasRightGhostDrumKitID;
+        instrument_id pasRightGhostInstrumentID;
         
     protected: 
         

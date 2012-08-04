@@ -40,9 +40,24 @@ enum accentuation
     ACCENT
 };
 
-
+//! Identifies a ClickGenerator object in the ClickController
+/*!
+ * This value is returned if a ClickGenerator is added to the ClickController.
+ * If a ClickGenerator should be removed from the ClickController, this value 
+ * idetifies the ClickController. 
+ */
 typedef int32_t clickgen_id;
+
+//! Identifies a drumkit in a SoundBase object
+/*!
+ * The ID drumkit_id is returned when a drumkit is loaded.
+ */
 typedef int32_t drumkit_id;
+
+//! Identifies a instrument of a drumkit
+/*!
+ * This value has to be given if a drumkit object should return a SoundElement.
+ */
 typedef int32_t instrument_id;
 
 
