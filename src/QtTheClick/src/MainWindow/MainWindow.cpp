@@ -20,6 +20,7 @@
 #include "MainWindow/MainWindow.h"
 #include "widgets/svgtoggleswitch/qtsvgtoggleswitch.h"
 #include "MainWindow/ScaleInformation.h"
+#include "MainWindow/SoundElementTab/SoundElementWidget.h"
 
 #include "boost/bind.hpp"
 
@@ -125,6 +126,23 @@ MainWindow::MainWindow(QWidget *parent)
             this->m_XToXAssociationWidget->pushBackLeftWidget( *it );
 
         delete widgetList;
+    }
+
+    {
+        std::list<SoundInformation>* sil = this->clickController->getSoundBase()->getListOfAllSoundInformations();
+
+        for(std::list<SoundInformation>::iterator it = sil->begin(); it != sil->end(); it++)
+        {
+            SoundElementWidget* newSoundElementWidget = new SoundElementWidget(
+                (*it).drumkitID,
+                (*it).instrumentID
+            );
+            newSoundElementWidget->setText( QString::fromStdString( (*it).name ) );
+
+            this->m_XToXAssociationWidget->pushBackRightWidget( newSoundElementWidget );
+        }
+
+        delete sil;
     }
 
     //bring MainWindow to appropriate size

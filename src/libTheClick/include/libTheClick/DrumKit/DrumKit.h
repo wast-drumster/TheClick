@@ -66,6 +66,9 @@ namespace libTheClick
         public:
             SoundElement* cloneSoundElementWithVolume(instrument_id instrumentID, float vol);
             void loadAllSoundFiles();
+            std::string getDrumKitName();
+            std::string getInstrumentName(instrument_id instrumentID);
+            std::list<SoundInformation>* getListOfAllSoundInformations() const;
         
         protected: 
             

@@ -44,13 +44,13 @@ namespace libTheClick
     //*****************************
     //********** METHODS **********
     //*****************************    
-    SoundElement* SoundBase::getSoundElement(drumkit_id drumKitID, int32_t soundIndex, float volume)
+    SoundElement* SoundBase::getSoundElement(drumkit_id drumKitID, instrument_id instrumentID, float volume)
     {
         //get drum kit
         DrumKit* dk = this->drumKitMap[drumKitID];
         
         //set DrumKitID
-        SoundElement* se = dk->cloneSoundElementWithVolume(soundIndex, volume);
+        SoundElement* se = dk->cloneSoundElementWithVolume(instrumentID, volume);
         if(se != NULL)
            se->drumKitID = drumKitID;
         
@@ -82,6 +82,30 @@ namespace libTheClick
         {
             it->second->loadAllSoundFiles();
         }
+    }
+    
+    std::list<SoundInformation>* SoundBase::getListOfAllSoundInformations() const
+    {
+        std::list<SoundInformation>* ret = new std::list<SoundInformation>();
+        
+        //walk through all drum kits
+        for(std::map<drumkit_id,DrumKit*>::const_iterator it1 = this->drumKitMap.begin(); it1 != this->drumKitMap.end(); it1++)
+        {
+            std::list<SoundInformation>* sil = (*it1).second->getListOfAllSoundInformations();
+            
+            //copy all SoundINformation structs
+            for(std::list<SoundInformation>::const_iterator it2 = sil->begin(); it2 != sil->end(); it2++)
+            {
+                SoundInformation si = (*it2);
+                si.drumkitID = (*it1).first;
+                ret->push_back(si);
+            }
+            
+            delete sil;
+        }
+        
+        //return
+        return ret;
     }
     
 } //namespace libTheClick

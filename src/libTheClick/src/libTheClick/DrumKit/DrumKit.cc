@@ -320,5 +320,47 @@ namespace libTheClick
             (*it)->loadAllSoundFiles();
         }
     }
+    
+    std::string DrumKit::getDrumKitName()
+    {
+        if(this->name != NULL)
+            return *this->name;
+        else
+            return std::string();
+    }
+    
+    std::string DrumKit::getInstrumentName(instrument_id instrumentID)
+    {
+        for(std::list<Instrument*>::iterator it = this->instrumentList.begin(); it != this->instrumentList.end(); it++)
+        {
+            //debug
+            //std::cout << (*it)->getId() << std::endl;
+            
+            //work
+            if( (*it)->getId() == instrumentID )
+            {
+                return (*it)->getName();
+            }
+        }
+        
+        return std::string();
+    }
+    
+    std::list<SoundInformation>* DrumKit::getListOfAllSoundInformations() const
+    {
+        std::list<SoundInformation>* ret = new std::list<SoundInformation>();
+        
+        for(std::list<Instrument*>::const_iterator it = this->instrumentList.begin(); it != this->instrumentList.end(); it++)
+        {
+            SoundInformation si;
+            si.drumkitID = -1;
+            si.instrumentID = (*it)->getId();
+            si.name = (*it)->getName();
+            ret->push_back(si);
+        }
+        
+        //return
+        return ret;
+    }
 
 } //namespace libTheClick

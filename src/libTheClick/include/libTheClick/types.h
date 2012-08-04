@@ -25,20 +25,8 @@
 /*************************************/
 
 #include <stdint.h>
+#include <string>
 
-
-enum hand
-{
-    LEFT,
-    RIGHT
-};
-
-enum accentuation
-{
-    GHOST,
-    NORMAL,
-    ACCENT
-};
 
 //! Identifies a ClickGenerator object in the ClickController
 /*!
@@ -60,5 +48,25 @@ typedef int32_t drumkit_id;
  */
 typedef int32_t instrument_id;
 
+
+enum hand
+{
+    LEFT,
+    RIGHT
+};
+
+enum accentuation
+{
+    GHOST,
+    NORMAL,
+    ACCENT
+};
+
+struct SoundInformation
+{
+    drumkit_id    drumkitID;
+    instrument_id instrumentID;
+    std::string   name;
+};
 
 #endif // _TYPES_HEADER_

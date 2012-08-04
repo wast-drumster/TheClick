@@ -68,6 +68,7 @@ namespace libTheClick
             SoundElement* cloneSoundElementWithVolume(float vol);
             const int32_t getId() const;
             void loadAllSoundFiles();
+            std::string getName();
         
         protected: 
             

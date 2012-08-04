@@ -25,8 +25,10 @@
 //***************************************
 //********** (DE/CON)STRUCTORS **********
 //***************************************
-SoundElementWidget::SoundElementWidget(QWidget *parent)
-    : XToXAssociationAbstractWidget(parent)
+SoundElementWidget::SoundElementWidget(drumkit_id drumkitID, instrument_id instrumentID, QWidget *parent)
+    : XToXAssociationAbstractWidget(parent),
+      drumkitID(drumkitID),
+      instrumentID(instrumentID)
 {
     //create and initialize widgets
 

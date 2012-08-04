@@ -21,6 +21,8 @@
 #define SOUNDELEMENTWIDGET_H
 
 #include "MainWindow/SoundElementTab/XToXAssociationAbstractWidget.h"
+#include "libTheClick/libTheClick.h"
+#include <QString>
 
 class SoundElementWidget : public XToXAssociationAbstractWidget
 {
@@ -28,7 +30,7 @@ class SoundElementWidget : public XToXAssociationAbstractWidget
     
     //********** (DE/CON)STRUCTORS **********
     public:
-        SoundElementWidget(QWidget *parent = 0);
+        SoundElementWidget(drumkit_id drumkitID, instrument_id instrumentID, QWidget *parent = 0);
         virtual ~SoundElementWidget();
 
     private:
@@ -40,6 +42,8 @@ class SoundElementWidget : public XToXAssociationAbstractWidget
     protected: 
         
     private:
+        const drumkit_id drumkitID;
+        const instrument_id instrumentID;
 
     //********** METHODS **********
     public:

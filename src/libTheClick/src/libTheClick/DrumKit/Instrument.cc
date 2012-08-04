@@ -259,4 +259,12 @@ namespace libTheClick
         }
     }
     
+    std::string Instrument::getName()
+    {
+        if(this->name != NULL)
+            return *this->name;
+        else
+            return std::string();
+    }
+    
 } //namespace libTheClick
