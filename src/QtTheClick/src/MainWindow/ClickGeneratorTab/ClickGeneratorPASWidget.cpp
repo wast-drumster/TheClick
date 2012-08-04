@@ -199,7 +199,41 @@ ClickGeneratorPASWidget::~ClickGeneratorPASWidget()
 //*****************************
 //********** METHODS **********
 //*****************************
+int ClickGeneratorPASWidget::heightForWidth(int w) const
+{
+    int dialWithButtonsHeight = ScaleInformation::getInstance()->getHeightDialWithButtons();
+//    int dialWithButtonsWidth = ScaleInformation::getInstance()->getWidthDialWithButtons();
+    int muteHeight = ScaleInformation::getInstance()->getHeightMuteToggleSwitch();
 
+    int curHeight = DISTANCE_Y_TOP;
+    curHeight += dialWithButtonsHeight + SPACE_Y;
+    curHeight += dialWithButtonsHeight + SPACE_Y;
+    curHeight += dialWithButtonsHeight + SPACE_Y;
+    curHeight += dialWithButtonsHeight + SPACE_Y;
+    curHeight += muteHeight + SPACE_Y;
+
+    curHeight += -SPACE_Y + DISTANCE_Y_BOTTOM;
+
+    return curHeight;
+}
+
+QSize ClickGeneratorPASWidget::sizeHint() const
+{
+    return QSize(this->parentWidget()->parentWidget()->geometry().width(), this->heightForWidth(this->parentWidget()->parentWidget()->geometry().width()));
+}
+
+int ClickGeneratorPASWidget::getMinimimWidthForMainWindowHeight(int h) const
+{
+    return 4 * (ScaleInformation::getInstance()->getWidthDialWithButtonsForMainWindowHeight(h) + SPACE_X) + DISTANCE_X_LEFT + DISTANCE_X_RIGHT;
+}
+
+QList<XToXAssociationAbstractWidget*>* ClickGeneratorPASWidget::XToXAssociationWidgetFactory()
+{
+    QList<XToXAssociationAbstractWidget*>* ret;
+
+    //return list
+    return ret;
+}
 
 //*****************************
 //********** SIGNALS **********
@@ -298,36 +332,6 @@ void ClickGeneratorPASWidget::levelChanged(int)
         this->pasRightAccentInstrumentID,
         (double)this->levelRightGhost->value() / (double)this->levelRightGhost->maximum())
     );
-}
-
-
-
-int ClickGeneratorPASWidget::heightForWidth(int w) const
-{
-    int dialWithButtonsHeight = ScaleInformation::getInstance()->getHeightDialWithButtons();
-//    int dialWithButtonsWidth = ScaleInformation::getInstance()->getWidthDialWithButtons();
-    int muteHeight = ScaleInformation::getInstance()->getHeightMuteToggleSwitch();
-
-    int curHeight = DISTANCE_Y_TOP;
-    curHeight += dialWithButtonsHeight + SPACE_Y;
-    curHeight += dialWithButtonsHeight + SPACE_Y;
-    curHeight += dialWithButtonsHeight + SPACE_Y;
-    curHeight += dialWithButtonsHeight + SPACE_Y;
-    curHeight += muteHeight + SPACE_Y;
-
-    curHeight += -SPACE_Y + DISTANCE_Y_BOTTOM;
-
-    return curHeight;
-}
-
-QSize ClickGeneratorPASWidget::sizeHint() const
-{
-    return QSize(this->parentWidget()->parentWidget()->geometry().width(), this->heightForWidth(this->parentWidget()->parentWidget()->geometry().width()));
-}
-
-int ClickGeneratorPASWidget::getMinimimWidthForMainWindowHeight(int h) const
-{
-    return 4 * (ScaleInformation::getInstance()->getWidthDialWithButtonsForMainWindowHeight(h) + SPACE_X) + DISTANCE_X_LEFT + DISTANCE_X_RIGHT;
 }
 
 void ClickGeneratorPASWidget::volumeChanged(int)

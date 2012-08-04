@@ -18,6 +18,7 @@
 */
 
 #include "MainWindow/ClickGeneratorTab/ClickGeneratorDivisionWidget.h"
+#include "MainWindow/SoundElementTab/ClickGeneratorSoundWidget.h"
 #include "MainWindow/ScaleInformation.h"
 
 #include "boost/bind.hpp"
@@ -181,6 +182,60 @@ void ClickGeneratorDivisionWidget::theClickDivisionCallBack(int division, int su
     }
 }
 
+int ClickGeneratorDivisionWidget::heightForWidth(int w) const
+{
+    int dialWithButtonsHeight = ScaleInformation::getInstance()->getHeightDialWithButtons();
+    int dialWithButtonsWidth = ScaleInformation::getInstance()->getWidthDialWithButtons();
+    int muteHeight = ScaleInformation::getInstance()->getHeightMuteToggleSwitch();
+
+    int maxPerLine = (w - DISTANCE_X_LEFT - DISTANCE_X_RIGHT) / (dialWithButtonsWidth - 1/*avoid to early break over*/ + SPACE_X);
+    if(maxPerLine == 0) maxPerLine = 1;
+
+    int curHeight = DISTANCE_Y_TOP;
+    curHeight += dialWithButtonsHeight + SPACE_Y;
+    curHeight += (dialWithButtonsHeight + SPACE_Y) * ((this->amountDivisions->value()-1) / maxPerLine + 1);
+    curHeight += dialWithButtonsHeight + SPACE_Y;
+    curHeight += (dialWithButtonsHeight + SPACE_Y) * ((this->amountSubdivisions->value()-1) / maxPerLine + 1);
+    curHeight += muteHeight + SPACE_Y;
+    curHeight += -SPACE_Y + DISTANCE_Y_BOTTOM;
+
+    return curHeight;
+}
+
+QSize ClickGeneratorDivisionWidget::sizeHint() const
+{
+    return QSize(this->parentWidget()->parentWidget()->geometry().width(), this->heightForWidth(this->parentWidget()->parentWidget()->geometry().width()));
+}
+
+int ClickGeneratorDivisionWidget::getMinimimWidthForMainWindowHeight(int h) const
+{
+    return 3 * (ScaleInformation::getInstance()->getWidthDialWithButtonsForMainWindowHeight(h) + SPACE_X) + DISTANCE_X_LEFT + DISTANCE_X_RIGHT;
+}
+
+QList<XToXAssociationAbstractWidget*>* ClickGeneratorDivisionWidget::XToXAssociationWidgetFactory()
+{
+    QList<XToXAssociationAbstractWidget*>* ret = new QList<XToXAssociationAbstractWidget*>;
+
+    //generate widgets for divisions
+    for(int i = 0; i<DIVSUBDIV__MAX_DIVISIONS; i++)
+    {
+        ClickGeneratorSoundWidget* nextWidget = new ClickGeneratorSoundWidget(this, i);
+        nextWidget->setText( QString::fromUtf8("Division: ") + QString::number(i+1) );
+        ret->push_back( nextWidget );
+    }
+
+    //generate widgets for subdivisions
+    for(int i = 0; i<DIVSUBDIV__MAX_SUBDIVISIONS; i++)
+    {
+        ClickGeneratorSoundWidget* nextWidget = new ClickGeneratorSoundWidget(this, DIVSUBDIV__MAX_DIVISIONS + i);
+        nextWidget->setText( QString::fromUtf8("Subdivision: ") + QString::number(i+1) );
+        ret->push_back( nextWidget );
+    }
+
+    //return list
+    return ret;
+}
+
 //*****************************
 //********** SIGNALS **********
 //*****************************
@@ -321,36 +376,6 @@ void ClickGeneratorDivisionWidget::levelChanged(int)
             (double)this->subdivisionLevelControl[i]->value() / (double)this->subdivisionLevelControl[i]->maximum())
         );
     }
-}
-
-int ClickGeneratorDivisionWidget::heightForWidth(int w) const
-{
-    int dialWithButtonsHeight = ScaleInformation::getInstance()->getHeightDialWithButtons();
-    int dialWithButtonsWidth = ScaleInformation::getInstance()->getWidthDialWithButtons();
-    int muteHeight = ScaleInformation::getInstance()->getHeightMuteToggleSwitch();
-
-    int maxPerLine = (w - DISTANCE_X_LEFT - DISTANCE_X_RIGHT) / (dialWithButtonsWidth - 1/*avoid to early break over*/ + SPACE_X);
-    if(maxPerLine == 0) maxPerLine = 1;
-
-    int curHeight = DISTANCE_Y_TOP;
-    curHeight += dialWithButtonsHeight + SPACE_Y;
-    curHeight += (dialWithButtonsHeight + SPACE_Y) * ((this->amountDivisions->value()-1) / maxPerLine + 1);
-    curHeight += dialWithButtonsHeight + SPACE_Y;
-    curHeight += (dialWithButtonsHeight + SPACE_Y) * ((this->amountSubdivisions->value()-1) / maxPerLine + 1);
-    curHeight += muteHeight + SPACE_Y;
-    curHeight += -SPACE_Y + DISTANCE_Y_BOTTOM;
-
-    return curHeight;
-}
-
-QSize ClickGeneratorDivisionWidget::sizeHint() const
-{
-    return QSize(this->parentWidget()->parentWidget()->geometry().width(), this->heightForWidth(this->parentWidget()->parentWidget()->geometry().width()));
-}
-
-int ClickGeneratorDivisionWidget::getMinimimWidthForMainWindowHeight(int h) const
-{
-    return 3 * (ScaleInformation::getInstance()->getWidthDialWithButtonsForMainWindowHeight(h) + SPACE_X) + DISTANCE_X_LEFT + DISTANCE_X_RIGHT;
 }
 
 void ClickGeneratorDivisionWidget::volumeChanged(int)

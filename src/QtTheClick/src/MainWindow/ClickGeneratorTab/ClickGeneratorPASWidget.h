@@ -97,6 +97,7 @@ class ClickGeneratorPASWidget : public ClickGeneratorAbstractWidget
 
         //overload ClickGeneratorAbstractWidget
         virtual int getMinimimWidthForMainWindowHeight(int h) const;
+        virtual QList<XToXAssociationAbstractWidget*>* XToXAssociationWidgetFactory();
 
         //own stuff
         libTheClick::ClickGenerator_Rudiments* getClickGenerator() {return this->clickGenerator;}

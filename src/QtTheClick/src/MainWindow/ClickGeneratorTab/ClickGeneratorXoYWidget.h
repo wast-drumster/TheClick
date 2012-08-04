@@ -82,6 +82,7 @@ class ClickGeneratorXoYWidget : public ClickGeneratorAbstractWidget
 
         //overload ClickGeneratorAbstractWidget
         virtual int getMinimimWidthForMainWindowHeight(int h) const;
+        virtual QList<XToXAssociationAbstractWidget*>* XToXAssociationWidgetFactory();
 
         //own stuff
         libTheClick::ClickGenerator_XoverY* getClickGenerator() {return this->clickGenerator;}

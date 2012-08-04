@@ -24,8 +24,8 @@
 
 #define DISTANCE_X_LEFT        (10)
 #define DISTANCE_X_RIGHT       (10)
-#define DISTANCE_Y_TOP         (10)
-#define DISTANCE_Y_BOTTOM      (10)
+#define DISTANCE_Y_TOP         (2)
+#define DISTANCE_Y_BOTTOM      (2)
 
 class XToXAssociationAbstractWidget : public QWidget
 {
@@ -42,7 +42,9 @@ class XToXAssociationAbstractWidget : public QWidget
     public: 
         //GUI elements
         QLabel*    textLabel;
-        
+
+        //own stuff
+
     protected: 
         
     private:
@@ -54,9 +56,9 @@ class XToXAssociationAbstractWidget : public QWidget
         virtual int heightForWidth (int w) const;
 
         //own stuff
-        virtual void setText(const QString & t) {this->textLabel->setText(t);}
-        virtual QString text() {return this->textLabel->text();}
-        
+        virtual void setText(const QString& t);
+        virtual QString text();
+
     protected: 
         
     private:

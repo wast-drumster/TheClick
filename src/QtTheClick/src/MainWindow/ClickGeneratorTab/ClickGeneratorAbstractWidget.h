@@ -20,7 +20,9 @@
 #ifndef ClICKGENERATORABSTRACTWIDGET_H
 #define ClICKGENERATORABSTRACTWIDGET_H
 
+#include "MainWindow/SoundElementTab/XToXAssociationAbstractWidget.h"
 #include <QWidget>
+#include <QList>
 
 class ClickGeneratorAbstractWidget : public QWidget
 {
@@ -43,6 +45,7 @@ class ClickGeneratorAbstractWidget : public QWidget
     //********** METHODS **********
     public:
         virtual int getMinimimWidthForMainWindowHeight(int h) const = 0;
+        virtual QList<XToXAssociationAbstractWidget*>* XToXAssociationWidgetFactory() = 0;
 
     protected: 
         

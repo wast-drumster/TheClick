@@ -53,7 +53,7 @@ XToXAssociationAbstractWidget::~XToXAssociationAbstractWidget()
 //*****************************
 QSize XToXAssociationAbstractWidget::sizeHint() const
 {
-    QSize ret(this->parentWidget()->parentWidget()->geometry().width(), ScaleInformation::getInstance()->getPixelSizeNormalText() + DISTANCE_X_LEFT + DISTANCE_X_RIGHT );
+    QSize ret(this->parentWidget()->parentWidget()->geometry().width(), this->heightForWidth(0) );
 
 //    std::cout << "XToXAssociationAbstractWidget::sizeHint(); w: "  << ret.width() << "   h: " << ret.height() << std::endl;
     return ret;
@@ -65,6 +65,16 @@ int XToXAssociationAbstractWidget::heightForWidth(int w) const
 
 //    std::cout << "XToXAssociationAbstractWidget::heightForWidth(); w: " << w << "   h: " << ret << std::endl;
     return ret;
+}
+
+void XToXAssociationAbstractWidget::setText(const QString& t)
+{
+    this->textLabel->setText(t);
+}
+
+QString XToXAssociationAbstractWidget::text()
+{
+    return this->textLabel->text();
 }
 
 //*****************************

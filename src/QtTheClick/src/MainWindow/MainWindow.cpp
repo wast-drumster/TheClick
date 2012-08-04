@@ -100,12 +100,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->m_XToXAssociationWidget = new XToXAssociationWidget( XToXAssociationWidget::ONE_TO_ONE, this->theClickForm->tabWidget );
     this->theClickForm->tabWidget->addTab(this->m_XToXAssociationWidget, QString::fromUtf8("Sound Configuration"));
-    ClickGeneratorSoundWidget* tmp = new ClickGeneratorSoundWidget(NULL);
-    tmp->setText( QString::fromUtf8("Test for Left") );
-    this->m_XToXAssociationWidget->pushBackLeftWidget( tmp );
-    tmp = new ClickGeneratorSoundWidget(NULL);
-    tmp->setText( QString::fromUtf8("Test for Right") );
-    this->m_XToXAssociationWidget->pushBackRightWidget( tmp );
+
+    //generate widgets for XToXAssociationWidge
+    QList<XToXAssociationAbstractWidget*>* widgetList = this->clickGeneratorDivisionWidget->XToXAssociationWidgetFactory();
+
+    for(QList<XToXAssociationAbstractWidget*>::iterator it = widgetList->begin(); it != widgetList->end(); it++)
+        this->m_XToXAssociationWidget->pushBackLeftWidget( *it );
+
+    delete widgetList;
 
     //bring MainWindow to appropriate size
     QResizeEvent re(this->size(), this->size());

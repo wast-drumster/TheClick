@@ -41,6 +41,13 @@
 class ClickGeneratorDivisionWidget : public ClickGeneratorAbstractWidget
 {
     Q_OBJECT
+
+    //********** PRELIMINARY **********
+    public:
+//        enum SoundID
+//        {
+//            DIV_01,
+//        };
     
     //********** (DE/CON)STRUCTORS **********
     public:
@@ -83,6 +90,7 @@ class ClickGeneratorDivisionWidget : public ClickGeneratorAbstractWidget
 
         //overload ClickGeneratorAbstractWidget
         virtual int getMinimimWidthForMainWindowHeight(int h) const;
+        virtual QList<XToXAssociationAbstractWidget*>* XToXAssociationWidgetFactory();
 
         //own stuff
         libTheClick::ClickGenerator_DivisionSubdivision* getClickGenerator() {return this->clickGenerator;}

@@ -151,12 +151,45 @@ ClickGeneratorXoYWidget::~ClickGeneratorXoYWidget()
 //*****************************
 //********** METHODS **********
 //*****************************
+int ClickGeneratorXoYWidget::heightForWidth(int w) const
+{
+    int dialWithButtonsHeight = ScaleInformation::getInstance()->getHeightDialWithButtons();
+//    int dialWithButtonsWidth = ScaleInformation::getInstance()->getWidthDialWithButtons();
+    int muteHeight = ScaleInformation::getInstance()->getHeightMuteToggleSwitch();
+
+    int curHeight = DISTANCE_Y_TOP;
+    curHeight += dialWithButtonsHeight + SPACE_Y;
+    curHeight += dialWithButtonsHeight + SPACE_Y;
+    curHeight += muteHeight + SPACE_Y;
+    curHeight += -SPACE_Y + DISTANCE_Y_BOTTOM;
+
+    return curHeight;
+}
+
+QSize ClickGeneratorXoYWidget::sizeHint() const
+{
+    return QSize(this->parentWidget()->parentWidget()->geometry().width(), this->heightForWidth(this->parentWidget()->parentWidget()->geometry().width()));
+}
+
+int ClickGeneratorXoYWidget::getMinimimWidthForMainWindowHeight(int h) const
+{
+    return 4 * (ScaleInformation::getInstance()->getWidthDialWithButtonsForMainWindowHeight(h) + SPACE_X) + DISTANCE_X_LEFT + DISTANCE_X_RIGHT;
+}
+
 void ClickGeneratorXoYWidget::theClickXCallBack(int x)
 {
     if(!this->muteToggleSwitch->isChecked())
     {
         this->xCountLabel->setText( QString::number(x) );
     }
+}
+
+QList<XToXAssociationAbstractWidget*>* ClickGeneratorXoYWidget::XToXAssociationWidgetFactory()
+{
+    QList<XToXAssociationAbstractWidget*>* ret;
+
+    //return list
+    return ret;
 }
 
 //*****************************
@@ -221,33 +254,6 @@ void ClickGeneratorXoYWidget::levelChanged(int)
         this->xyYInstrumentID,
         (double)this->levelY->value() / (double)this->levelY->maximum())
     );
-}
-
-
-
-int ClickGeneratorXoYWidget::heightForWidth(int w) const
-{
-    int dialWithButtonsHeight = ScaleInformation::getInstance()->getHeightDialWithButtons();
-//    int dialWithButtonsWidth = ScaleInformation::getInstance()->getWidthDialWithButtons();
-    int muteHeight = ScaleInformation::getInstance()->getHeightMuteToggleSwitch();
-
-    int curHeight = DISTANCE_Y_TOP;
-    curHeight += dialWithButtonsHeight + SPACE_Y;
-    curHeight += dialWithButtonsHeight + SPACE_Y;
-    curHeight += muteHeight + SPACE_Y;
-    curHeight += -SPACE_Y + DISTANCE_Y_BOTTOM;
-
-    return curHeight;
-}
-
-QSize ClickGeneratorXoYWidget::sizeHint() const
-{
-    return QSize(this->parentWidget()->parentWidget()->geometry().width(), this->heightForWidth(this->parentWidget()->parentWidget()->geometry().width()));
-}
-
-int ClickGeneratorXoYWidget::getMinimimWidthForMainWindowHeight(int h) const
-{
-    return 4 * (ScaleInformation::getInstance()->getWidthDialWithButtonsForMainWindowHeight(h) + SPACE_X) + DISTANCE_X_LEFT + DISTANCE_X_RIGHT;
 }
 
 void ClickGeneratorXoYWidget::volumeChanged(int)

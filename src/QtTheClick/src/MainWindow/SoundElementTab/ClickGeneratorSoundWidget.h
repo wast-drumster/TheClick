@@ -21,6 +21,7 @@
 #define CLICKGENERATORSOUNDWIDGET_H
 
 #include "MainWindow/SoundElementTab/XToXAssociationAbstractWidget.h"
+#include "MainWindow/ClickGeneratorTab/ClickGeneratorAbstractWidget.h"
 
 class ClickGeneratorSoundWidget : public XToXAssociationAbstractWidget
 {
@@ -28,7 +29,7 @@ class ClickGeneratorSoundWidget : public XToXAssociationAbstractWidget
     
     //********** (DE/CON)STRUCTORS **********
     public:
-        ClickGeneratorSoundWidget(QWidget *parent = 0);
+        ClickGeneratorSoundWidget(ClickGeneratorAbstractWidget* generator, int32_t soundID, QWidget *parent = 0);
         virtual ~ClickGeneratorSoundWidget();
 
     private:
@@ -36,6 +37,10 @@ class ClickGeneratorSoundWidget : public XToXAssociationAbstractWidget
     //********** ATTRIBUTES **********
     public: 
         //GUI elements
+
+        //own stuff
+        const ClickGeneratorAbstractWidget* generatorClickGeneratorWidget;
+        const int32_t                       soundID;
 
     protected: 
         

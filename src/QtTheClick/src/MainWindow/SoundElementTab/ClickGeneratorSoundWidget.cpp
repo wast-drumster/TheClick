@@ -25,8 +25,10 @@
 //***************************************
 //********** (DE/CON)STRUCTORS **********
 //***************************************
-ClickGeneratorSoundWidget::ClickGeneratorSoundWidget(QWidget *parent)
-    : XToXAssociationAbstractWidget(parent)
+ClickGeneratorSoundWidget::ClickGeneratorSoundWidget(ClickGeneratorAbstractWidget* generator, int32_t soundID, QWidget *parent)
+    : XToXAssociationAbstractWidget(parent),
+      generatorClickGeneratorWidget(generator),
+      soundID(soundID)
 {
     //create and initialize widgets
 
