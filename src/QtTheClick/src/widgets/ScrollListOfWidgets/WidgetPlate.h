@@ -62,9 +62,9 @@ class WidgetPlate : public QWidget
         void resize( const QSize& s );
 
         //own stuff
-        int size() const {return this->widgetList.size();}
+        inline int size() const {return this->widgetList.size();}
         void addWidget(QWidget* w);
-
+        inline bool containsWidget(QWidget* w) const {return this->widgetList.contains(w);}
 
     protected: 
         

@@ -29,6 +29,9 @@
 XToXAssociationAbstractWidget::XToXAssociationAbstractWidget(QWidget *parent)
     : QWidget(parent)
 {
+    //initialize attributes
+
+
     //create and initialize widgets
     this->textLabel = new QLabel( this );
     this->textLabel->setObjectName( QString::fromUtf8("textLabel") );
@@ -77,10 +80,19 @@ QString XToXAssociationAbstractWidget::text()
     return this->textLabel->text();
 }
 
+void XToXAssociationAbstractWidget::setSelected(bool a)
+{
+    this->setAutoFillBackground(a);
+}
+
+bool XToXAssociationAbstractWidget::selected()
+{
+    return this->autoFillBackground();
+}
+
 //*****************************
 //********** SIGNALS **********
 //*****************************
-
 
 //*****************************
 //*********** SLOTS ***********

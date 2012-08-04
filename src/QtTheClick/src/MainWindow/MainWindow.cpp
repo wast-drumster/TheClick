@@ -99,7 +99,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->clickGeneratorScrollListOfWidgets->addWidget( this->clickGeneratorPASWidget );
     connect(this->clickGeneratorPASWidget, SIGNAL(shouldResize()), this, SLOT(shouldResize()) );
 
-    this->m_XToXAssociationWidget = new XToXAssociationWidget( XToXAssociationWidget::ONE_TO_ONE, this->theClickForm->tabWidget );
+    this->m_XToXAssociationWidget = new XToXAssociationWidget( XToXAssociationWidget::N_TO_ONE, this->theClickForm->tabWidget );
     this->theClickForm->tabWidget->addTab(this->m_XToXAssociationWidget, QString::fromUtf8("Sound Configuration"));
 
     //generate widgets for XToXAssociationWidge

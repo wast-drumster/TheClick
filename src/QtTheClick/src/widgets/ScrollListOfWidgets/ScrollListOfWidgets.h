@@ -48,7 +48,8 @@ class ScrollListOfWidgets : public QWidget
     //********** METHODS **********
     public: 
         void setGeometry ( const QRect & g );
-        void addWidget(QWidget* w) {this->widgetPlate->addWidget(w);}
+        inline void addWidget(QWidget* w) {this->widgetPlate->addWidget(w);}
+        inline bool containsWidget(QWidget* w) {return this->widgetPlate->containsWidget(w);}
 
     protected: 
         

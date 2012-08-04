@@ -19,6 +19,9 @@
 
 #include "widgets/XToXAssociationWidget/XToXAssociationWidget.h"
 
+//debug
+#include <iostream>
+
 //***************************************
 //********** (DE/CON)STRUCTORS **********
 //***************************************
@@ -49,11 +52,26 @@ void XToXAssociationWidget::setGeometry ( const QRect & g )
 void XToXAssociationWidget::pushBackLeftWidget(QWidget* w)
 {
     this->leftScrollList->addWidget(w);
+    connect(w, SIGNAL(mousePressEvent(QMouseEvent*)), this, SLOT(mousePressEvent_Left(QMouseEvent*)));
 }
 
 void XToXAssociationWidget::pushBackRightWidget(QWidget* w)
 {
     this->rightScrollList->addWidget(w);
+    connect(w, SIGNAL(mousePressEvent(QMouseEvent*)), this, SLOT(mousePressEvent_Right(QMouseEvent*)));
+}
+
+void XToXAssociationWidget::add_Association(QWidget* left, QWidget* right)
+{
+    //check if parameters are already in lists
+    if(!this->leftScrollList->containsWidget(left) || !this->rightScrollList->containsWidget(right))
+        throw XToXAssociationWidgetException_WidgetNotAvailable();
+
+    //add association
+    Association as;
+    as.left  = left;
+    as.right = right;
+    this->associationList.push_back(as);
 }
 
 //*****************************
@@ -64,4 +82,12 @@ void XToXAssociationWidget::pushBackRightWidget(QWidget* w)
 //*****************************
 //*********** SLOTS ***********
 //*****************************
+void XToXAssociationWidget::mousePressEvent_Left(QMouseEvent* ev)
+{
+    std::cout << "mousePressEvent_Left" << std::endl;
+}
 
+void XToXAssociationWidget::mousePressEvent_Right(QMouseEvent* ev)
+{
+    std::cout << "mousePressEvent_Right" << std::endl;
+}

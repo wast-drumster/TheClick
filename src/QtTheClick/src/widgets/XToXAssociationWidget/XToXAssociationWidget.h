@@ -24,6 +24,13 @@
 #include "widgets/ScrollListOfWidgets/ScrollListOfWidgets.h"
 #include <QList>
 
+class XToXAssociationWidgetException_WidgetNotAvailable : public QtConcurrent::Exception
+{
+public:
+    void raise() const { throw *this; }
+    Exception *clone() const { return new XToXAssociationWidgetException_WidgetNotAvailable(*this); }
+};
+
 class XToXAssociationWidget : public QWidget
 {
     Q_OBJECT
@@ -74,6 +81,7 @@ class XToXAssociationWidget : public QWidget
 
         inline QList<Association>::const_iterator begin_Association() const {return this->associationList.begin();}
         inline QList<Association>::const_iterator end_Association() const {return this->associationList.end();}
+        void add_Association(QWidget* left, QWidget* right);
         
     protected: 
         
@@ -85,6 +93,8 @@ class XToXAssociationWidget : public QWidget
 
     //********** SLOTS **********
     private slots:
+        void mousePressEvent_Left ( QMouseEvent * ev );
+        void mousePressEvent_Right ( QMouseEvent * ev );
 
 
 

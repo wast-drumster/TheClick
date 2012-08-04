@@ -58,6 +58,8 @@ class XToXAssociationAbstractWidget : public QWidget
         //own stuff
         virtual void setText(const QString& t);
         virtual QString text();
+        virtual void setSelected(bool a);
+        virtual bool selected();
 
     protected: 
         
@@ -71,6 +73,7 @@ class XToXAssociationAbstractWidget : public QWidget
     private slots:
         //overload QWidget
         virtual void resizeEvent ( QResizeEvent * event );
+//        virtual void mousePressOnLabelEvent ( QMouseEvent * ev );
 
 
 };
