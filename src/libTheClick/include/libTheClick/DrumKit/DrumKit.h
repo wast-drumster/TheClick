@@ -64,7 +64,7 @@ namespace libTheClick
             
         //********** METHODS **********
         public:
-            SoundElement* cloneSoundElementWithVolume(int32_t instrumentID, float vol);
+            SoundElement* cloneSoundElementWithVolume(instrument_id instrumentID, float vol);
             void loadAllSoundFiles();
         
         protected: 

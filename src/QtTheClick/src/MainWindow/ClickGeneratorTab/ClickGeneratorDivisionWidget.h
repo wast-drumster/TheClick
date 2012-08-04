@@ -28,6 +28,7 @@
 #include <QWidget>
 #include <QLabel>
 
+
 #define DISTANCE_X_LEFT        (10)
 #define DISTANCE_X_RIGHT       (10)
 #define DISTANCE_Y_TOP         (10)

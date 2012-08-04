@@ -17,7 +17,7 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "MainWindow/SoundElementTab/LabelEnhancedAbstractWidget.h"
+#include "MainWindow/SoundElementTab/XToXAssociationAbstractWidget.h"
 #include "MainWindow/ScaleInformation.h"
 
 //debug
@@ -26,7 +26,7 @@
 //***************************************
 //********** (DE/CON)STRUCTORS **********
 //***************************************
-LabelEnhancedAbstractWidget::LabelEnhancedAbstractWidget(QWidget *parent)
+XToXAssociationAbstractWidget::XToXAssociationAbstractWidget(QWidget *parent)
     : QWidget(parent)
 {
     //create and initialize widgets
@@ -43,7 +43,7 @@ LabelEnhancedAbstractWidget::LabelEnhancedAbstractWidget(QWidget *parent)
     this->textLabel->setText( QString::fromUtf8("???") );
 }
 
-LabelEnhancedAbstractWidget::~LabelEnhancedAbstractWidget()
+XToXAssociationAbstractWidget::~XToXAssociationAbstractWidget()
 {
 
 }
@@ -51,19 +51,19 @@ LabelEnhancedAbstractWidget::~LabelEnhancedAbstractWidget()
 //*****************************
 //********** METHODS **********
 //*****************************
-QSize LabelEnhancedAbstractWidget::sizeHint() const
+QSize XToXAssociationAbstractWidget::sizeHint() const
 {
     QSize ret(this->parentWidget()->parentWidget()->geometry().width(), ScaleInformation::getInstance()->getPixelSizeNormalText() + DISTANCE_X_LEFT + DISTANCE_X_RIGHT );
 
-//    std::cout << "LabelEnhancedAbstractWidget::sizeHint(); w: "  << ret.width() << "   h: " << ret.height() << std::endl;
+//    std::cout << "XToXAssociationAbstractWidget::sizeHint(); w: "  << ret.width() << "   h: " << ret.height() << std::endl;
     return ret;
 }
 
-int LabelEnhancedAbstractWidget::heightForWidth(int w) const
+int XToXAssociationAbstractWidget::heightForWidth(int w) const
 {
     int ret = ScaleInformation::getInstance()->getPixelSizeNormalText() + DISTANCE_Y_BOTTOM + DISTANCE_Y_TOP;
 
-//    std::cout << "LabelEnhancedAbstractWidget::heightForWidth(); w: " << w << "   h: " << ret << std::endl;
+//    std::cout << "XToXAssociationAbstractWidget::heightForWidth(); w: " << w << "   h: " << ret << std::endl;
     return ret;
 }
 
@@ -75,7 +75,7 @@ int LabelEnhancedAbstractWidget::heightForWidth(int w) const
 //*****************************
 //*********** SLOTS ***********
 //*****************************
-void LabelEnhancedAbstractWidget::resizeEvent ( QResizeEvent * event )
+void XToXAssociationAbstractWidget::resizeEvent ( QResizeEvent * event )
 {
     //general stuff
     int textPixelSize = ScaleInformation::getInstance()->getPixelSizeNormalText();

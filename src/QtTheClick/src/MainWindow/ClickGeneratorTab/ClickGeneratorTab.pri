@@ -14,4 +14,5 @@ HEADERS += \
     ClickGeneratorXoYWidget.h \
     ClickGeneratorAbstractWidget.h \
     ClickGeneratorPASWidget.h \
+    ClickGeneratorSoundElementInterface
 

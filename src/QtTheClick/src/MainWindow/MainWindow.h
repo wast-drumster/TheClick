@@ -31,7 +31,7 @@
 #include "widgets/ScrollListOfWidgets/ScrollListOfWidgets.h"
 #include "widgets/XToXAssociationWidget/XToXAssociationWidget.h"
 
-#include "MainWindow/SoundElementTab/ClickControllerSoundWidget.h"
+#include "MainWindow/SoundElementTab/ClickGeneratorSoundWidget.h"
 
 
 #include <QString>

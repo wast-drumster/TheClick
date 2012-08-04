@@ -6,12 +6,12 @@ FORMS += \
 
 SOURCES += \
     SoundElementWidget.cpp \
-    ClickControllerSoundWidget.cpp \
-    LabelEnhancedAbstractWidget.cpp
+    ClickGeneratorSoundWidget.cpp \
+    XToXAssociationAbstractWidget.cpp
 	
 HEADERS += \
     SoundElementWidget.h \
-    ClickControllerSoundWidget.h \
-    LabelEnhancedAbstractWidget.h
+    ClickGeneratorSoundWidget.h \
+    XToXAssociationAbstractWidget.h
 
 

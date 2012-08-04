@@ -17,49 +17,38 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef CLICKCONTROLLERSOUNDWIDGET_H
-#define CLICKCONTROLLERSOUNDWIDGET_H
+#ifndef ClICKGENERATORSOUNDELEMENTINTERFACE_H
+#define ClICKGENERATORSOUNDELEMENTINTERFACE_H
 
-#include "MainWindow/SoundElementTab/LabelEnhancedAbstractWidget.h"
+#include "libTheClick/libTheClick.h"
 
-class ClickControllerSoundWidget : public LabelEnhancedAbstractWidget
+class ClickGeneratorSoundElementInterface
 {
-    Q_OBJECT
     
     //********** (DE/CON)STRUCTORS **********
     public:
-        ClickControllerSoundWidget(QWidget *parent = 0);
-        virtual ~ClickControllerSoundWidget();
+        //ClickGeneratorSoundElementInterface();
+        virtual ~ClickGeneratorSoundElementInterface() {}
 
     private:
 
     //********** ATTRIBUTES **********
     public: 
-        //GUI elements
-
+        drumkit_id      drumkitID;
+        instrument_id   instrumentID;
+        
     protected: 
         
     private:
-
+        
     //********** METHODS **********
     public:
-        //overload QWidget
+        bool operator==(const ClickGeneratorSoundElementInterface& b) const {return this->drumkitID == b.drumkitID && this->instrumentID == b.instrumentID;}
 
-        //own stuff
-        
     protected: 
         
     private:
         
-    //********** SIGNALS **********
-    signals:
-
-
-    //********** SLOTS **********
-    private slots:
-        //overload QWidget
-
-
 };
 
-#endif // CLICKCONTROLLERSOUNDWIDGET_H
+#endif // ClICKGENERATORSOUNDELEMENTINTERFACE_H

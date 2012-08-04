@@ -291,7 +291,7 @@ namespace libTheClick
         } 
     }
     
-    SoundElement* DrumKit::cloneSoundElementWithVolume(int32_t instrumentID, float vol)
+    SoundElement* DrumKit::cloneSoundElementWithVolume(instrument_id instrumentID, float vol)
     {
         for(std::list<Instrument*>::iterator it = this->instrumentList.begin(); it != this->instrumentList.end(); it++)
         {

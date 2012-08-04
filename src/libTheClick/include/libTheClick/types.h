@@ -43,6 +43,7 @@ enum accentuation
 
 typedef int32_t clickgen_id;
 typedef int32_t drumkit_id;
+typedef int32_t instrument_id;
 
 
 #endif // _TYPES_HEADER_

@@ -17,32 +17,26 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef LABELENHANCEDABSTRACTWIDGET_H
-#define LABELENHANCEDABSTRACTWIDGET_H
+#ifndef CLICKGENERATORSOUNDWIDGET_H
+#define CLICKGENERATORSOUNDWIDGET_H
 
-#include <QLabel>
+#include "MainWindow/SoundElementTab/XToXAssociationAbstractWidget.h"
 
-#define DISTANCE_X_LEFT        (10)
-#define DISTANCE_X_RIGHT       (10)
-#define DISTANCE_Y_TOP         (10)
-#define DISTANCE_Y_BOTTOM      (10)
-
-class LabelEnhancedAbstractWidget : public QWidget
+class ClickGeneratorSoundWidget : public XToXAssociationAbstractWidget
 {
     Q_OBJECT
     
     //********** (DE/CON)STRUCTORS **********
     public:
-        LabelEnhancedAbstractWidget(QWidget *parent = 0);
-        virtual ~LabelEnhancedAbstractWidget();
+        ClickGeneratorSoundWidget(QWidget *parent = 0);
+        virtual ~ClickGeneratorSoundWidget();
 
     private:
 
     //********** ATTRIBUTES **********
     public: 
         //GUI elements
-        QLabel*    textLabel;
-        
+
     protected: 
         
     private:
@@ -50,12 +44,8 @@ class LabelEnhancedAbstractWidget : public QWidget
     //********** METHODS **********
     public:
         //overload QWidget
-        virtual QSize sizeHint () const;
-        virtual int heightForWidth (int w) const;
 
         //own stuff
-        virtual void setText(const QString & t) {this->textLabel->setText(t);}
-        virtual QString text() {return this->textLabel->text();}
         
     protected: 
         
@@ -68,9 +58,8 @@ class LabelEnhancedAbstractWidget : public QWidget
     //********** SLOTS **********
     private slots:
         //overload QWidget
-        virtual void resizeEvent ( QResizeEvent * event );
 
 
 };
 
-#endif // LABELENHANCEDABSTRACTWIDGET_H
+#endif // CLICKGENERATORSOUNDWIDGET_H

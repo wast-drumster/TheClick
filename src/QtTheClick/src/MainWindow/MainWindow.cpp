@@ -100,10 +100,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->m_XToXAssociationWidget = new XToXAssociationWidget( XToXAssociationWidget::ONE_TO_ONE, this->theClickForm->tabWidget );
     this->theClickForm->tabWidget->addTab(this->m_XToXAssociationWidget, QString::fromUtf8("Sound Configuration"));
-    ClickControllerSoundWidget* tmp = new ClickControllerSoundWidget(NULL);
+    ClickGeneratorSoundWidget* tmp = new ClickGeneratorSoundWidget(NULL);
     tmp->setText( QString::fromUtf8("Test for Left") );
     this->m_XToXAssociationWidget->pushBackLeftWidget( tmp );
-    tmp = new ClickControllerSoundWidget(NULL);
+    tmp = new ClickGeneratorSoundWidget(NULL);
     tmp->setText( QString::fromUtf8("Test for Right") );
     this->m_XToXAssociationWidget->pushBackRightWidget( tmp );
 

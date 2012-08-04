@@ -26,7 +26,7 @@
 //********** (DE/CON)STRUCTORS **********
 //***************************************
 SoundElementWidget::SoundElementWidget(QWidget *parent)
-    : LabelEnhancedAbstractWidget(parent)
+    : XToXAssociationAbstractWidget(parent)
 {
     //create and initialize widgets
 

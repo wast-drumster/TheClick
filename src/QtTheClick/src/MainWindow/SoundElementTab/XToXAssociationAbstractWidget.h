@@ -17,26 +17,32 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef SOUNDELEMENTWIDGET_H
-#define SOUNDELEMENTWIDGET_H
+#ifndef XTOXASSOCIATIONABSTRACTWIDGET_H
+#define XTOXASSOCIATIONABSTRACTWIDGET_H
 
-#include "MainWindow/SoundElementTab/XToXAssociationAbstractWidget.h"
+#include <QLabel>
 
-class SoundElementWidget : public XToXAssociationAbstractWidget
+#define DISTANCE_X_LEFT        (10)
+#define DISTANCE_X_RIGHT       (10)
+#define DISTANCE_Y_TOP         (10)
+#define DISTANCE_Y_BOTTOM      (10)
+
+class XToXAssociationAbstractWidget : public QWidget
 {
     Q_OBJECT
     
     //********** (DE/CON)STRUCTORS **********
     public:
-        SoundElementWidget(QWidget *parent = 0);
-        virtual ~SoundElementWidget();
+        XToXAssociationAbstractWidget(QWidget *parent = 0);
+        virtual ~XToXAssociationAbstractWidget();
 
     private:
 
     //********** ATTRIBUTES **********
     public: 
         //GUI elements
-
+        QLabel*    textLabel;
+        
     protected: 
         
     private:
@@ -44,8 +50,12 @@ class SoundElementWidget : public XToXAssociationAbstractWidget
     //********** METHODS **********
     public:
         //overload QWidget
+        virtual QSize sizeHint () const;
+        virtual int heightForWidth (int w) const;
 
         //own stuff
+        virtual void setText(const QString & t) {this->textLabel->setText(t);}
+        virtual QString text() {return this->textLabel->text();}
         
     protected: 
         
@@ -58,8 +68,9 @@ class SoundElementWidget : public XToXAssociationAbstractWidget
     //********** SLOTS **********
     private slots:
         //overload QWidget
+        virtual void resizeEvent ( QResizeEvent * event );
 
 
 };
 
-#endif // SOUNDELEMENTWIDGET_H
+#endif // XTOXASSOCIATIONABSTRACTWIDGET_H

@@ -17,7 +17,7 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "MainWindow/SoundElementTab/ClickControllerSoundWidget.h"
+#include "MainWindow/SoundElementTab/ClickGeneratorSoundWidget.h"
 
 //debug
 // #include <iostream>
@@ -25,14 +25,14 @@
 //***************************************
 //********** (DE/CON)STRUCTORS **********
 //***************************************
-ClickControllerSoundWidget::ClickControllerSoundWidget(QWidget *parent)
-    : LabelEnhancedAbstractWidget(parent)
+ClickGeneratorSoundWidget::ClickGeneratorSoundWidget(QWidget *parent)
+    : XToXAssociationAbstractWidget(parent)
 {
     //create and initialize widgets
 
 }
 
-ClickControllerSoundWidget::~ClickControllerSoundWidget()
+ClickGeneratorSoundWidget::~ClickGeneratorSoundWidget()
 {
 
 }
