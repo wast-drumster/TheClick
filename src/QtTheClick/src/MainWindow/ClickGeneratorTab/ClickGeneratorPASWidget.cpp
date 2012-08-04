@@ -18,7 +18,7 @@
 */
 
 #include "MainWindow/ClickGeneratorTab/ClickGeneratorPASWidget.h"
-#include "MainWindow/SoundElementTab/ClickGeneratorSoundWidget.h"
+#include "MainWindow/SoundConfigurationTab/ClickGeneratorSoundWidget.h"
 #include "MainWindow/ScaleInformation.h"
 
 //#include "boost/bind.hpp"

@@ -20,7 +20,7 @@
 #ifndef ClICKGENERATORABSTRACTWIDGET_H
 #define ClICKGENERATORABSTRACTWIDGET_H
 
-#include "MainWindow/SoundElementTab/XToXAssociationAbstractWidget.h"
+#include "MainWindow/SoundConfigurationTab/XToXAssociationAbstractWidget.h"
 #include <QWidget>
 #include <QList>
 

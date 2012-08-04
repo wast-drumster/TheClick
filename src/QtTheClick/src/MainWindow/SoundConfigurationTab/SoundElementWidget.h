@@ -17,20 +17,21 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef CLICKGENERATORSOUNDWIDGET_H
-#define CLICKGENERATORSOUNDWIDGET_H
+#ifndef SOUNDELEMENTWIDGET_H
+#define SOUNDELEMENTWIDGET_H
 
-#include "MainWindow/SoundElementTab/XToXAssociationAbstractWidget.h"
-#include "MainWindow/ClickGeneratorTab/ClickGeneratorAbstractWidget.h"
+#include "MainWindow/SoundConfigurationTab/XToXAssociationAbstractWidget.h"
+#include "libTheClick/libTheClick.h"
+#include <QString>
 
-class ClickGeneratorSoundWidget : public XToXAssociationAbstractWidget
+class SoundElementWidget : public XToXAssociationAbstractWidget
 {
     Q_OBJECT
     
     //********** (DE/CON)STRUCTORS **********
     public:
-        ClickGeneratorSoundWidget(ClickGeneratorAbstractWidget* generator, int32_t soundID, QWidget *parent = 0);
-        virtual ~ClickGeneratorSoundWidget();
+        SoundElementWidget(drumkit_id drumkitID, instrument_id instrumentID, QWidget *parent = 0);
+        virtual ~SoundElementWidget();
 
     private:
 
@@ -38,13 +39,11 @@ class ClickGeneratorSoundWidget : public XToXAssociationAbstractWidget
     public: 
         //GUI elements
 
-        //own stuff
-        const ClickGeneratorAbstractWidget* generatorClickGeneratorWidget;
-        const int32_t                       soundID;
-
     protected: 
         
     private:
+        const drumkit_id drumkitID;
+        const instrument_id instrumentID;
 
     //********** METHODS **********
     public:
@@ -67,4 +66,4 @@ class ClickGeneratorSoundWidget : public XToXAssociationAbstractWidget
 
 };
 
-#endif // CLICKGENERATORSOUNDWIDGET_H
+#endif // SOUNDELEMENTWIDGET_H

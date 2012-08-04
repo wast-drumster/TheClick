@@ -17,7 +17,7 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "MainWindow/SoundElementTab/ClickGeneratorSoundWidget.h"
+#include "MainWindow/SoundConfigurationTab/SoundElementWidget.h"
 
 //debug
 // #include <iostream>
@@ -25,16 +25,16 @@
 //***************************************
 //********** (DE/CON)STRUCTORS **********
 //***************************************
-ClickGeneratorSoundWidget::ClickGeneratorSoundWidget(ClickGeneratorAbstractWidget* generator, int32_t soundID, QWidget *parent)
+SoundElementWidget::SoundElementWidget(drumkit_id drumkitID, instrument_id instrumentID, QWidget *parent)
     : XToXAssociationAbstractWidget(parent),
-      generatorClickGeneratorWidget(generator),
-      soundID(soundID)
+      drumkitID(drumkitID),
+      instrumentID(instrumentID)
 {
     //create and initialize widgets
 
 }
 
-ClickGeneratorSoundWidget::~ClickGeneratorSoundWidget()
+SoundElementWidget::~SoundElementWidget()
 {
 
 }
@@ -42,7 +42,6 @@ ClickGeneratorSoundWidget::~ClickGeneratorSoundWidget()
 //*****************************
 //********** METHODS **********
 //*****************************
-
 
 //*****************************
 //********** SIGNALS **********
@@ -52,3 +51,4 @@ ClickGeneratorSoundWidget::~ClickGeneratorSoundWidget()
 //*****************************
 //*********** SLOTS ***********
 //*****************************
+

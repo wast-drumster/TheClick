@@ -20,7 +20,7 @@
 #include "MainWindow/MainWindow.h"
 #include "widgets/svgtoggleswitch/qtsvgtoggleswitch.h"
 #include "MainWindow/ScaleInformation.h"
-#include "MainWindow/SoundElementTab/SoundElementWidget.h"
+#include "MainWindow/SoundConfigurationTab/SoundElementWidget.h"
 
 #include "boost/bind.hpp"
 

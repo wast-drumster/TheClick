@@ -17,7 +17,7 @@
 ** along with TheClick.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "MainWindow/SoundElementTab/XToXAssociationAbstractWidget.h"
+#include "MainWindow/SoundConfigurationTab/XToXAssociationAbstractWidget.h"
 #include "MainWindow/ScaleInformation.h"
 
 //debug

@@ -14,5 +14,5 @@ HEADERS += \
     SpeedWidget.h \
     ScaleInformation.h \
     
-include($${PWD}/SoundElementTab/SoundElementTab.pri)
+include($${PWD}/SoundConfigurationTab/SoundConfigurationTab.pri)
 include($${PWD}/ClickGeneratorTab/ClickGeneratorTab.pri)
