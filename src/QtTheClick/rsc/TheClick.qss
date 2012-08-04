@@ -83,3 +83,7 @@ QTabBar::tab:first:selected {
 QTabBar::tab:last:selected {
 	margin-right: 0; /* the last selected tab has nothing to overlap with on the right */
 }
+
+XToXAssociationAbstractWidget {
+	background: rgb(0,0,180);
+}

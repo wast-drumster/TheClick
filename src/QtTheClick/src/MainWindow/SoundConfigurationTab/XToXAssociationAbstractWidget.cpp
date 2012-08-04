@@ -30,7 +30,8 @@ XToXAssociationAbstractWidget::XToXAssociationAbstractWidget(QWidget *parent)
     : QAbstractButton(parent)
 {
     //initialize attributes
-
+    this->setCheckable(true);
+    this->setChecked(false);
 
     //create and initialize widgets
     this->textLabel = new QLabel( this );
@@ -80,19 +81,11 @@ QString XToXAssociationAbstractWidget::text()
     return this->textLabel->text();
 }
 
-void XToXAssociationAbstractWidget::setSelected(bool a)
-{
-    this->setAutoFillBackground(a);
-}
-
-bool XToXAssociationAbstractWidget::selected()
-{
-    return this->autoFillBackground();
-}
-
 void XToXAssociationAbstractWidget::paintEvent(QPaintEvent* event)
 {
     Q_UNUSED(event);
+
+    this->setAutoFillBackground( this->isChecked() );
 }
 
 //*****************************

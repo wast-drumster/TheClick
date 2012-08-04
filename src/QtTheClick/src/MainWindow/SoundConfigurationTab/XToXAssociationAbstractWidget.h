@@ -59,8 +59,6 @@ class XToXAssociationAbstractWidget : public QAbstractButton
         //own stuff
         virtual void setText(const QString& t);
         virtual QString text();
-        virtual void setSelected(bool a);
-        virtual bool selected();
 
     protected:
         virtual void paintEvent(QPaintEvent* event);
