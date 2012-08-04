@@ -27,7 +27,7 @@
 //********** (DE/CON)STRUCTORS **********
 //***************************************
 XToXAssociationAbstractWidget::XToXAssociationAbstractWidget(QWidget *parent)
-    : QWidget(parent)
+    : QAbstractButton(parent)
 {
     //initialize attributes
 
@@ -88,6 +88,11 @@ void XToXAssociationAbstractWidget::setSelected(bool a)
 bool XToXAssociationAbstractWidget::selected()
 {
     return this->autoFillBackground();
+}
+
+void XToXAssociationAbstractWidget::paintEvent(QPaintEvent* event)
+{
+    Q_UNUSED(event);
 }
 
 //*****************************

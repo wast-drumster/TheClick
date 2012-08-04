@@ -49,19 +49,19 @@ void XToXAssociationWidget::setGeometry ( const QRect & g )
     this->rightScrollList->setGeometry( QRect(g.width()*2/3, 0, g.width()*1/3, g.height()) );
 }
 
-void XToXAssociationWidget::pushBackLeftWidget(QWidget* w)
+void XToXAssociationWidget::pushBackLeftWidget(QAbstractButton* w)
 {
     this->leftScrollList->addWidget(w);
-    connect(w, SIGNAL(mousePressEvent(QMouseEvent*)), this, SLOT(mousePressEvent_Left(QMouseEvent*)));
+    connect(w, SIGNAL(clicked()), this, SLOT(clicked_left()));
 }
 
-void XToXAssociationWidget::pushBackRightWidget(QWidget* w)
+void XToXAssociationWidget::pushBackRightWidget(QAbstractButton* w)
 {
     this->rightScrollList->addWidget(w);
-    connect(w, SIGNAL(mousePressEvent(QMouseEvent*)), this, SLOT(mousePressEvent_Right(QMouseEvent*)));
+    connect(w, SIGNAL(clicked()), this, SLOT(clicked_right()));
 }
 
-void XToXAssociationWidget::add_Association(QWidget* left, QWidget* right)
+void XToXAssociationWidget::add_Association(QAbstractButton* left, QAbstractButton* right)
 {
     //check if parameters are already in lists
     if(!this->leftScrollList->containsWidget(left) || !this->rightScrollList->containsWidget(right))
@@ -82,12 +82,12 @@ void XToXAssociationWidget::add_Association(QWidget* left, QWidget* right)
 //*****************************
 //*********** SLOTS ***********
 //*****************************
-void XToXAssociationWidget::mousePressEvent_Left(QMouseEvent* ev)
+void XToXAssociationWidget::clicked_left()
 {
-    std::cout << "mousePressEvent_Left" << std::endl;
+    std::cout << "clicked_left" << std::endl;
 }
 
-void XToXAssociationWidget::mousePressEvent_Right(QMouseEvent* ev)
+void XToXAssociationWidget::clicked_right()
 {
-    std::cout << "mousePressEvent_Right" << std::endl;
+    std::cout << "clicked_right" << std::endl;
 }

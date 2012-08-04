@@ -21,13 +21,14 @@
 #define XTOXASSOCIATIONABSTRACTWIDGET_H
 
 #include <QLabel>
+#include <QAbstractButton>
 
 #define DISTANCE_X_LEFT        (10)
 #define DISTANCE_X_RIGHT       (10)
 #define DISTANCE_Y_TOP         (2)
 #define DISTANCE_Y_BOTTOM      (2)
 
-class XToXAssociationAbstractWidget : public QWidget
+class XToXAssociationAbstractWidget : public QAbstractButton
 {
     Q_OBJECT
     
@@ -51,7 +52,7 @@ class XToXAssociationAbstractWidget : public QWidget
 
     //********** METHODS **********
     public:
-        //overload QWidget
+        //overload QAbstractButton
         virtual QSize sizeHint () const;
         virtual int heightForWidth (int w) const;
 
@@ -61,7 +62,8 @@ class XToXAssociationAbstractWidget : public QWidget
         virtual void setSelected(bool a);
         virtual bool selected();
 
-    protected: 
+    protected:
+        virtual void paintEvent(QPaintEvent* event);
         
     private:
         
@@ -71,7 +73,7 @@ class XToXAssociationAbstractWidget : public QWidget
 
     //********** SLOTS **********
     private slots:
-        //overload QWidget
+        //overload QAbstractButton
         virtual void resizeEvent ( QResizeEvent * event );
 //        virtual void mousePressOnLabelEvent ( QMouseEvent * ev );
 

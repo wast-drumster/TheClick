@@ -21,6 +21,7 @@
 #define XTOXASSICIATIONWIDGET_H
 
 #include <QWidget>
+#include <QAbstractButton>
 #include "widgets/ScrollListOfWidgets/ScrollListOfWidgets.h"
 #include <QList>
 
@@ -39,8 +40,8 @@ class XToXAssociationWidget : public QWidget
     public:
         struct Association
         {
-            QWidget* left;
-            QWidget* right;
+            QAbstractButton* left;
+            QAbstractButton* right;
         };
 
         enum AssiciationType
@@ -76,12 +77,12 @@ class XToXAssociationWidget : public QWidget
         void setGeometry ( const QRect & g );
 
         //own stuff
-        void pushBackLeftWidget(QWidget* w);
-        void pushBackRightWidget(QWidget* w);
+        void pushBackLeftWidget(QAbstractButton* w);
+        void pushBackRightWidget(QAbstractButton* w);
 
         inline QList<Association>::const_iterator begin_Association() const {return this->associationList.begin();}
         inline QList<Association>::const_iterator end_Association() const {return this->associationList.end();}
-        void add_Association(QWidget* left, QWidget* right);
+        void add_Association(QAbstractButton* left, QAbstractButton* right);
         
     protected: 
         
@@ -93,8 +94,8 @@ class XToXAssociationWidget : public QWidget
 
     //********** SLOTS **********
     private slots:
-        void mousePressEvent_Left ( QMouseEvent * ev );
-        void mousePressEvent_Right ( QMouseEvent * ev );
+        void clicked_left();
+        void clicked_right();
 
 
 
