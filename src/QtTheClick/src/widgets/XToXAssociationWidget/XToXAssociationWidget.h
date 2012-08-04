@@ -24,6 +24,7 @@
 #include <QAbstractButton>
 #include "widgets/ScrollListOfWidgets/ScrollListOfWidgets.h"
 #include <QList>
+#include <QSignalMapper>
 
 class XToXAssociationWidgetException_WidgetNotAvailable : public QtConcurrent::Exception
 {
@@ -70,6 +71,8 @@ class XToXAssociationWidget : public QWidget
         const AssiciationType       type;
 
         QList<Association>      associationList;
+        QSignalMapper*          signalMapper_left;
+        QSignalMapper*          signalMapper_right;
         
     //********** METHODS **********
     public: 
@@ -94,8 +97,8 @@ class XToXAssociationWidget : public QWidget
 
     //********** SLOTS **********
     private slots:
-        void clicked_left();
-        void clicked_right();
+        void clicked_left(QObject* o);
+        void clicked_right(QObject* o);
 
 
 

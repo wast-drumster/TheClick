@@ -65,6 +65,7 @@ class WidgetPlate : public QWidget
         inline int size() const {return this->widgetList.size();}
         void addWidget(QWidget* w);
         inline bool containsWidget(QWidget* w) const {return this->widgetList.contains(w);}
+        inline const QList<QWidget*>* getConstWidgetList() const {return &this->widgetList;}
 
     protected: 
         

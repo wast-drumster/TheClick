@@ -32,6 +32,11 @@ XToXAssociationWidget::XToXAssociationWidget(AssiciationType type, QWidget *pare
     //create and initialize widgets
     this->leftScrollList = new ScrollListOfWidgets( this );
     this->rightScrollList = new ScrollListOfWidgets( this );
+
+    this->signalMapper_left = new QSignalMapper(this);
+    this->signalMapper_right = new QSignalMapper(this);
+    connect(this->signalMapper_left, SIGNAL(mapped(QObject*)), this, SLOT(clicked_left(QObject*)));
+    connect(this->signalMapper_right, SIGNAL(mapped(QObject*)), this, SLOT(clicked_right(QObject*)));
 }
 
 XToXAssociationWidget::~XToXAssociationWidget()
@@ -52,13 +57,15 @@ void XToXAssociationWidget::setGeometry ( const QRect & g )
 void XToXAssociationWidget::pushBackLeftWidget(QAbstractButton* w)
 {
     this->leftScrollList->addWidget(w);
-    connect(w, SIGNAL(clicked()), this, SLOT(clicked_left()));
+    connect(w, SIGNAL(clicked()), this->signalMapper_left, SLOT(map()));
+    this->signalMapper_left->setMapping(w, (QObject*)w);
 }
 
 void XToXAssociationWidget::pushBackRightWidget(QAbstractButton* w)
 {
     this->rightScrollList->addWidget(w);
-    connect(w, SIGNAL(clicked()), this, SLOT(clicked_right()));
+    connect(w, SIGNAL(clicked()), this->signalMapper_right, SLOT(map()));
+    this->signalMapper_right->setMapping(w, (QObject*)w);
 }
 
 void XToXAssociationWidget::add_Association(QAbstractButton* left, QAbstractButton* right)
@@ -82,12 +89,33 @@ void XToXAssociationWidget::add_Association(QAbstractButton* left, QAbstractButt
 //*****************************
 //*********** SLOTS ***********
 //*****************************
-void XToXAssociationWidget::clicked_left()
+void XToXAssociationWidget::clicked_left(QObject* o)
 {
+    //debug
     std::cout << "clicked_left" << std::endl;
+
+    //work
+    if(this->type == ONE_TO_ONE || this->type == N_TO_ONE)
+    {
+        foreach(QObject* e, *this->leftScrollList->widgetPlate->getConstWidgetList())
+        {
+            if((QObject*)e != o)
+                ((QAbstractButton*)e)->setChecked(false);
+        }
+    }
 }
 
-void XToXAssociationWidget::clicked_right()
+void XToXAssociationWidget::clicked_right(QObject* o)
 {
     std::cout << "clicked_right" << std::endl;
+
+    //work
+    if(this->type == ONE_TO_N)
+    {
+        foreach(QObject* e, *this->rightScrollList->widgetPlate->getConstWidgetList())
+        {
+            if((QObject*)e != o)
+                ((QAbstractButton*)e)->setChecked(false);
+        }
+    }
 }
