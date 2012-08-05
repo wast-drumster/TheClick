@@ -217,7 +217,7 @@ QList<XToXAssociationAbstractWidget*>* ClickGeneratorDivisionWidget::XToXAssocia
     QList<XToXAssociationAbstractWidget*>* ret = new QList<XToXAssociationAbstractWidget*>;
 
     //generate widgets for divisions
-    for(int i = 0; i<DIVSUBDIV__MAX_DIVISIONS; i++)
+    for(int32_t i = 0; i<DIVSUBDIV__MAX_DIVISIONS; i++)
     {
         ClickGeneratorSoundWidget* nextWidget = new ClickGeneratorSoundWidget(this, i);
         nextWidget->setText( QString::fromUtf8("Division: ") + QString::number(i+1) );
@@ -225,7 +225,7 @@ QList<XToXAssociationAbstractWidget*>* ClickGeneratorDivisionWidget::XToXAssocia
     }
 
     //generate widgets for subdivisions
-    for(int i = 0; i<DIVSUBDIV__MAX_SUBDIVISIONS; i++)
+    for(int32_t i = 0; i<DIVSUBDIV__MAX_SUBDIVISIONS; i++)
     {
         ClickGeneratorSoundWidget* nextWidget = new ClickGeneratorSoundWidget(this, DIVSUBDIV__MAX_DIVISIONS + i);
         nextWidget->setText( QString::fromUtf8("Subdivision: ") + QString::number(i+1) );
@@ -234,6 +234,24 @@ QList<XToXAssociationAbstractWidget*>* ClickGeneratorDivisionWidget::XToXAssocia
 
     //return list
     return ret;
+}
+
+void ClickGeneratorDivisionWidget::setSoundConfiguration(clickgensound_id cgsID, drumkit_id dkID, instrument_id instrumentID)
+{
+    //update configuration
+    if(cgsID < DIVSUBDIV__MAX_DIVISIONS) //division
+    {
+        this->divDivDrumKitIDArray[cgsID] = dkID;
+        this->divDivInstrumentIDArray[cgsID] = instrumentID;
+    }
+    else //subdivision
+    {
+        this->divSubdivDrumKitIDArray[cgsID - DIVSUBDIV__MAX_DIVISIONS] = dkID;
+        this->divSubdivInstrumentIDArray[cgsID - DIVSUBDIV__MAX_DIVISIONS] = instrumentID;
+    }
+
+    //take over configuration
+    this->levelChanged(0); //value is ignored
 }
 
 //*****************************

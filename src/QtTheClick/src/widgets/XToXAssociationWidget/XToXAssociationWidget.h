@@ -52,8 +52,8 @@ class XToXAssociationWidget : public QWidget
 
         enum AssiciationType
         {
-            ONE_TO_ONE,
-            ONE_TO_N,
+//            ONE_TO_ONE,
+//            ONE_TO_N,
             N_TO_ONE
         };
 

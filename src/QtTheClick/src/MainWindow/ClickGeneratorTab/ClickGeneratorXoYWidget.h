@@ -24,7 +24,6 @@
 #include "widgets/svgdialwithbuttons/qtsvgdialwithbuttons.h"
 #include "widgets/svgtoggleswitch/qtsvgtoggleswitch.h"
 #include "widgets/svgslider/qtsvgslider.h"
-#include "libTheClick/libTheClick.h"
 #include <QLabel>
 
 #define DISTANCE_X_LEFT        (10)
@@ -86,6 +85,7 @@ class ClickGeneratorXoYWidget : public ClickGeneratorAbstractWidget
         //overload ClickGeneratorAbstractWidget
         virtual int getMinimimWidthForMainWindowHeight(int h) const;
         virtual QList<XToXAssociationAbstractWidget*>* XToXAssociationWidgetFactory();
+        virtual void setSoundConfiguration(clickgensound_id cgsID, drumkit_id dkID, instrument_id instrumentID);
 
         //own stuff
         libTheClick::ClickGenerator_XoverY* getClickGenerator() {return this->clickGenerator;}

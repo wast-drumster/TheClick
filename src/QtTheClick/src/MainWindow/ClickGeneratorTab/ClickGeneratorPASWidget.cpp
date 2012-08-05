@@ -261,6 +261,41 @@ QList<XToXAssociationAbstractWidget*>* ClickGeneratorPASWidget::XToXAssociationW
     return ret;
 }
 
+void ClickGeneratorPASWidget::setSoundConfiguration(clickgensound_id cgsID, drumkit_id dkID, instrument_id instrumentID)
+{
+    //update configuration
+    switch(cgsID)
+    {
+        case PAS_SOUNDID_LEFT_ACCENT:
+            this->pasLeftAccentDrumKitID = dkID;
+            this->pasLeftAccentInstrumentID = instrumentID;
+            break;
+        case PAS_SOUNDID_LEFT_NORMAL:
+            this->pasLeftNormalDrumKitID = dkID;
+            this->pasLeftNormalInstrumentID = instrumentID;
+            break;
+        case PAS_SOUNDID_LEFT_GHOST:
+            this->pasLeftGhostDrumKitID = dkID;
+            this->pasLeftGhostInstrumentID = instrumentID;
+            break;
+        case PAS_SOUNDID_RIGHT_ACCENT:
+            this->pasRightAccentDrumKitID = dkID;
+            this->pasRightAccentInstrumentID = instrumentID;
+            break;
+        case PAS_SOUNDID_RIGHT_NORMAL:
+            this->pasRightNormalDrumKitID = dkID;
+            this->pasRightNormalInstrumentID = instrumentID;
+            break;
+        case PAS_SOUNDID_RIGHT_GHOST:
+            this->pasRightGhostDrumKitID = dkID;
+            this->pasRightGhostInstrumentID = instrumentID;
+            break;
+    }
+
+    //take over configuration
+    this->levelChanged(0); //value is ignored
+}
+
 //*****************************
 //********** SIGNALS **********
 //*****************************

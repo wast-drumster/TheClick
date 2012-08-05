@@ -150,7 +150,7 @@ void XToXAssociationWidget::clicked_right(QObject* o)
         //update associationList
         if(this->type == N_TO_ONE)
         {
-            //remove all associations which contain the left element
+            //remove all associations which contains the selected element of the left side
             for(QList<Association>::iterator it = this->associationList.begin(); it != this->associationList.end(); /*nothing*/)
             {
                 if((*it).left == this->getSelectionOnLeftSide())
@@ -168,14 +168,17 @@ void XToXAssociationWidget::clicked_right(QObject* o)
             a.right = (QAbstractButton*)o;
             this->associationList.push_back(a);
         }
-    //    else if(this->type == ONE_TO_N)
-    //    {
+//        else if(this->type == ONE_TO_N)
+//        {
 
-    //    }
-    //    else if(this->type == ONE_TO_ONE)
-    //    {
+//        }
+//        else if(this->type == ONE_TO_ONE)
+//        {
 
-    //    }
+//        }
+
+        //emit signal
+        emit associationChanged();
     }
 
     //select elements on the right side according to associationList

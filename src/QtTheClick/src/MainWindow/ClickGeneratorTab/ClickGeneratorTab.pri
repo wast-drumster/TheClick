@@ -1,9 +1,6 @@
 INCLUDEPATH += $$quote($${PWD})
 DEPENDPATH += $$quote($${PWD})
 
-FORMS += \
-    TheClickForm.ui
-
 SOURCES += \
     ClickGeneratorDivisionWidget.cpp \
     ClickGeneratorXoYWidget.cpp \

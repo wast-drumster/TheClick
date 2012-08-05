@@ -83,6 +83,7 @@ class MainWindow : public QMainWindow
     //********** SLOTS **********
     private slots:
         void shouldResize();
+        void soundConfigurationChanged();
 
 };
 

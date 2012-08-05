@@ -37,13 +37,12 @@ class SoundElementWidget : public XToXAssociationAbstractWidget
 
     //********** ATTRIBUTES **********
     public: 
-        //GUI elements
+        const drumkit_id drumkitID;
+        const instrument_id instrumentID;
 
     protected: 
         
     private:
-        const drumkit_id drumkitID;
-        const instrument_id instrumentID;
 
     //********** METHODS **********
     public:

@@ -199,7 +199,27 @@ QList<XToXAssociationAbstractWidget*>* ClickGeneratorXoYWidget::XToXAssociationW
     ret->push_back( nextWidget );
 
     //return list
-    return ret;}
+    return ret;
+}
+
+void ClickGeneratorXoYWidget::setSoundConfiguration(clickgensound_id cgsID, drumkit_id dkID, instrument_id instrumentID)
+{
+    //update configuration
+    switch(cgsID)
+    {
+        case XOY_SOUNDID_X:
+            this->xyXDrumKitID = dkID;
+            this->xyXInstrumentID = instrumentID;
+            break;
+        case XOY_SOUNDID_Y:
+            this->xyYDrumKitID = dkID;
+            this->xyYInstrumentID = instrumentID;
+            break;
+    }
+
+    //take over configuration
+    this->levelChanged(0); //value is ignored
+}
 
 //*****************************
 //********** SIGNALS **********

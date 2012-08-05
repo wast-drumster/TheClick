@@ -101,6 +101,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->m_XToXAssociationWidget = new XToXAssociationWidget( XToXAssociationWidget::N_TO_ONE, this->theClickForm->tabWidget );
     this->theClickForm->tabWidget->addTab(this->m_XToXAssociationWidget, QString::fromUtf8("Sound Configuration"));
+    connect(this->m_XToXAssociationWidget, SIGNAL(associationChanged()), this, SLOT(soundConfigurationChanged()));
 
     //generate widgets for XToXAssociationWidge
     {
@@ -237,4 +238,20 @@ void MainWindow::shouldResize()
 {
     QResizeEvent re(this->size(), this->size());
     this->resizeEvent(&re);
+}
+
+void MainWindow::soundConfigurationChanged()
+{
+    //debug
+    std::cout << "MainWindow::soundElementAssociationChanged()" << std::endl;
+
+    //update
+    for(QList<XToXAssociationWidget::Association>::const_iterator it = this->m_XToXAssociationWidget->begin_Association(); it != this->m_XToXAssociationWidget->end_Association(); it++)
+    {
+        ((ClickGeneratorAbstractWidget*)(((ClickGeneratorSoundWidget*)((*it).left))->generatorClickGeneratorWidget))->setSoundConfiguration(
+            ((ClickGeneratorSoundWidget*)((*it).left))->soundID,
+            ((SoundElementWidget*)((*it).right))->drumkitID,
+            ((SoundElementWidget*)((*it).right))->instrumentID
+        );
+    }
 }

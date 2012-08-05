@@ -23,11 +23,16 @@
 #include "MainWindow/SoundConfigurationTab/XToXAssociationAbstractWidget.h"
 #include <QWidget>
 #include <QList>
+#include "libTheClick/libTheClick.h"
 
 class ClickGeneratorAbstractWidget : public QWidget
 {
     Q_OBJECT
     
+    //********** PRELIMINARY **********
+    public:
+        typedef int32_t clickgensound_id;
+
     //********** (DE/CON)STRUCTORS **********
     public:
         ClickGeneratorAbstractWidget(QWidget *parent = 0) : QWidget(parent) {}
@@ -46,6 +51,7 @@ class ClickGeneratorAbstractWidget : public QWidget
     public:
         virtual int getMinimimWidthForMainWindowHeight(int h) const = 0;
         virtual QList<XToXAssociationAbstractWidget*>* XToXAssociationWidgetFactory() = 0;
+        virtual void setSoundConfiguration(clickgensound_id cgsID, drumkit_id dkID, instrument_id instrumentID) = 0;
 
     protected: 
         
