@@ -30,6 +30,13 @@ IF(CMAKE_COMPILER_IS_GNUCXX)
     #SET(CMAKE_EXE_LINKER_FLAGS "-s")  ## Strip binary
 ENDIF()
 
+if(APPLE)
+  SET(CMAKE_EXE_LINKER_FLAGS "-framework CoreServices -framework CoreAudio -framework AudioToolbox -framework AudioUnit")
+
+endif()
+
 ADD_EXECUTABLE(TheClickTest ${src_cpp})
 #TARGET_LINK_LIBRARIES(TheClickTest TheClick pthread boost_thread boost_system portaudio xerces-c sndfile samplerate rt asound jack)
-TARGET_LINK_LIBRARIES(TheClickTest TheClick pthread boost_thread boost_system portaudio xerces-c sndfile samplerate rt jack)
+#TARGET_LINK_LIBRARIES(TheClickTest TheClick pthread boost_thread boost_system portaudio xerces-c sndfile samplerate rt jack)
+TARGET_LINK_LIBRARIES(TheClickTest TheClick pthread boost_thread boost_system portaudio xerces-c sndfile samplerate)
+#TARGET_LINK_LIBRARIES(TheClickTest CoreServices CoreAudio AudioToolbox AudioUnit)

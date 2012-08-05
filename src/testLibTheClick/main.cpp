@@ -28,7 +28,9 @@ int main(int argc, const char * argv[])
     libTheClick::ClickGenerator_DummyBeatCount* cg4 = new libTheClick::ClickGenerator_DummyBeatCount();
     libTheClick::ClickController *cc = new libTheClick::ClickController();
 
-    cc->getSoundBase()->loadDrumKit( "/home/wast/Daten/Projekte/TheClick/drumkits/Beep" );
+//    cc->getSoundBase()->loadDrumKit( "/home/wast/Daten/Projekte/TheClick/drumkits/Beep" );
+//    cc->getSoundBase()->loadDrumKit( "/Users/wast/Documents/Projekte/2012_06_16-TheClick/TheClick@GitHub/drumkits/The Black Pearl 1.0 subset for TheClick" );
+    cc->getSoundBase()->loadDrumKit( "/Users/wast/Library/Application Support/Hydrogen/drumkits/Boss DR-110" );
 
     //DivisionSubdivision
     cg1->setAmountDivisions(4);
