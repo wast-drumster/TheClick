@@ -137,7 +137,7 @@ ClickGeneratorDivisionWidget::ClickGeneratorDivisionWidget(libTheClick::ClickCon
     for(int i = 0; i < DIVSUBDIV__MAX_SUBDIVISIONS; i++)
     {
         this->divSubdivDrumKitIDArray[i] = 0;
-        this->divSubdivInstrumentIDArray[i] = 18;
+        this->divSubdivInstrumentIDArray[i] = 0;
     }
 
     this->clickGenerator->setAmountDivisions( this->amountDivisions->value() );
