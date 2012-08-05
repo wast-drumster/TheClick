@@ -104,7 +104,9 @@ namespace libTheClick
         
         //clone SoundElement
         SoundElement* ret = this->soundElement->clone();
-        ret->multiplayVolumeWith(vol);
+        
+        if(ret != NULL)
+            ret->multiplayVolumeWith(vol);
         
         //return
         return ret;
@@ -128,7 +130,15 @@ namespace libTheClick
             std::string localPath( *this->path );
             localPath.append( "/" );
             localPath.append( *this->fileName );
-            this->soundElement = new SoundElement( -1, -1, localPath, 1.0 );
+            
+            try
+            {
+                this->soundElement = new SoundElement( -1, -1, localPath, 1.0 );
+            }
+            catch (...)
+            {
+                this->soundElement = NULL;
+            }
         }
     }
 

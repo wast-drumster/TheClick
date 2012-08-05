@@ -77,7 +77,11 @@ namespace libTheClick
     //*****************************
     SoundElement* SoundElement::clone()
     {
-        SoundElement* ret = new SoundElement( *this );
+        SoundElement* ret = NULL;
+        
+        if(this != NULL)
+            ret = new SoundElement( *this );
+        
         return ret;
     }
     

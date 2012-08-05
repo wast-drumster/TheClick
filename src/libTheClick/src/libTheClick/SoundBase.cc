@@ -46,16 +46,21 @@ namespace libTheClick
     //*****************************    
     SoundElement* SoundBase::getSoundElement(drumkit_id drumKitID, instrument_id instrumentID, float volume)
     {
+        SoundElement* ret = NULL;
+        
         //get drum kit
         DrumKit* dk = this->drumKitMap[drumKitID];
         
         //set DrumKitID
-        SoundElement* se = dk->cloneSoundElementWithVolume(instrumentID, volume);
-        if(se != NULL)
-           se->drumKitID = drumKitID;
+        if(dk != NULL)
+        {
+            ret = dk->cloneSoundElementWithVolume(instrumentID, volume);
+            if(ret != NULL)
+               ret->drumKitID = drumKitID;
+        }
         
         //return sound from drum kit
-        return  se;
+        return ret;
     }
     
     drumkit_id SoundBase::loadDrumKit(const char* const path)

@@ -302,7 +302,9 @@ namespace libTheClick
             if( (*it)->getId() == instrumentID )
             {
                 SoundElement* ret = (*it)->cloneSoundElementWithVolume(vol);
-                ret->instrumentID = instrumentID;
+                
+                if(ret != NULL)
+                    ret->instrumentID = instrumentID;
                 
                 return ret;
             }
