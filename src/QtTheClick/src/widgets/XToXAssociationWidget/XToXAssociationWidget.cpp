@@ -81,6 +81,39 @@ void XToXAssociationWidget::add_Association(QAbstractButton* left, QAbstractButt
     this->associationList.push_back(as);
 }
 
+void XToXAssociationWidget::updateSelectionOnRightSide() const
+{
+    //select elements on the right side according to associationList
+    Association a;
+    a.left  = this->getSelectionOnLeftSide();
+
+    foreach(QObject* e, *this->rightScrollList->widgetPlate->getConstWidgetList())
+    {
+        a.right = (QAbstractButton*)e;
+
+        if( this->associationList.contains(a) )
+            ((QAbstractButton*)e)->setChecked(true);
+        else
+            ((QAbstractButton*)e)->setChecked(false);
+    }
+}
+
+QAbstractButton* XToXAssociationWidget::getSelectionOnLeftSide() const
+{
+    QAbstractButton* ret = NULL;
+
+    foreach(QObject* e, *this->leftScrollList->widgetPlate->getConstWidgetList())
+    {
+        if( ((QAbstractButton*)e)->isChecked() )
+        {
+            ret = (QAbstractButton*)e;
+            break;
+        }
+    }
+
+    return ret;
+}
+
 //*****************************
 //********** SIGNALS **********
 //*****************************
@@ -92,30 +125,59 @@ void XToXAssociationWidget::add_Association(QAbstractButton* left, QAbstractButt
 void XToXAssociationWidget::clicked_left(QObject* o)
 {
     //debug
-    std::cout << "clicked_left" << std::endl;
+//    std::cout << "clicked_left" << std::endl;
 
-    //work
-    if(this->type == ONE_TO_ONE || this->type == N_TO_ONE)
+    //only select one element on the left side
+    foreach(QObject* e, *this->leftScrollList->widgetPlate->getConstWidgetList())
     {
-        foreach(QObject* e, *this->leftScrollList->widgetPlate->getConstWidgetList())
-        {
-            if((QObject*)e != o)
-                ((QAbstractButton*)e)->setChecked(false);
-        }
+        if((QObject*)e != o)
+            ((QAbstractButton*)e)->setChecked(false);
     }
+
+    //select elements on the right side according to associationList
+    this->updateSelectionOnRightSide();
 }
 
 void XToXAssociationWidget::clicked_right(QObject* o)
 {
-    std::cout << "clicked_right" << std::endl;
+    //debug
+//    std::cout << "clicked_right" << std::endl;
 
-    //work
-    if(this->type == ONE_TO_N)
+    //only do job if there is a selection on the left side
+    if(this->getSelectionOnLeftSide() != NULL)
     {
-        foreach(QObject* e, *this->rightScrollList->widgetPlate->getConstWidgetList())
+
+        //update associationList
+        if(this->type == N_TO_ONE)
         {
-            if((QObject*)e != o)
-                ((QAbstractButton*)e)->setChecked(false);
+            //remove all associations which contain the left element
+            for(QList<Association>::iterator it = this->associationList.begin(); it != this->associationList.end(); /*nothing*/)
+            {
+                if((*it).left == this->getSelectionOnLeftSide())
+                    it = this->associationList.erase(it);
+                else
+                    it++;
+
+                //end condition
+                if(it == this->associationList.end()) break;
+            }
+
+            //add new association
+            Association a;
+            a.left = this->getSelectionOnLeftSide();
+            a.right = (QAbstractButton*)o;
+            this->associationList.push_back(a);
         }
+    //    else if(this->type == ONE_TO_N)
+    //    {
+
+    //    }
+    //    else if(this->type == ONE_TO_ONE)
+    //    {
+
+    //    }
     }
+
+    //select elements on the right side according to associationList
+    this->updateSelectionOnRightSide();
 }

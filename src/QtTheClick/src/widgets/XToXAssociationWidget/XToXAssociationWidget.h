@@ -43,6 +43,11 @@ class XToXAssociationWidget : public QWidget
         {
             QAbstractButton* left;
             QAbstractButton* right;
+
+            inline bool operator==(const Association& rhs) const
+            {
+                return this->left == rhs.left && this->right == rhs.right;
+            }
         };
 
         enum AssiciationType
@@ -90,6 +95,8 @@ class XToXAssociationWidget : public QWidget
     protected: 
         
     private:
+        void updateSelectionOnRightSide() const;
+        QAbstractButton* getSelectionOnLeftSide() const;
 
     //********** SIGNALS **********
     signals:
