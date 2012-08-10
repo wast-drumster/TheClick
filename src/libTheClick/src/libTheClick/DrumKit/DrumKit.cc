@@ -364,5 +364,17 @@ namespace libTheClick
         //return
         return ret;
     }
+    
+    instrument_id DrumKit::getInstrumentID(std::string name)
+    {
+        for(std::list<Instrument*>::iterator it = this->instrumentList.begin(); it != this->instrumentList.end(); it++)
+        {
+            if( (*it)->getName() == name )
+                return (*it)->getId();
+        }
+        
+        throw std::logic_error("Instrument not found.");
+        return 0; //avoid warning
+    }
 
 } //namespace libTheClick

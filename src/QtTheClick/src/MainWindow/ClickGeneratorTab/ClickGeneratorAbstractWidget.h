@@ -33,6 +33,12 @@ class ClickGeneratorAbstractWidget : public QWidget
     public:
         typedef int32_t clickgensound_id;
 
+        struct clickgensound_strings
+        {
+            QString drumkitName;
+            QString instrumentName;
+        };
+
     //********** (DE/CON)STRUCTORS **********
     public:
         ClickGeneratorAbstractWidget(QWidget *parent = 0) : QWidget(parent) {}
@@ -49,9 +55,12 @@ class ClickGeneratorAbstractWidget : public QWidget
         
     //********** METHODS **********
     public:
-        virtual int getMinimimWidthForMainWindowHeight(int h) const = 0;
+        virtual int getMinimumWidthForMainWindowHeight(int h) const = 0;
         virtual QList<XToXAssociationAbstractWidget*>* XToXAssociationWidgetFactory() = 0;
         virtual void setSoundConfiguration(clickgensound_id cgsID, drumkit_id dkID, instrument_id instrumentID) = 0;
+
+        virtual clickgensound_strings getclickGenSoundStrings(clickgensound_id cgsID) = 0;
+        virtual void setclickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt) = 0;
 
     protected: 
         

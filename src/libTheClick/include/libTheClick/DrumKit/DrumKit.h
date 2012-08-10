@@ -69,6 +69,7 @@ namespace libTheClick
             std::string getDrumKitName();
             std::string getInstrumentName(instrument_id instrumentID);
             std::list<SoundInformation>* getListOfAllSoundInformations() const;
+            instrument_id  getInstrumentID(std::string name);
         
         protected: 
             

@@ -197,14 +197,14 @@ void MainWindow::resizeEvent(QResizeEvent* event)
 
     //determine minimum width of ClickGenerator Widgets
     int minimumWidthClickGeneratorWidgets = 0;
-    if(this->clickGeneratorDivisionWidget->getMinimimWidthForMainWindowHeight( newHeight ) > minimumWidthClickGeneratorWidgets )
-        minimumWidthClickGeneratorWidgets = this->clickGeneratorDivisionWidget->getMinimimWidthForMainWindowHeight( event->size().height() );
+    if(this->clickGeneratorDivisionWidget->getMinimumWidthForMainWindowHeight( newHeight ) > minimumWidthClickGeneratorWidgets )
+        minimumWidthClickGeneratorWidgets = this->clickGeneratorDivisionWidget->getMinimumWidthForMainWindowHeight( event->size().height() );
 
-    if(this->clickGeneratorXoYWidget->getMinimimWidthForMainWindowHeight( newHeight ) > minimumWidthClickGeneratorWidgets )
-        minimumWidthClickGeneratorWidgets = this->clickGeneratorXoYWidget->getMinimimWidthForMainWindowHeight( event->size().height() );
+    if(this->clickGeneratorXoYWidget->getMinimumWidthForMainWindowHeight( newHeight ) > minimumWidthClickGeneratorWidgets )
+        minimumWidthClickGeneratorWidgets = this->clickGeneratorXoYWidget->getMinimumWidthForMainWindowHeight( event->size().height() );
 
-    if(this->clickGeneratorPASWidget->getMinimimWidthForMainWindowHeight( newHeight ) > minimumWidthClickGeneratorWidgets )
-        minimumWidthClickGeneratorWidgets = this->clickGeneratorPASWidget->getMinimimWidthForMainWindowHeight( event->size().height() );
+    if(this->clickGeneratorPASWidget->getMinimumWidthForMainWindowHeight( newHeight ) > minimumWidthClickGeneratorWidgets )
+        minimumWidthClickGeneratorWidgets = this->clickGeneratorPASWidget->getMinimumWidthForMainWindowHeight( event->size().height() );
 
     //determine minimumWidthForMainWindow
     if(minimumWidthClickGeneratorWidgets > newWidthTabWidgets)

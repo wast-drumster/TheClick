@@ -172,7 +172,7 @@ QSize ClickGeneratorXoYWidget::sizeHint() const
     return QSize(this->parentWidget()->parentWidget()->geometry().width(), this->heightForWidth(this->parentWidget()->parentWidget()->geometry().width()));
 }
 
-int ClickGeneratorXoYWidget::getMinimimWidthForMainWindowHeight(int h) const
+int ClickGeneratorXoYWidget::getMinimumWidthForMainWindowHeight(int h) const
 {
     return 4 * (ScaleInformation::getInstance()->getWidthDialWithButtonsForMainWindowHeight(h) + SPACE_X) + DISTANCE_X_LEFT + DISTANCE_X_RIGHT;
 }
@@ -213,6 +213,61 @@ void ClickGeneratorXoYWidget::setSoundConfiguration(clickgensound_id cgsID, drum
             break;
         case XOY_SOUNDID_Y:
             this->xyYDrumKitID = dkID;
+            this->xyYInstrumentID = instrumentID;
+            break;
+    }
+
+    //take over configuration
+    this->levelChanged(0); //value is ignored
+}
+
+ClickGeneratorAbstractWidget::clickgensound_strings ClickGeneratorXoYWidget::getclickGenSoundStrings(clickgensound_id cgsID)
+{
+    clickgensound_strings ret;
+    drumkit_id drumkitID = 0;
+    instrument_id instrumentID = 0;
+
+    switch(cgsID)
+    {
+        case XOY_SOUNDID_X:
+            drumkitID = this->xyXDrumKitID;
+            instrumentID = this->xyXInstrumentID;
+            break;
+        case XOY_SOUNDID_Y:
+            drumkitID = this->xyYDrumKitID;
+            instrumentID = this->xyYInstrumentID;
+            break;
+    }
+
+    ret.drumkitName    = QString::fromStdString(
+        this->clickController->getSoundBase()->getNameOfDrumKit(
+            drumkitID
+        )
+    );
+    ret.instrumentName = QString::fromStdString(
+        this->clickController->getSoundBase()->getNameOfInstrument(
+            drumkitID,
+            instrumentID
+        )
+    );
+
+    return ret;
+}
+
+void ClickGeneratorXoYWidget::setclickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt)
+{
+    drumkit_id    drumkitID    = this->clickController->getSoundBase()->getDrumKitID( cgsSt.drumkitName.toStdString() ) ;
+    instrument_id instrumentID = this->clickController->getSoundBase()->getInstrumentID( cgsSt.drumkitName.toStdString(), cgsSt.instrumentName.toStdString() ) ;
+
+    //update configuration
+    switch(cgsID)
+    {
+        case XOY_SOUNDID_X:
+            this->xyXDrumKitID = drumkitID;
+            this->xyXInstrumentID = instrumentID;
+            break;
+        case XOY_SOUNDID_Y:
+            this->xyYDrumKitID = drumkitID;
             this->xyYInstrumentID = instrumentID;
             break;
     }

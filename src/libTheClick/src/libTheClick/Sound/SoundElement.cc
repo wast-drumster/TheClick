@@ -34,27 +34,27 @@ namespace libTheClick
     SoundElement::SoundElement(drumkit_id drumKitID, instrument_id instrumentID, std::string& path, float volume)
     : drumKitID(drumKitID),
       instrumentID(instrumentID),
+      playbackCallbackFunction(NULL),
       soundShrPtr( SoundInterfaceShrPtr( Sound_Interface::loadSoundFromFile(path) ) ),
-      volume(volume),
-      playbackCallbackFunction(NULL)
+      volume(volume)
     {
     }
     
     SoundElement::SoundElement(drumkit_id drumKitID, instrument_id instrumentID, const char *path, float volume)
     : drumKitID(drumKitID),
       instrumentID(instrumentID),
+      playbackCallbackFunction(NULL),
       soundShrPtr( SoundInterfaceShrPtr( Sound_Interface::loadSoundFromFile(path) ) ),
-      volume(volume),
-      playbackCallbackFunction(NULL)
+      volume(volume)
     {
     }
     
     SoundElement::SoundElement(drumkit_id drumKitID, instrument_id instrumentID, Sound_Interface* sound, float volume)
     : drumKitID(drumKitID),
       instrumentID(instrumentID),
+      playbackCallbackFunction(NULL),
       soundShrPtr(SoundInterfaceShrPtr(sound)),
-      volume(volume),
-      playbackCallbackFunction(NULL)
+      volume(volume)
     {
     }
     
@@ -62,9 +62,9 @@ namespace libTheClick
     : time(se.time),
       drumKitID(se.drumKitID),
       instrumentID(se.instrumentID),
+      playbackCallbackFunction(NULL),
       soundShrPtr(se.soundShrPtr),
-      volume(se.volume),
-      playbackCallbackFunction(NULL)
+      volume(se.volume)
     {
     }
     

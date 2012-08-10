@@ -223,7 +223,7 @@ QSize ClickGeneratorPASWidget::sizeHint() const
     return QSize(this->parentWidget()->parentWidget()->geometry().width(), this->heightForWidth(this->parentWidget()->parentWidget()->geometry().width()));
 }
 
-int ClickGeneratorPASWidget::getMinimimWidthForMainWindowHeight(int h) const
+int ClickGeneratorPASWidget::getMinimumWidthForMainWindowHeight(int h) const
 {
     return 4 * (ScaleInformation::getInstance()->getWidthDialWithButtonsForMainWindowHeight(h) + SPACE_X) + DISTANCE_X_LEFT + DISTANCE_X_RIGHT;
 }
@@ -288,6 +288,93 @@ void ClickGeneratorPASWidget::setSoundConfiguration(clickgensound_id cgsID, drum
             break;
         case PAS_SOUNDID_RIGHT_GHOST:
             this->pasRightGhostDrumKitID = dkID;
+            this->pasRightGhostInstrumentID = instrumentID;
+            break;
+    }
+
+    //take over configuration
+    this->levelChanged(0); //value is ignored
+}
+
+ClickGeneratorAbstractWidget::clickgensound_strings ClickGeneratorPASWidget::getclickGenSoundStrings(clickgensound_id cgsID)
+{
+    clickgensound_strings ret;
+    drumkit_id drumkitID = 0;
+    instrument_id instrumentID = 0;
+
+    switch(cgsID)
+    {
+        case PAS_SOUNDID_LEFT_ACCENT:
+            drumkitID = this->pasLeftAccentDrumKitID;
+            instrumentID = this->pasLeftAccentInstrumentID;
+            break;
+        case PAS_SOUNDID_LEFT_NORMAL:
+            drumkitID = this->pasLeftNormalDrumKitID;
+            instrumentID = this->pasLeftNormalInstrumentID;
+            break;
+        case PAS_SOUNDID_LEFT_GHOST:
+            drumkitID = this->pasLeftGhostDrumKitID;
+            instrumentID = this->pasLeftGhostInstrumentID;
+            break;
+        case PAS_SOUNDID_RIGHT_ACCENT:
+            drumkitID = this->pasRightAccentDrumKitID;
+            instrumentID = this->pasRightAccentInstrumentID;
+            break;
+        case PAS_SOUNDID_RIGHT_NORMAL:
+            drumkitID = this->pasRightNormalDrumKitID;
+            instrumentID = this->pasRightNormalInstrumentID;
+            break;
+        case PAS_SOUNDID_RIGHT_GHOST:
+            drumkitID = this->pasRightGhostDrumKitID;
+            instrumentID = this->pasRightGhostInstrumentID;
+            break;
+    }
+
+    ret.drumkitName    = QString::fromStdString(
+        this->clickController->getSoundBase()->getNameOfDrumKit(
+            drumkitID
+        )
+    );
+    ret.instrumentName = QString::fromStdString(
+        this->clickController->getSoundBase()->getNameOfInstrument(
+            drumkitID,
+            instrumentID
+        )
+    );
+
+    return ret;
+}
+
+void ClickGeneratorPASWidget::setclickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt)
+{
+    drumkit_id    drumkitID    = this->clickController->getSoundBase()->getDrumKitID( cgsSt.drumkitName.toStdString() ) ;
+    instrument_id instrumentID = this->clickController->getSoundBase()->getInstrumentID( cgsSt.drumkitName.toStdString(), cgsSt.instrumentName.toStdString() ) ;
+
+    //update configuration
+    switch(cgsID)
+    {
+        case PAS_SOUNDID_LEFT_ACCENT:
+            this->pasLeftAccentDrumKitID = drumkitID;
+            this->pasLeftAccentInstrumentID = instrumentID;
+            break;
+        case PAS_SOUNDID_LEFT_NORMAL:
+            this->pasLeftNormalDrumKitID = drumkitID;
+            this->pasLeftNormalInstrumentID = instrumentID;
+            break;
+        case PAS_SOUNDID_LEFT_GHOST:
+            this->pasLeftGhostDrumKitID = drumkitID;
+            this->pasLeftGhostInstrumentID = instrumentID;
+            break;
+        case PAS_SOUNDID_RIGHT_ACCENT:
+            this->pasRightAccentDrumKitID = drumkitID;
+            this->pasRightAccentInstrumentID = instrumentID;
+            break;
+        case PAS_SOUNDID_RIGHT_NORMAL:
+            this->pasRightNormalDrumKitID = drumkitID;
+            this->pasRightNormalInstrumentID = instrumentID;
+            break;
+        case PAS_SOUNDID_RIGHT_GHOST:
+            this->pasRightGhostDrumKitID = drumkitID;
             this->pasRightGhostInstrumentID = instrumentID;
             break;
     }

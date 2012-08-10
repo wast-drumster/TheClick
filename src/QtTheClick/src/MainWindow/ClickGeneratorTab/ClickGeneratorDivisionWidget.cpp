@@ -207,7 +207,7 @@ QSize ClickGeneratorDivisionWidget::sizeHint() const
     return QSize(this->parentWidget()->parentWidget()->geometry().width(), this->heightForWidth(this->parentWidget()->parentWidget()->geometry().width()));
 }
 
-int ClickGeneratorDivisionWidget::getMinimimWidthForMainWindowHeight(int h) const
+int ClickGeneratorDivisionWidget::getMinimumWidthForMainWindowHeight(int h) const
 {
     return 3 * (ScaleInformation::getInstance()->getWidthDialWithButtonsForMainWindowHeight(h) + SPACE_X) + DISTANCE_X_LEFT + DISTANCE_X_RIGHT;
 }
@@ -247,6 +247,63 @@ void ClickGeneratorDivisionWidget::setSoundConfiguration(clickgensound_id cgsID,
     else //subdivision
     {
         this->divSubdivDrumKitIDArray[cgsID - DIVSUBDIV__MAX_DIVISIONS] = dkID;
+        this->divSubdivInstrumentIDArray[cgsID - DIVSUBDIV__MAX_DIVISIONS] = instrumentID;
+    }
+
+    //take over configuration
+    this->levelChanged(0); //value is ignored
+}
+
+ClickGeneratorAbstractWidget::clickgensound_strings ClickGeneratorDivisionWidget::getclickGenSoundStrings(clickgensound_id cgsID)
+{
+    clickgensound_strings ret;
+
+    if(cgsID < DIVSUBDIV__MAX_DIVISIONS) //division
+    {
+        ret.drumkitName    = QString::fromStdString(
+            this->clickController->getSoundBase()->getNameOfDrumKit(
+                this->divDivDrumKitIDArray[cgsID]
+            )
+        );
+        ret.instrumentName = QString::fromStdString(
+            this->clickController->getSoundBase()->getNameOfInstrument(
+                this->divDivDrumKitIDArray[cgsID],
+                this->divDivInstrumentIDArray[cgsID]
+            )
+        );
+    }
+    else //subdivision
+    {
+        ret.drumkitName    = QString::fromStdString(
+            this->clickController->getSoundBase()->getNameOfDrumKit(
+                this->divDivDrumKitIDArray[cgsID]
+            )
+        );
+        ret.instrumentName = QString::fromStdString(
+            this->clickController->getSoundBase()->getNameOfInstrument(
+                this->divDivDrumKitIDArray[cgsID - DIVSUBDIV__MAX_DIVISIONS],
+                this->divDivInstrumentIDArray[cgsID - DIVSUBDIV__MAX_DIVISIONS]
+            )
+        );
+    }
+
+    return ret;
+}
+
+void ClickGeneratorDivisionWidget::setclickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt)
+{
+    drumkit_id    drumkitID    = this->clickController->getSoundBase()->getDrumKitID( cgsSt.drumkitName.toStdString() ) ;
+    instrument_id instrumentID = this->clickController->getSoundBase()->getInstrumentID( cgsSt.drumkitName.toStdString(), cgsSt.instrumentName.toStdString() ) ;
+
+    //update configuration
+    if(cgsID < DIVSUBDIV__MAX_DIVISIONS) //division
+    {
+        this->divDivDrumKitIDArray[cgsID] = drumkitID;
+        this->divDivInstrumentIDArray[cgsID] = instrumentID;
+    }
+    else //subdivision
+    {
+        this->divSubdivDrumKitIDArray[cgsID - DIVSUBDIV__MAX_DIVISIONS] = drumkitID;
         this->divSubdivInstrumentIDArray[cgsID - DIVSUBDIV__MAX_DIVISIONS] = instrumentID;
     }
 

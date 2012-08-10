@@ -24,6 +24,7 @@
 #include "libTheClick/types.h"
 #include <map>
 #include <list>
+#include <string>
 
 namespace libTheClick
 {
@@ -47,11 +48,16 @@ namespace libTheClick
             
         //********** METHODS **********
         public:
-            SoundElement* getSoundElement(drumkit_id drumKitID, instrument_id instrumentID, float volume);
-            drumkit_id loadDrumKit(const char* const path);
-            drumkit_id loadDrumKit(std::string* path);
-            void loadAllSoundFiles();
+            SoundElement*  getSoundElement(drumkit_id drumKitID, instrument_id instrumentID, float volume);
+            drumkit_id     loadDrumKit(const char* const path);
+            drumkit_id     loadDrumKit(std::string* path);
+            void           loadAllSoundFiles();
             std::list<SoundInformation>* getListOfAllSoundInformations() const;
+            std::string    getNameOfDrumKit(drumkit_id drumkitID);
+            std::string    getNameOfInstrument(drumkit_id drumkitID, instrument_id instrumentID);
+            drumkit_id     getDrumKitID(std::string name);
+            instrument_id  getInstrumentID(drumkit_id drumkitID, std::string name);
+            instrument_id  getInstrumentID(std::string drumkitStr, std::string instrumentStr);
         
         protected: 
             

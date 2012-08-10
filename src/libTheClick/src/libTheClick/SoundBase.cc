@@ -113,4 +113,41 @@ namespace libTheClick
         return ret;
     }
     
+    std::string SoundBase::getNameOfDrumKit(drumkit_id drumkitID)
+    {
+        DrumKit* dk = this->drumKitMap[drumkitID];
+        return dk->getDrumKitName();
+    }
+    
+    std::string SoundBase::getNameOfInstrument(drumkit_id drumkitID, instrument_id instrumentID)
+    {
+        DrumKit* dk = this->drumKitMap[drumkitID];
+        return dk->getInstrumentName(instrumentID);
+    }
+    
+    drumkit_id SoundBase::getDrumKitID(std::string name)
+    {
+        for(std::map<drumkit_id,DrumKit*>::iterator it = this->drumKitMap.begin(); it != this->drumKitMap.end(); it++)    
+        {
+            if( (*it).second->getDrumKitName() == name )
+                return (*it).first;
+        }
+        
+        throw std::logic_error("Drumkit not found.");
+        return 0; //avoid warning
+    }
+    
+    instrument_id SoundBase::getInstrumentID(drumkit_id drumkitID, std::string name)
+    {
+        DrumKit* dk = this->drumKitMap[drumkitID];
+        
+        return dk->getInstrumentID(name);
+    }
+    
+    instrument_id SoundBase::getInstrumentID(std::string drumkitStr, std::string instrumentStr)
+    {
+        drumkit_id drumkitID = this->getDrumKitID(drumkitStr);
+        return this->getInstrumentID(drumkitID, instrumentStr);
+    }
+    
 } //namespace libTheClick
