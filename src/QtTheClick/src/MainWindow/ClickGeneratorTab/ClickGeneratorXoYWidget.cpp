@@ -221,7 +221,7 @@ void ClickGeneratorXoYWidget::setSoundConfiguration(clickgensound_id cgsID, drum
     this->levelChanged(0); //value is ignored
 }
 
-ClickGeneratorAbstractWidget::clickgensound_strings ClickGeneratorXoYWidget::getclickGenSoundStrings(clickgensound_id cgsID)
+ClickGeneratorAbstractWidget::clickgensound_strings ClickGeneratorXoYWidget::getClickGenSoundStrings(clickgensound_id cgsID)
 {
     clickgensound_strings ret;
     drumkit_id drumkitID = 0;
@@ -254,7 +254,7 @@ ClickGeneratorAbstractWidget::clickgensound_strings ClickGeneratorXoYWidget::get
     return ret;
 }
 
-void ClickGeneratorXoYWidget::setclickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt)
+void ClickGeneratorXoYWidget::setClickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt)
 {
     drumkit_id    drumkitID    = this->clickController->getSoundBase()->getDrumKitID( cgsSt.drumkitName.toStdString() ) ;
     instrument_id instrumentID = this->clickController->getSoundBase()->getInstrumentID( cgsSt.drumkitName.toStdString(), cgsSt.instrumentName.toStdString() ) ;

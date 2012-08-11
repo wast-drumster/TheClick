@@ -106,8 +106,8 @@ class ClickGeneratorPASWidget : public ClickGeneratorAbstractWidget
         virtual int getMinimumWidthForMainWindowHeight(int h) const;
         virtual QList<XToXAssociationAbstractWidget*>* XToXAssociationWidgetFactory();
         virtual void setSoundConfiguration(clickgensound_id cgsID, drumkit_id dkID, instrument_id instrumentID);
-        virtual clickgensound_strings getclickGenSoundStrings(clickgensound_id cgsID);
-        virtual void setclickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt);
+        virtual clickgensound_strings getClickGenSoundStrings(clickgensound_id cgsID);
+        virtual void setClickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt);
 
         //own stuff
         libTheClick::ClickGenerator_Rudiments* getClickGenerator() {return this->clickGenerator;}

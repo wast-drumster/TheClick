@@ -254,7 +254,7 @@ void ClickGeneratorDivisionWidget::setSoundConfiguration(clickgensound_id cgsID,
     this->levelChanged(0); //value is ignored
 }
 
-ClickGeneratorAbstractWidget::clickgensound_strings ClickGeneratorDivisionWidget::getclickGenSoundStrings(clickgensound_id cgsID)
+ClickGeneratorAbstractWidget::clickgensound_strings ClickGeneratorDivisionWidget::getClickGenSoundStrings(clickgensound_id cgsID)
 {
     clickgensound_strings ret;
 
@@ -290,25 +290,35 @@ ClickGeneratorAbstractWidget::clickgensound_strings ClickGeneratorDivisionWidget
     return ret;
 }
 
-void ClickGeneratorDivisionWidget::setclickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt)
+void ClickGeneratorDivisionWidget::setClickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt)
 {
-    drumkit_id    drumkitID    = this->clickController->getSoundBase()->getDrumKitID( cgsSt.drumkitName.toStdString() ) ;
-    instrument_id instrumentID = this->clickController->getSoundBase()->getInstrumentID( cgsSt.drumkitName.toStdString(), cgsSt.instrumentName.toStdString() ) ;
-
-    //update configuration
-    if(cgsID < DIVSUBDIV__MAX_DIVISIONS) //division
+    try
     {
-        this->divDivDrumKitIDArray[cgsID] = drumkitID;
-        this->divDivInstrumentIDArray[cgsID] = instrumentID;
-    }
-    else //subdivision
-    {
-        this->divSubdivDrumKitIDArray[cgsID - DIVSUBDIV__MAX_DIVISIONS] = drumkitID;
-        this->divSubdivInstrumentIDArray[cgsID - DIVSUBDIV__MAX_DIVISIONS] = instrumentID;
-    }
+        drumkit_id    drumkitID    = this->clickController->getSoundBase()->getDrumKitID( cgsSt.drumkitName.toStdString() ) ;
+        instrument_id instrumentID = this->clickController->getSoundBase()->getInstrumentID( cgsSt.drumkitName.toStdString(), cgsSt.instrumentName.toStdString() ) ;
 
-    //take over configuration
-    this->levelChanged(0); //value is ignored
+        //update configuration
+        if(cgsID < DIVSUBDIV__MAX_DIVISIONS) //division
+        {
+            this->divDivDrumKitIDArray[cgsID] = drumkitID;
+            this->divDivInstrumentIDArray[cgsID] = instrumentID;
+        }
+        else //subdivision
+        {
+            this->divSubdivDrumKitIDArray[cgsID - DIVSUBDIV__MAX_DIVISIONS] = drumkitID;
+            this->divSubdivInstrumentIDArray[cgsID - DIVSUBDIV__MAX_DIVISIONS] = instrumentID;
+        }
+
+        //take over configuration
+        this->levelChanged(0); //value is ignored
+    }
+    catch (std::logic_error e)
+    {
+        std::cout << "An exception occurred. " << e.what()
+                  << " Drumkit: " << cgsSt.drumkitName.toStdString()
+                  << " Instrument: " << cgsSt.instrumentName.toStdString()
+                  << std::endl;
+    }
 }
 
 //*****************************

@@ -129,12 +129,16 @@ namespace libTheClick
     {
         for(std::map<drumkit_id,DrumKit*>::iterator it = this->drumKitMap.begin(); it != this->drumKitMap.end(); it++)    
         {
-            if( (*it).second->getDrumKitName() == name )
+            //debug
+            //std::cout << "SoundBase::getDrumKitID it: " << (*it).second->getDrumKitName() << std::endl;
+
+            //work
+            if( (*it).second->getDrumKitName().compare(name) == 0 ) //0: equal
                 return (*it).first;
         }
         
         throw std::logic_error("Drumkit not found.");
-        return 0; //avoid warning
+        return -1; //avoid warning
     }
     
     instrument_id SoundBase::getInstrumentID(drumkit_id drumkitID, std::string name)

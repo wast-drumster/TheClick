@@ -60,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent)
         QDir pathDir = QDir(*it1);
         QStringList dirsOfPath = pathDir.entryList(QDir::AllDirs);
 
+        std::cout << "check directory: " << (*it1).toUtf8().constData() << std::endl;
+
         for (QStringList::const_iterator it2 = dirsOfPath.constBegin(); it2 != dirsOfPath.constEnd(); it2++)
         {
             if(*it2 != "." && *it2 != "..")
@@ -144,6 +146,45 @@ MainWindow::MainWindow(QWidget *parent)
         }
 
         delete sil;
+    }
+
+    //set sounds in click generators
+    for(int i = 0; i < DIVSUBDIV__MAX_DIVISIONS; i++)
+    {
+        ClickGeneratorAbstractWidget::clickgensound_strings cgss;
+        cgss.drumkitName    = QString::fromUtf8("The Black Pearl 1.0 subset for TheClick");
+        cgss.instrumentName = QString::fromUtf8("Pearl Kick");
+        this->clickGeneratorDivisionWidget->setClickGenSoundStrings(i, cgss);
+    }
+
+    for(int i = 0; i < DIVSUBDIV__MAX_SUBDIVISIONS; i++)
+    {
+        ClickGeneratorAbstractWidget::clickgensound_strings cgss;
+        cgss.drumkitName    = QString::fromUtf8("The Black Pearl 1.0 subset for TheClick");
+        cgss.instrumentName = QString::fromUtf8("Sabian Hat Pedal");
+        this->clickGeneratorDivisionWidget->setClickGenSoundStrings(i + DIVSUBDIV__MAX_DIVISIONS, cgss);
+    }
+
+    {
+        ClickGeneratorAbstractWidget::clickgensound_strings cgss;
+        cgss.drumkitName    = QString::fromUtf8("Gimme A Hand 1.0");
+        cgss.instrumentName = QString::fromUtf8("Bongo Hi");
+        this->clickGeneratorPASWidget->setClickGenSoundStrings(PAS_SOUNDID_LEFT_ACCENT, cgss);
+        this->clickGeneratorPASWidget->setClickGenSoundStrings(PAS_SOUNDID_LEFT_NORMAL, cgss);
+        this->clickGeneratorPASWidget->setClickGenSoundStrings(PAS_SOUNDID_LEFT_GHOST, cgss);
+        cgss.instrumentName = QString::fromUtf8("Bongo Lo");
+        this->clickGeneratorPASWidget->setClickGenSoundStrings(PAS_SOUNDID_RIGHT_ACCENT, cgss);
+        this->clickGeneratorPASWidget->setClickGenSoundStrings(PAS_SOUNDID_RIGHT_NORMAL, cgss);
+        this->clickGeneratorPASWidget->setClickGenSoundStrings(PAS_SOUNDID_RIGHT_GHOST, cgss);
+    }
+
+    {
+        ClickGeneratorAbstractWidget::clickgensound_strings cgss;
+        cgss.drumkitName    = QString::fromUtf8("The Black Pearl 1.0 subset for TheClick");
+        cgss.instrumentName = QString::fromUtf8("Pearl Snare");
+        this->clickGeneratorXoYWidget->setClickGenSoundStrings(XOY_SOUNDID_Y, cgss);
+        cgss.instrumentName = QString::fromUtf8("Pearl Snare Rimshot");
+        this->clickGeneratorXoYWidget->setClickGenSoundStrings(XOY_SOUNDID_X, cgss);
     }
 
     //bring MainWindow to appropriate size

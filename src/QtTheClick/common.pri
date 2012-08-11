@@ -1,5 +1,6 @@
 #libTheClick
 INCLUDEPATH += "$${PWD}/../libTheClick/include/"
+INCLUDEPATH += "$${PWD}/../libTheClick/src/libTheClick/" #to be able to see source code at debugging
 INCLUDEPATH += "$${PWD}/../libraries/portaudio/include/"
 INCLUDEPATH += "$${PWD}/../libraries/xerces-c-3.1.1/src/"
 INCLUDEPATH += "$${PWD}/../libraries/boost_1_50_0/"

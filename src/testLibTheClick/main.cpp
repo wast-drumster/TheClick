@@ -29,8 +29,8 @@ int main(int argc, const char * argv[])
     libTheClick::ClickController *cc = new libTheClick::ClickController();
 
 //    cc->getSoundBase()->loadDrumKit( "/home/wast/Daten/Projekte/TheClick/drumkits/Beep" );
-//    cc->getSoundBase()->loadDrumKit( "/Users/wast/Documents/Projekte/2012_06_16-TheClick/TheClick@GitHub/drumkits/The Black Pearl 1.0 subset for TheClick" );
-    cc->getSoundBase()->loadDrumKit( "/Users/wast/Library/Application Support/Hydrogen/drumkits/Boss DR-110" );
+    cc->getSoundBase()->loadDrumKit( "/Users/wast/Documents/Projekte/2012_06_16-TheClick/TheClick@GitHub/drumkits/The Black Pearl 1.0 subset for TheClick" );
+//    cc->getSoundBase()->loadDrumKit( "/Users/wast/Library/Application Support/Hydrogen/drumkits/Boss DR-110" );
 
     //DivisionSubdivision
     cg1->setAmountDivisions(4);
@@ -42,7 +42,7 @@ int main(int argc, const char * argv[])
 //    cg1->setSubdivisionPattern(0, cc->getSoundBase()->getSoundElement(0, 5, 0.5f));
     cg1->setSubdivisionPattern(1, cc->getSoundBase()->getSoundElement(0, 18, 0.3f));
     cg1->setSubdivisionPattern(2, cc->getSoundBase()->getSoundElement(0, 4, 0.3f));
-//    cg1->setSubdivisionPattern(3, cc->getSoundBase()->getSoundElement(0, 8, 0.5f));
+    cg1->setSubdivisionPattern(3, cc->getSoundBase()->getSoundElement(0, 8, 0.5f));
 
     //XoverY
     cg2->setX(3);
@@ -61,7 +61,13 @@ int main(int argc, const char * argv[])
 
     //set call back function
     cg4->setBeatCountCallbackFunction( &beatCallBack );
+    
+    //test
+    drumkit_id    drumkitID    = cc->getSoundBase()->getDrumKitID( std::string("The Black Pearl 1.0 subset for TheClick") ) ;
+    instrument_id instrumentID = cc->getSoundBase()->getInstrumentID( std::string("The Black Pearl 1.0 subset for TheClick") , std::string("Sabian Hat Pedal")  ) ;
 
+    
+    
     //play click
     clickgen_id cg1id = cc->addClickGenerator(cg1, 1.0);
     clickgen_id cg2id = cc->addClickGenerator(cg2, 0.3);

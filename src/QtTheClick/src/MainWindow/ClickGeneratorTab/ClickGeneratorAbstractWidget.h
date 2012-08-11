@@ -59,8 +59,8 @@ class ClickGeneratorAbstractWidget : public QWidget
         virtual QList<XToXAssociationAbstractWidget*>* XToXAssociationWidgetFactory() = 0;
         virtual void setSoundConfiguration(clickgensound_id cgsID, drumkit_id dkID, instrument_id instrumentID) = 0;
 
-        virtual clickgensound_strings getclickGenSoundStrings(clickgensound_id cgsID) = 0;
-        virtual void setclickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt) = 0;
+        virtual clickgensound_strings getClickGenSoundStrings(clickgensound_id cgsID) = 0;
+        virtual void setClickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt) = 0;
 
     protected: 
         

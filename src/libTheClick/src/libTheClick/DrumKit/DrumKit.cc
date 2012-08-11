@@ -369,12 +369,12 @@ namespace libTheClick
     {
         for(std::list<Instrument*>::iterator it = this->instrumentList.begin(); it != this->instrumentList.end(); it++)
         {
-            if( (*it)->getName() == name )
+            if( (*it)->getName().compare(name) == 0 ) //0: equal
                 return (*it)->getId();
         }
         
         throw std::logic_error("Instrument not found.");
-        return 0; //avoid warning
+        return -1; //avoid warning
     }
 
 } //namespace libTheClick

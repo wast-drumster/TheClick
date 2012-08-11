@@ -296,7 +296,7 @@ void ClickGeneratorPASWidget::setSoundConfiguration(clickgensound_id cgsID, drum
     this->levelChanged(0); //value is ignored
 }
 
-ClickGeneratorAbstractWidget::clickgensound_strings ClickGeneratorPASWidget::getclickGenSoundStrings(clickgensound_id cgsID)
+ClickGeneratorAbstractWidget::clickgensound_strings ClickGeneratorPASWidget::getClickGenSoundStrings(clickgensound_id cgsID)
 {
     clickgensound_strings ret;
     drumkit_id drumkitID = 0;
@@ -345,7 +345,7 @@ ClickGeneratorAbstractWidget::clickgensound_strings ClickGeneratorPASWidget::get
     return ret;
 }
 
-void ClickGeneratorPASWidget::setclickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt)
+void ClickGeneratorPASWidget::setClickGenSoundStrings(clickgensound_id cgsID, clickgensound_strings cgsSt)
 {
     drumkit_id    drumkitID    = this->clickController->getSoundBase()->getDrumKitID( cgsSt.drumkitName.toStdString() ) ;
     instrument_id instrumentID = this->clickController->getSoundBase()->getInstrumentID( cgsSt.drumkitName.toStdString(), cgsSt.instrumentName.toStdString() ) ;
