@@ -9,8 +9,13 @@ include( ../build.pri )
 include( ../src/MainWindow/MainWindow.pri )
 
 
-#GUI Application
-ICON = $$quote($${_PRO_FILE_PWD_}/../rsc/TheClick.icns)
+#icon
+macx {
+    ICON = $$quote($${_PRO_FILE_PWD_}/../rsc/TheClick.icns)
+}
+win32-g++ {
+    RC_FILE = ../Icon_Windows.rc
+}
 
 SOURCES += main.cpp
 

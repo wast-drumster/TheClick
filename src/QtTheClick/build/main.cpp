@@ -25,6 +25,12 @@
 #include <QSplashScreen>
 #include <QPixmap>
 
+#ifdef Q_OS_WIN32
+    #include <iostream>
+    #include <windows.h>
+    #define sleep(n) Sleep(1000 * n)
+#endif
+
 //debug
 #include <iostream>
 

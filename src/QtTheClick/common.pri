@@ -33,6 +33,11 @@ linux-g++ {
     LIBS += -lpthread
 }
 
+win32-g++ {
+    #LIBS += -lboost_chrono
+	#LIBS += -lpthread
+}
+
 #set compiler lags
 unix {
     QMAKE_CXXFLAGS += -O3
