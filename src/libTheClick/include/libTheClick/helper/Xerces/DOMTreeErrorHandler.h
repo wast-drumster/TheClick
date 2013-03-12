@@ -1,5 +1,5 @@
 /*
-** Copyright (C) 2012 Sebastian Roeglinger <wast.drumster@gmail.com>
+** Copyright (C) 2012-2013 Sebastian Roeglinger <wast.drumster@gmail.com>
 ** 
 ** This file is part of TheClick.
 ** 
@@ -49,7 +49,6 @@ namespace libTheClick
         protected: 
             
         private:
-            char* fLocalForm;
             
         //********** METHODS **********
         public:
