@@ -36,10 +36,10 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            SoundElement(drumkit_id drumKitID, instrument_id instrumentID, std::string& path, float volume);
-            SoundElement(drumkit_id drumKitID, instrument_id instrumentID, const char *path, float volume);
-            SoundElement(drumkit_id drumKitID, instrument_id instrumentID, Sound_Interface* sound, float volume);
-            SoundElement(const SoundElement& se);
+            explicit SoundElement(drumkit_id drumKitID, instrument_id instrumentID, std::string& path, float volume);
+            explicit SoundElement(drumkit_id drumKitID, instrument_id instrumentID, const char *path, float volume);
+            explicit SoundElement(drumkit_id drumKitID, instrument_id instrumentID, Sound_Interface* sound, float volume);
+            explicit SoundElement(const SoundElement& se);
             virtual ~SoundElement();
         
         private:

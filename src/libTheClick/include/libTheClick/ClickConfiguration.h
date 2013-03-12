@@ -31,7 +31,7 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            ClickConfiguration(SoundBase* sb);
+            explicit ClickConfiguration(SoundBase* sb);
             virtual ~ClickConfiguration();
         
         private:

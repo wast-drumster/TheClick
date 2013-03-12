@@ -31,7 +31,8 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-        virtual ~Sound_Interface() {}
+            explicit Sound_Interface();
+            virtual ~Sound_Interface() {}
         
         private:
             

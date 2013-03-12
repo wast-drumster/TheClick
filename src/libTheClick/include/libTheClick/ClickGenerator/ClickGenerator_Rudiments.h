@@ -34,7 +34,7 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            ClickGenerator_Rudiments();
+            explicit ClickGenerator_Rudiments();
             virtual ~ClickGenerator_Rudiments();
         
         private:

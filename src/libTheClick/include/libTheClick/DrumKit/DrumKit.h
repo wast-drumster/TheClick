@@ -40,7 +40,7 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            DrumKit(std::string* path);
+            explicit DrumKit(std::string* path);
             virtual ~DrumKit();
         
         private:

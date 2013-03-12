@@ -32,8 +32,8 @@ namespace libTheClick
     class DOMTreeErrorHandler : public XERCES_CPP_NAMESPACE::ErrorHandler
     {
         //********** (DE/CON)STRUCTORS **********
-        public: 
-            DOMTreeErrorHandler();
+        public:
+            explicit DOMTreeErrorHandler();
             virtual ~DOMTreeErrorHandler();
         
         private:

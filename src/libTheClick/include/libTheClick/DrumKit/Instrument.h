@@ -40,7 +40,7 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            Instrument(XERCES_CPP_NAMESPACE::DOMNode* domNode, std::string* path);
+            explicit Instrument(XERCES_CPP_NAMESPACE::DOMNode* domNode, std::string* path);
             virtual ~Instrument();
         
         private:

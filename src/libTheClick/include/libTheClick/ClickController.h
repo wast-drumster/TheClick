@@ -41,7 +41,7 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            ClickController();
+            explicit ClickController();
             virtual ~ClickController();
         
         private:

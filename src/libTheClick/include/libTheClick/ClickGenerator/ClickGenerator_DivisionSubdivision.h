@@ -45,7 +45,7 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            ClickGenerator_DivisionSubdivision();
+            explicit ClickGenerator_DivisionSubdivision();
             virtual ~ClickGenerator_DivisionSubdivision();
         
         private:

@@ -33,7 +33,7 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            SoundBase();
+            explicit SoundBase();
             virtual ~SoundBase();
             
         private:

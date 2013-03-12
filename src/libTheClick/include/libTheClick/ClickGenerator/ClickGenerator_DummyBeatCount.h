@@ -43,7 +43,7 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            ClickGenerator_DummyBeatCount();
+            explicit ClickGenerator_DummyBeatCount();
             virtual ~ClickGenerator_DummyBeatCount();
         
         private:

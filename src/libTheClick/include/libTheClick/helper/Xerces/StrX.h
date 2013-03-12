@@ -32,7 +32,7 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            StrX(const XMLCh* const toTranscode);
+            explicit StrX(const XMLCh* const toTranscode);
             virtual ~StrX();
         
         private:

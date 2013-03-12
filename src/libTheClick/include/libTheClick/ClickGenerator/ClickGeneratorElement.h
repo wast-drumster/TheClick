@@ -29,7 +29,7 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            ClickGeneratorElement(ClickGenerator_Interface* cg, float vol);
+            explicit ClickGeneratorElement(ClickGenerator_Interface* cg, float vol);
             virtual ~ClickGeneratorElement();
         
         private:

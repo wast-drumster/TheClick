@@ -38,8 +38,8 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            InstrumentLayer(std::string* fileName, float min, float max, std::string* path);
-            InstrumentLayer(XERCES_CPP_NAMESPACE::DOMNode* domNode, std::string* path);
+            explicit InstrumentLayer(std::string* fileName, float min, float max, std::string* path);
+            explicit InstrumentLayer(XERCES_CPP_NAMESPACE::DOMNode* domNode, std::string* path);
             virtual ~InstrumentLayer();
         
         private:

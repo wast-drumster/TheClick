@@ -43,7 +43,7 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            ClickGenerator_XoverY();
+            explicit ClickGenerator_XoverY();
             virtual ~ClickGenerator_XoverY();
         
         private:

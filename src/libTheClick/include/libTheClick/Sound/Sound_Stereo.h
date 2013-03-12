@@ -32,10 +32,10 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            Sound_Stereo(std::string& path); //load from file
-            Sound_Stereo(const char *path); //load from file
-            Sound_Stereo(int64_t length);   //generate empty sound buffer
-            Sound_Stereo(const Sound_Stereo& rhs); //copy constructor
+            explicit Sound_Stereo(std::string& path); //load from file
+            explicit Sound_Stereo(const char *path); //load from file
+            explicit Sound_Stereo(int64_t length);   //generate empty sound buffer
+            explicit Sound_Stereo(const Sound_Stereo& rhs); //copy constructor
             virtual ~Sound_Stereo();
         
         private:

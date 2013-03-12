@@ -34,7 +34,7 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            //ClickGenerator_Interface();
+            explicit ClickGenerator_Interface();
             virtual ~ClickGenerator_Interface() {}
         
         private:

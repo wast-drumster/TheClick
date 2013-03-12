@@ -32,10 +32,10 @@ namespace libTheClick
     {
         //********** (DE/CON)STRUCTORS **********
         public: 
-            Sound_Mono(std::string& path); //load from file
-            Sound_Mono(const char *path); //load from file
-            Sound_Mono(int64_t length);   //generate empty sound buffer
-            Sound_Mono(const Sound_Mono& rhs); //copy constructor
+            explicit Sound_Mono(std::string& path); //load from file
+            explicit Sound_Mono(const char *path); //load from file
+            explicit Sound_Mono(int64_t length);   //generate empty sound buffer
+            explicit Sound_Mono(const Sound_Mono& rhs); //copy constructor
             virtual ~Sound_Mono();
         
         private:
