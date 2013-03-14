@@ -42,9 +42,14 @@ message("h-files: " "${src_h}")
 #set compiler
 #set(CMAKE_CXX_COMPILER "g++")
 #set(CMAKE_CC_COMPILER "gcc")
-IF(CMAKE_COMPILER_IS_GNUCXX)
-    SET(CMAKE_CXX_FLAGS "-O3")        ## Optimize
-    SET(CMAKE_EXE_LINKER_FLAGS "-s")  ## Strip binary
-ENDIF()
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O4 -ffast-math -fvisibility=hidden")        ## Optimize
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wold-style-cast -Wall")                     ## Warnings
+#    set(CMAKE_EXE_LINKER_FLAGS "-s")                                                     ## Strip binary
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O4 -ffast-math -fvisibility=hidden")        ## Optimize
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wold-style-cast -Wall")                     ## Warnings
+#    set(CMAKE_EXE_LINKER_FLAGS "-s")                                                     ## Strip binary
+endif()
 
 ADD_LIBRARY(TheClick STATIC ${src_h} ${src_cpp})
