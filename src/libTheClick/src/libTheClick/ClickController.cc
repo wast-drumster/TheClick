@@ -188,8 +188,8 @@ namespace libTheClick
         //std::cout << "paCallback; outputBufferDacTime: " << std::setprecision(15) << timeInfo->outputBufferDacTime << std::endl;
         
         //cast data passed through stream to useable structure
-        ClickController* cc = (ClickController*)userData;
-        float* out = (float*)outputBuffer;
+        ClickController* cc = static_cast<ClickController*>(userData);
+        float* out = static_cast<float*>(outputBuffer);
         (void) inputBuffer; // prevent unused variable warning
 
         //move SoundElements from ClickGenerators to own SoundElementVector
@@ -208,7 +208,7 @@ namespace libTheClick
 
                     //call SoundElement's callback function
                     (*it2)->callPlaybackCallback(
-                        timeInfo->outputBufferDacTime + (double)((*it2)->time - cc->clickConfiguration->getReadTime()) / (double)SAMPLE_RATE,
+                        timeInfo->outputBufferDacTime + static_cast<double>((*it2)->time - cc->clickConfiguration->getReadTime()) / static_cast<double>(SAMPLE_RATE),
                         //&timeInfo->currentTime
                         boost::bind( &Pa_GetStreamTime, cc->outPaStream )
                     );
