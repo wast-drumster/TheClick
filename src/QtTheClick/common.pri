@@ -7,7 +7,7 @@ INCLUDEPATH += "$${PWD}/../libraries/boost_1_50_0/"
 INCLUDEPATH += "$${PWD}/../libraries/libsndfile-1.0.25/src/"
 INCLUDEPATH += "$${PWD}/../libraries/libsamplerate-0.1.8/src/"
 
-LIBS += -L"$${PWD}/../build/libTheClick/" -lTheClick
+LIBS += -L"$${PWD}/../build/libTheClick/" "-lTheClick"
 #LIBS += -L"$${PWD}/../build/libTheClick/" -lTheClick_BIG
 
 LIBS += -L"$${PWD}/../libraries/libsamplerate-0.1.8/src/.libs" -lsamplerate
@@ -40,8 +40,11 @@ win32-g++ {
 
 #set compiler lags
 unix {
-    QMAKE_CXXFLAGS += -O3
-    CMAKE_C_FLAGS += -O3
+    QMAKE_CXXFLAGS_RELEASE = -O4
+    QMAKE_CXXFLAGS = -ffast-math 
+    QMAKE_CXXFLAGS += -fvisibility=hidden
+    QMAKE_CXXFLAGS += -Wold-style-cast
+    QMAKE_CXXFLAGS += -Wall
 }
 
 #include project stuff

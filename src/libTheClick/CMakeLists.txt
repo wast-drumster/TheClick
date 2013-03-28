@@ -31,14 +31,6 @@ foreach (element ${listOfCMakeLists})
 endforeach()
 
 
-#print configuration
-message("")
-message("use configuration")
-message("cpp-files: " "${src_cpp}")
-message("")
-message("h-files: " "${src_h}")
-
-
 #set compiler
 #set(CMAKE_CXX_COMPILER "g++")
 #set(CMAKE_CC_COMPILER "gcc")
@@ -51,5 +43,15 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wold-style-cast -Wall")                     ## Warnings
 #    set(CMAKE_EXE_LINKER_FLAGS "-s")                                                     ## Strip binary
 endif()
+
+#print configuration
+message("")
+message("use configuration")
+message("cpp-files: " "${src_cpp}")
+message("")
+message("h-files: " "${src_h}")
+message("")
+message("CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
+
 
 ADD_LIBRARY(TheClick STATIC ${src_h} ${src_cpp})

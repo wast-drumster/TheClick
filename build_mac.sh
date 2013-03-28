@@ -45,7 +45,7 @@ mkdir -p "$GUI_BUILD_PATH"
 echo
 echo "build libTheClick"
 cd "$LIB_BUILD_PATH"
-cmake "$LIB_SRC_PATH" && make
+cmake -D CMAKE_CXX_FLAGS="-arch x86_64" "$LIB_SRC_PATH" && make VERBOSE=1
 
 #link all libraries to one library
 #echo
@@ -68,7 +68,7 @@ echo
 echo "build GUI"
 cd "$GUI_BUILD_PATH"
 #qmake "$QT_PRO_PATH" -r -spec macx-g++ CONFIG+=release
-qmake "$QT_PRO_PATH" -r -spec unsupported/macx-clang CONFIG+=release
+qmake "$QT_PRO_PATH" -recursive -spec unsupported/macx-clang CONFIG+=release
 make -w
 
 #applay macdeployqt on the app
